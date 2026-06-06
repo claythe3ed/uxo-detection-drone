@@ -1,0 +1,38 @@
+========================================
+BOM Analysis - UXO Detection Drone
+========================================
+Based on Blueprints.am design (extracted 2026-06-06)
+
+Key Components:
+- Flight Controller: Holybro Pixhawk 6C ($200)
+- Payload MCU: Arduino Mega 2560 ($40)
+- GPS: u-blox ZED-F9P RTK ($250)
+- Magnetometers: Two HWT3100-485 fluxgate ($150 each)
+- Laser Altimeter: LightWare LW20/C ($220)
+- Power Distribution Board + BEC ($40)
+- Battery: 4S 5000mAh LiPo ($80)
+- Motors: 4x 2212 920kV ($15 each = $60)
+- ESCs: 4x 30A ($10 each = $40)
+- Telemetry Radio: Holybro SiK ($60)
+- Frame: DJI F450 carbon fiber plates + arms ($~35)
+- Propellers: 4x 1045 ($3.5 each = $14)
+- Sensor Boom: Carbon fiber telescopic pole ($25)
+- 3D printed mounts (total ~ $12)
+- Misc: nylon standoffs, screws, cable ties (~ $8)
+
+Total Estimated Cost: $1405.58 (as per Blueprints.am)
+
+Compatibility with Simulation Requirements:
+- Flight altitude 1 m: supported (altimeter provides precision)
+- Speed 1 m/s: achievable with 2212 motors at low throttle
+- Endurance: 4S 5000mAh estimated 15-20 min with payload (matches requirement)
+- Magnetometer sensitivity: 13 nT/LSB (matches Maggy paper)
+- Thermal camera: not included in BOM (assumed separate add-on, e.g., FLIR Lepton)
+- Boom length: 30-50 cm non-magnetic (explicitly listed)
+
+Recommendations:
+- Add thermal camera module (FLIR Lepton 3.5 ~$250) to enable thermal detection.
+- Consider upgrading battery to 4S 8000mAh for longer endurance (>25 min).
+- Ensure 3D printed mounts use non-magnetic filament (PETG, PLA).
+- Calibrate magnetometer boom length to minimize interference from drone electronics.
+

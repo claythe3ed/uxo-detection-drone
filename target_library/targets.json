@@ -1,0 +1,129 @@
+{
+  "targets": [
+    {
+      "id": "PMN-2",
+      "name": "PMN-2 Anti-Personnel Mine",
+      "type": "AP landmine",
+      "dimensions": { "diameter_m": 0.12, "height_m": 0.054 },
+      "weight_kg": 0.4,
+      "case_material": "Plastic",
+      "magnetic_moment_Am2": 0.5,
+      "thermal_diffusivity_m2_per_s": 1.2e-7,
+      "thermal_conductivity_W_per_mK": 0.2,
+      "notes": "Low metal content"
+    },
+    {
+      "id": "TM-62M",
+      "name": "TM-62M Anti-Tank Mine",
+      "type": "AT landmine",
+      "dimensions": { "diameter_m": 0.32, "height_m": 0.10 },
+      "weight_kg": 8.0,
+      "case_material": "Steel",
+      "magnetic_moment_Am2": 15.0,
+      "thermal_diffusivity_m2_per_s": 1.0e-6,
+      "thermal_conductivity_W_per_mK": 50.0,
+      "notes": "Highly magnetic"
+    },
+    {
+      "id": "M15",
+      "name": "M15 Anti-Tank Mine",
+      "type": "AT landmine",
+      "dimensions": { "diameter_m": 0.33, "height_m": 0.12 },
+      "weight_kg": 13.6,
+      "case_material": "Steel",
+      "magnetic_moment_Am2": 20.0,
+      "thermal_diffusivity_m2_per_s": 1.2e-6,
+      "thermal_conductivity_W_per_mK": 50.0,
+      "notes": "Large signature"
+    },
+    {
+      "id": "M16_AP",
+      "name": "M16 Bouncing Betty",
+      "type": "AP landmine",
+      "dimensions": { "diameter_m": 0.10, "height_m": 0.20 },
+      "weight_kg": 3.6,
+      "case_material": "Steel",
+      "magnetic_moment_Am2": 5.0,
+      "thermal_diffusivity_m2_per_s": 1.0e-6,
+      "thermal_conductivity_W_per_mK": 50.0,
+      "notes": "Steel casing"
+    },
+    {
+      "id": "F1_Grenade",
+      "name": "F1 Fragmentation Grenade",
+      "type": "UXO",
+      "dimensions": { "diameter_m": 0.055, "height_m": 0.09 },
+      "weight_kg": 0.6,
+      "case_material": "Steel",
+      "magnetic_moment_Am2": 2.0,
+      "thermal_diffusivity_m2_per_s": 1.0e-6,
+      "thermal_conductivity_W_per_mK": 50.0,
+      "notes": "Small metal"
+    },
+    {
+      "id": "60mm_mortar",
+      "name": "60mm Mortar Round",
+      "type": "UXO",
+      "dimensions": { "diameter_m": 0.06, "length_m": 0.25 },
+      "weight_kg": 1.5,
+      "case_material": "Steel",
+      "magnetic_moment_Am2": 2.5,
+      "thermal_diffusivity_m2_per_s": 1.0e-6,
+      "thermal_conductivity_W_per_mK": 50.0,
+      "notes": "Common UXO"
+    },
+    {
+      "id": "82mm_mortar",
+      "name": "82mm Mortar Round",
+      "type": "UXO",
+      "dimensions": { "diameter_m": 0.082, "length_m": 0.32 },
+      "weight_kg": 3.2,
+      "case_material": "Steel",
+      "magnetic_moment_Am2": 5.0,
+      "thermal_diffusivity_m2_per_s": 1.0e-6,
+      "thermal_conductivity_W_per_mK": 50.0,
+      "notes": "Widely used"
+    },
+    {
+      "id": "VS50",
+      "name": "VS-50 Anti-Personnel Mine",
+      "type": "AP landmine",
+      "dimensions": { "diameter_m": 0.09, "height_m": 0.045 },
+      "weight_kg": 0.185,
+      "case_material": "Plastic",
+      "magnetic_moment_Am2": 0.1,
+      "thermal_diffusivity_m2_per_s": 1.1e-7,
+      "thermal_conductivity_W_per_mK": 0.17,
+      "notes": "Italian plastic"
+    },
+    {
+      "id": "Mk82_bomb",
+      "name": "Mk82 500lb Bomb",
+      "type": "UXO",
+      "dimensions": { "diameter_m": 0.27, "length_m": 2.2 },
+      "weight_kg": 227,
+      "case_material": "Steel",
+      "magnetic_moment_Am2": 120.0,
+      "thermal_diffusivity_m2_per_s": 1.2e-6,
+      "thermal_conductivity_W_per_mK": 50.0,
+      "notes": "Large bomb"
+    },
+    {
+      "id": "PMN4",
+      "name": "PMN-4 Anti-Personnel Mine",
+      "type": "AP landmine",
+      "dimensions": { "diameter_m": 0.10, "height_m": 0.045 },
+      "weight_kg": 0.3,
+      "case_material": "Plastic",
+      "magnetic_moment_Am2": 0.2,
+      "thermal_diffusivity_m2_per_s": 1.2e-7,
+      "thermal_conductivity_W_per_mK": 0.18,
+      "notes": "Russian plastic"
+    }
+  ],
+  "metadata": {
+    "source": "Open sources",
+    "version": "2.0",
+    "last_updated": "2026-06-06T23:00:00"
+  }
+}

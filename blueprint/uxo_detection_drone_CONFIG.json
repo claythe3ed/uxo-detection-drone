@@ -1,0 +1,2282 @@
+{
+  "plan": "- Flight Control: Pixhawk 6C (or similar) with ArduPilot firmware, GNSS (e.g., ZED-F9P) for centimeter-level positioning, sonic/laser altimeter for terrain following.\n- Sensor Payload: Two triaxial fluxgate magnetometers (e.g., HWT3100-485/FGM3D/75), Arduino Mega (or similar) microcontroller for data acquisition.\n- Power & Propulsion: 4S 5000mAh LiPo battery, ESCs, motors, propellers, power distribution board with regulated 5V/12V outputs.\n- Structural: Quadcopter frame (carbon fiber/plastic, DJI F-450 inspired) up to 1.5kg MTOW, non-magnetic retractable boom (30-50 cm).\n- Communication & Data: 433/915 MHz SiK radio telemetry, onboard SD card for logging, optional Raspberry Pi 4/Zero for processing/logging.\n- Software: Arduino code for sensor reading, QGroundControl/Mission Planner for flight control, custom ground station software for mapping.",
+  "nodes": [
+    {
+      "id": "flight_controller",
+      "name": "Flight Controller",
+      "pins": [
+        "Power In",
+        "PWM Out",
+        "UART1",
+        "I2C1",
+        "CAN1",
+        "USB-C"
+      ],
+      "type": "mcu",
+      "partId": "79239b5e-d3b8-4971-8e97-97e33748bea2",
+      "ebayUrl": "https://www.ebay.com/sch/i.html?_nkw=Holybro+Pixhawk+6C&_sacat=0&_from=R40&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339153059&customid=blueprint&toolid=10001&mkevt=1",
+      "category": "electrical",
+      "imageUrl": "https://m.media-amazon.com/images/I/41MCtuaSGsL._SL500_.jpg",
+      "quantity": 1,
+      "research": {
+        "specs": [
+          {
+            "label": "pins",
+            "value": "PWM Out,CAN1,CAN2,I2C,UART,ADC,USB-C,Power In,GPS Port"
+          }
+        ],
+        "sourcing": [
+          {
+            "url": "https://www.amazon.com/dp/B0CD76T9D5?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+            "price": "$188.99",
+            "vendor": "Amazon"
+          },
+          {
+            "url": "https://www.aliexpress.com/item/1005007809722626.html?pdp_npi=6%40dis%21USD%21276.13%21218.14%21%21%211872.09%211478.95%21%4021013cc017793266936705535e119a%2112000042281802503%21affd%21%21%21%211%210%21",
+            "price": "$218.14",
+            "vendor": "AliExpress"
+          }
+        ]
+      },
+      "amazonUrl": "https://www.amazon.com/dp/B0CD76T9D5?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "dimensions": "82x50x20mm",
+      "description": "Primary flight control unit based on STM32H753, includes integrated IMU (ICM-20689) and barometer (MS5611) for stable flight and navigation.",
+      "productName": "Holybro Pixhawk 6C",
+      "purchaseUrl": "https://www.getfpv.com/holybro-pixhawk-6c-flight-controller.html",
+      "aliexpressUrl": "https://s.click.aliexpress.com/s/NdpwztbAIgDMmxGbP8fFks7yUFfsHjzlImSYmA68h7xlMRgzueFsRgokQ9f9hcpVKttxtQE2VzIoqkXJXrpOr6uR3zv7mP4CDO9CddoFf4t0QE5DXPy8Pgjhz4irfQSEjEGUmy5yF3A5gJ9h3NYjLMgqIMqa3zcpq5E2BC3W5EbV40Dm9buQxWpZzw1lbX8Zm2kZtNIa4KyDieNjsH7IU6Yv8StELKVvT9r4eFAaXPGhwHsgaDqdNcmY116r3GC2YvsOopeiiZPhJrV0cwgOQDSkW93v7gVKDqPkXyZF1oSWa6wSAOeznMFVlVZbuGeIyhOSedJU8Zl9ExUD4slJ76YpSCGmv29Mwoa6jJbNObRsntfvCZJnz1eH4fmIIpUjeFM7xHakaaB8AReo8LhYfw3tbNwph7ay0UGyOBNonoQkinN20AcvfzLM2AI0SENW7nqBRwKwmiIP1YDhlhsjPl2GuZ28lVX7l6QCfskPkytpUxLsQ0yoMeH0kd5rn6nUTTxYdMbJRAD9dD9H3fqRoxClGozsSiUiLvusW7dvlLXjrGMO7IdJOJGm8OTMaG8nw6HTGfmaCFdX5WDFu1KVLOuBGHXmAWQ1yBMPc4kqG6BfkfeEMTSiM2Ov9pNHthoENVikd4uM1TlNH4rkwFuq6OcMm52yn7DHpqOy9Vzo6jexNSyvkpWIffQgh7kHMnrtQiPCgpmf2eRHwvuGgNaKRZHvIYPWDYccUU5W3CzGdgQYub6oCwYy3LwmbHiLdyd7l3gDbP2jTNvupRFCvmMtwg5fzGn6Qf1Z52j05obZzVqShK63IxeA79L51N0uIc3yztlNgdkRfGylOeCtiWbMKCTWf9ZrkUs7kyURYWdc0HM6RDaJzwe8dKA34qdJS1YqT3cM3chQDIKAXcASNKHax7vO33S2irY3TLWWK5bvEp4d9BLbIxSLCPBZlGgUDq1L8NReHav0t8uDid30b65VlvBGOlUyZgemOCdLujnajWdvh",
+      "estimatedCost": 200
+    },
+    {
+      "id": "payload_mcu",
+      "name": "Payload Data Acquisition MCU",
+      "pins": [
+        "VIN",
+        "GND",
+        "5V",
+        "Serial1 RX/TX",
+        "Serial2 RX/TX",
+        "Serial3 RX/TX",
+        "Analog In",
+        "Digital I/O"
+      ],
+      "type": "mcu",
+      "partId": "42d7f501-18f6-49ab-a055-73e7afb1cb2c",
+      "ebayUrl": "https://www.ebay.com/sch/i.html?_nkw=Arduino+Mega+2560+R3&_sacat=0&_from=R40&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339153059&customid=blueprint&toolid=10001&mkevt=1",
+      "category": "electrical",
+      "imageUrl": "https://ae-pic-a1.aliexpress-media.com/kf/S5cf917d04a1c4958a143cb9bb81f255cc.jpg",
+      "quantity": 1,
+      "research": {
+        "specs": [
+          {
+            "label": "pins",
+            "value": "5V,GND,Vin,TX1,RX1"
+          }
+        ],
+        "sourcing": [
+          {
+            "url": "https://www.amazon.com/dp/B0046AMGW0?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+            "price": "$49.9",
+            "vendor": "Amazon"
+          },
+          {
+            "url": "https://www.aliexpress.com/item/1005006863715906.html?pdp_npi=6%40dis%21USD%2134.21%2116.08%21%21%21231.94%21109.01%21%4021013cc617793278412755540e101d%2112000057713786582%21affd%21%21%21%211%210%21",
+            "price": "$16.08",
+            "vendor": "AliExpress"
+          }
+        ]
+      },
+      "amazonUrl": "https://www.amazon.com/dp/B0046AMGW0?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "dimensions": "101.52x53.3mm",
+      "description": "Microcontroller board based on the ATmega2560, suitable for projects requiring many I/O pins.",
+      "productName": "Arduino Mega 2560 R3",
+      "purchaseUrl": "https://s.click.aliexpress.com/s/fwx308cRD9Eny963e3KDdYxyIpNj8TXVr7saiF9Um5rMUg1kZtJALLnfa2LNXtiVgnxdD8Og6MmvwBoxhnSYQGM6r0c08U4TfX8DFGo7vviCuu3q62Q60OAhRZcqm3G8PtwM69xY7TOEWRrvulP5ukZQ4uQbBBtaVsdr6EffAqVmp3O5GyUANU2DoA3dJufNhDfh7KOlLgKIvRVhDxRESHLmea6fTE26gLUqKEUuuizJiLENrCbax94DZHDu8WhaXM9vQ86gzlqceNPO5w3vwXm4VrBF3x2lAMEl06wgNdTSMiT7cNG4HIdW0Jxwok09LMxrO353eAciRTapAi82psay9gAOyRWdfjjT5VE6tdxUJFo4vyx49fRxW4Bc3zpl8TW4j6QpGVyB8Z11DtI8AiNfCphhxYUH2OXZCdcOx2NRPgQ3d7Zm5O9iRkQCBaXsLjW3FW9RWulZiigrBKD0G98CcQ2IGfrvL2MTHHFoGgvUGjZTpiVPUq6FYQ5EakKIAavac26wu7kbLuUPFilF9G0OctgKF2XjMdzfRzpobGaDfezs8vh9cqLPTiayaeoyZktjRkfg5Lii7aDccNxkRtW6TFjv6L04kYrAu3uEFZMfLfvbXfGllP3LQpiOn7xOa3O3DyHBz1OXrDbn4IkAXe6KfXioW6pQTJ3hyzm4WtGEOZpdfdUANYIupgQucJPgcQLYnVJW5ol4rBFLXWHNKvri90snNX3toSAKczd4VxHsJUtgTGbNF4yIVCpikxkjq713pDfr8HNU0uKtWjfgiYw87x5ee7qydWyM91g3XG04lPXeuaClHO4qsWaVOMvqq4nFbeqqynSn92SRmHYZLy7GVEc91AfvyRgvcZMK71NQGQyEKYSyLC8nWhZr2k2lYVAFwVkZyYdiuyhwyYLZu3lid7vwXY5odnr5EL8BmzcUhMDwVYf9TDv5l1YVhGcPfv16dfQvT5a2JoaM15",
+      "aliexpressUrl": "https://s.click.aliexpress.com/s/fwx308cRD9Eny963e3KDdYxyIpNj8TXVr7saiF9Um5rMUg1kZtJALLnfa2LNXtiVgnxdD8Og6MmvwBoxhnSYQGM6r0c08U4TfX8DFGo7vviCuu3q62Q60OAhRZcqm3G8PtwM69xY7TOEWRrvulP5ukZQ4uQbBBtaVsdr6EffAqVmp3O5GyUANU2DoA3dJufNhDfh7KOlLgKIvRVhDxRESHLmea6fTE26gLUqKEUuuizJiLENrCbax94DZHDu8WhaXM9vQ86gzlqceNPO5w3vwXm4VrBF3x2lAMEl06wgNdTSMiT7cNG4HIdW0Jxwok09LMxrO353eAciRTapAi82psay9gAOyRWdfjjT5VE6tdxUJFo4vyx49fRxW4Bc3zpl8TW4j6QpGVyB8Z11DtI8AiNfCphhxYUH2OXZCdcOx2NRPgQ3d7Zm5O9iRkQCBaXsLjW3FW9RWulZiigrBKD0G98CcQ2IGfrvL2MTHHFoGgvUGjZTpiVPUq6FYQ5EakKIAavac26wu7kbLuUPFilF9G0OctgKF2XjMdzfRzpobGaDfezs8vh9cqLPTiayaeoyZktjRkfg5Lii7aDccNxkRtW6TFjv6L04kYrAu3uEFZMfLfvbXfGllP3LQpiOn7xOa3O3DyHBz1OXrDbn4IkAXe6KfXioW6pQTJ3hyzm4WtGEOZpdfdUANYIupgQucJPgcQLYnVJW5ol4rBFLXWHNKvri90snNX3toSAKczd4VxHsJUtgTGbNF4yIVCpikxkjq713pDfr8HNU0uKtWjfgiYw87x5ee7qydWyM91g3XG04lPXeuaClHO4qsWaVOMvqq4nFbeqqynSn92SRmHYZLy7GVEc91AfvyRgvcZMK71NQGQyEKYSyLC8nWhZr2k2lYVAFwVkZyYdiuyhwyYLZu3lid7vwXY5odnr5EL8BmzcUhMDwVYf9TDv5l1YVhGcPfv16dfQvT5a2JoaM15",
+      "estimatedCost": 40
+    },
+    {
+      "id": "gnss_module",
+      "name": "Centimeter-Level GPS Module",
+      "pins": [
+        "VCC",
+        "GND",
+        "TX",
+        "RX",
+        "PPS"
+      ],
+      "type": "sensor",
+      "partId": "356fb984-a6ed-4a55-9190-0304d3ae5798",
+      "ebayUrl": "https://www.ebay.com/sch/i.html?_nkw=u-blox+ZED-F9P&_sacat=0&_from=R40&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339153059&customid=blueprint&toolid=10001&mkevt=1",
+      "category": "electrical",
+      "imageUrl": "https://ae-pic-a1.aliexpress-media.com/kf/S16b014bbc8e24f4295c7a64461d7402eB.jpg",
+      "quantity": 1,
+      "research": {
+        "specs": [
+          {
+            "label": "pins",
+            "value": "UART_TX,UART_RX,I2C_SDA,I2C_SCL,PPS,3V3,GND"
+          }
+        ],
+        "sourcing": [
+          {
+            "url": "",
+            "vendor": "Amazon"
+          },
+          {
+            "url": "https://www.aliexpress.com/item/1005011822768412.html?pdp_npi=6%40dis%21USD%21148.31%2196.40%21%21%211002.75%21651.79%21%4021013cc017793824927116139e0e70%2112000056687593492%21affd%21%21%21%211%210%21",
+            "price": "$96.4",
+            "vendor": "AliExpress"
+          }
+        ]
+      },
+      "dimensions": "17x22x2.4mm",
+      "description": "Provides precise positioning data for autonomous navigation.",
+      "productName": "u-blox ZED-F9P",
+      "purchaseUrl": "https://www.sparkfun.com/products/16481",
+      "aliexpressUrl": "https://s.click.aliexpress.com/s/fwx308cRD9Eny963e3KDdYxyIpNj8TXVr7saiF9Um5rMUg1kZtJALLnfa2LNXtiVgnxdD8Og6MmvwBoxhnSYQGM6r0c08U4TfX8DFGo7vviCuu3q62Q60OAhRZcqm3G8PtwM69xY7TOEWRrvulP5ukZQ4uQbBBtaVsdr6EffAqVmp3O5GyUANU2DoA3dJufNhDfh7KOlLgKIvRVhDxRESHLmea6fTE26gLUqKEUuuizJiLENrCbax94DZHDu8WhaXM9vQ86gzlqceNPO5w3vwXm4VrBF3x2lAMEl06wgNdTSMiT7cNG4HIdW0JxH3xXZWNyDiPiodHhaAW7jkyRg2ciA3KqLWnOQjkPFC3h60GGjN0TSDxJNbHfoQUTydUuvSl7qVBIauYrnMSLlwYV7Z4G6dt8Lazce6VQFjtA7KiFT7PaVfEsc2vF2eFbw2SeBz2TbfBBo3eOyi7VS3ysRikPdddBwxYaeOtwaQpC1ArqAttBiJbFPwRy7KsIZnpv98ICqsfqkxz2sRtynaATqh6VxBdayYLN5akj5l30yyvn9X8Cyrx1pSeWbUdrVfaaml8u6B8gtyheCIRupvhB5zoSHU20u6hSBLqkRWoqSDG8tGbVnXeHe6GLVTyHk5CPJlcJdSsO1dStZ8NFkspzRPnxTMpG3Lw19TWUBlPSZOMjNlflaQmbdFmHvkwfOy9bHKWP6jjoSaCqz4soMiPxI6RPowf24eJEhwKddIKHIg7cJU2gjtFhPChqOV8KdfIGZmnGvPoWmXAT6FgM4Znrqeuvr5Ibpij1ruI0210rYwFx3IjfiyhlprJfTYcKzneM9TmR246Y9hlORwtb3q110YQBYXbnB84k6mxKGBydAPr9GuAwNa3MQuYSPuiXw4rdNPYkN6Sug703TWu9zsRXq5cDfor20Axdwsyp3rDYOO2vqQgeqeEBD8SqGGI1JFYujbpYbcfDjsV0xYcKhQL",
+      "estimatedCost": 250,
+      "amazonUrl": null
+    },
+    {
+      "id": "magnetometer_z",
+      "name": "Vertical Magnetometer (Z-axis)",
+      "pins": [
+        "VCC",
+        "GND",
+        "RS485-A",
+        "RS485-B"
+      ],
+      "type": "sensor",
+      "partId": "c4454303-7e63-4250-a494-c0319d787a6c",
+      "ebayUrl": "https://www.ebay.com/sch/i.html?_nkw=HWT3100-485&_sacat=0&_from=R40&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339153059&customid=blueprint&toolid=10001&mkevt=1",
+      "category": "electrical",
+      "imageUrl": "https://imgs.search.brave.com/XqewuOBdRBXmr7ws5MckkEfrG8GLa2NVrtZroa3DsPE/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly93aXRt/b3Rpb24tc2Vuc29y/LmNvbS9jZG4vc2hv/cC9maWxlcy9IV1Qz/MTAwLTQ4NS5qcGc_/dj0xNzQyNDM3MzI5/JndpZHRoPTE5NDY",
+      "quantity": 1,
+      "dimensions": "45x25x15mm",
+      "productName": "HWT3100-485",
+      "purchaseUrl": "https://www.amazon.com/s?k=HWT3100-485",
+      "aliexpressUrl": "https://s.click.aliexpress.com/e/_c3SaA1gV",
+      "estimatedCost": 150
+    },
+    {
+      "id": "magnetometer_x",
+      "name": "Horizontal Magnetometer (X-axis)",
+      "pins": [
+        "VCC",
+        "GND",
+        "RS485-A",
+        "RS485-B"
+      ],
+      "type": "sensor",
+      "partId": "c4454303-7e63-4250-a494-c0319d787a6c",
+      "ebayUrl": "https://www.ebay.com/sch/i.html?_nkw=HWT3100-485&_sacat=0&_from=R40&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339153059&customid=blueprint&toolid=10001&mkevt=1",
+      "category": "electrical",
+      "imageUrl": "https://imgs.search.brave.com/XqewuOBdRBXmr7ws5MckkEfrG8GLa2NVrtZroa3DsPE/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly93aXRt/b3Rpb24tc2Vuc29y/LmNvbS9jZG4vc2hv/cC9maWxlcy9IV1Qz/MTAwLTQ4NS5qcGc_/dj0xNzQyNDM3MzI5/JndpZHRoPTE5NDY",
+      "quantity": 1,
+      "dimensions": "45x25x15mm",
+      "productName": "HWT3100-485",
+      "purchaseUrl": "https://www.amazon.com/s?k=HWT3100-485",
+      "aliexpressUrl": "https://s.click.aliexpress.com/e/_c3SaA1gV",
+      "estimatedCost": 150
+    },
+    {
+      "id": "laser_altimeter",
+      "name": "Precision Laser Altimeter",
+      "pins": [
+        "Power",
+        "GND",
+        "RX",
+        "TX",
+        "I2C SCL",
+        "I2C SDA"
+      ],
+      "type": "sensor",
+      "partId": "a3b3cbd8-3c46-484a-a580-c33e59b21418",
+      "ebayUrl": "https://www.ebay.com/sch/i.html?_nkw=LightWare+LW20%2FC&_sacat=0&_from=R40&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339153059&customid=blueprint&toolid=10001&mkevt=1",
+      "category": "electrical",
+      "imageUrl": "https://imgs.search.brave.com/-wIPomuhG4qF-cX8fjFH5nmJmjBHLoNW5qLx0sTxZ8g/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly93d3cu/Zmx5aW5nZXllLmZy/L3dwLWNvbnRlbnQv/dXBsb2Fkcy8yMDE4/LzAxL0xJREFSLUxp/Z2h0V2FyZS1MVzIw/LUMucG5n",
+      "quantity": 1,
+      "research": {
+        "sourcing": [
+          {
+            "url": "https://www.aliexpress.com/w/wholesale-lightware-lw20-c.html",
+            "vendor": "AliExpress"
+          },
+          {
+            "url": "",
+            "vendor": "Amazon"
+          }
+        ]
+      },
+      "dimensions": "20x20x35mm",
+      "description": "LiDAR for accurate terrain following and altitude hold.",
+      "productName": "LightWare LW20/C",
+      "purchaseUrl": "https://www.lightwarelidar.com/products/lw20c",
+      "aliexpressUrl": "https://s.click.aliexpress.com/e/_c4SDf82h",
+      "estimatedCost": 220,
+      "amazonUrl": null
+    },
+    {
+      "id": "power_distribution_board",
+      "name": "Power Distribution Board with BECs",
+      "pins": [
+        "Battery In (XT60)",
+        "ESC Out (x4)",
+        "5V Out",
+        "12V Out"
+      ],
+      "type": "power",
+      "partId": "686f7064-eef5-4652-ad83-2f89ba37e5bc",
+      "ebayUrl": "https://www.ebay.com/sch/i.html?_nkw=Holybro+PM07%2FPM02+%28or+similar+with+5V%2F12V+BEC%29&_sacat=0&_from=R40&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339153059&customid=blueprint&toolid=10001&mkevt=1",
+      "category": "electrical",
+      "imageUrl": "https://imgs.search.brave.com/LkL2JxEjRChbcRqL6wo2PX8XwhRPFHrnpanj6HFUXwo/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly93d3cu/Zmx5aW5ndGVjaC5j/by51ay93cC1jb250/ZW50L3VwbG9hZHMv/MjAyNC8wMi9QTTA3/LVBEQi53ZWJw",
+      "quantity": 1,
+      "dimensions": "68x39x10mm",
+      "productName": "Holybro PM07/PM02 (or similar with 5V/12V BEC)",
+      "purchaseUrl": "https://www.getfpv.com/holybro-pm07-v2-power-management-board.html",
+      "aliexpressUrl": "https://s.click.aliexpress.com/e/_c3pENOv7",
+      "estimatedCost": 40
+    },
+    {
+      "id": "main_lipo_battery",
+      "name": "Main LiPo Battery",
+      "pins": [
+        "XT60 Connector",
+        "Balance Connector"
+      ],
+      "type": "power",
+      "partId": "b316c53f-7c29-4395-9dee-2e172bf5d2f8",
+      "ebayUrl": "https://www.ebay.com/sch/i.html?_nkw=4S+5000mAh+LiPo+Battery&_sacat=0&_from=R40&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339153059&customid=blueprint&toolid=10001&mkevt=1",
+      "category": "electrical",
+      "imageUrl": "https://m.media-amazon.com/images/I/41M8g3wcxsL._SL500_.jpg",
+      "quantity": 1,
+      "research": {
+        "specs": [
+          {
+            "label": "pins",
+            "value": "P_POS,P_NEG,BALANCE"
+          }
+        ],
+        "sourcing": [
+          {
+            "url": "https://www.amazon.com/dp/B092C5GPC9?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+            "price": "$114.99",
+            "vendor": "Amazon"
+          },
+          {
+            "url": "https://www.aliexpress.com/item/1005007142212180.html?pdp_npi=6%40dis%21USD%2129.90%2113.75%21%21%2129.90%2113.75%21%402141149b17793635307074236e102f%2112000039559068819%21affd%21%21%21%211%210%21",
+            "price": "$13.75",
+            "vendor": "AliExpress"
+          },
+          {
+            "url": "https://www.amazon.com/dp/B06XK8WWX1?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+            "price": "$56.99",
+            "vendor": "Amazon"
+          }
+        ]
+      },
+      "amazonUrl": "https://www.amazon.com/dp/B092C5GPC9?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "dimensions": "145x50x45mm",
+      "description": "4S 5000mAh LiPo battery for main power supply.",
+      "productName": "4S 5000mAh LiPo Battery",
+      "purchaseUrl": "https://s.click.aliexpress.com/s/fwx308cRD9Eny963e3KDdYxyIpNj8TXVr7saiF9Um5rMUg1kZtJALLnfa2LNXtiVgnxdD8Og6MmvwBoxhnSYQGM6r0c08U4TfX8DFGo7vviCuu3q62Q60OAhRZcqm3G8PtwM69xY7TOEWRrvulP5ukZQ4uQbBBtaVsdr6EffAqVmp3O5GyUANU2DoA3dJufNhDfh7KOlLgKIvRVhDxRESHLmea6fTE26gLUqKEUuuizJiLENrCbax94DZHDu8WhaXM9vQ86gzlqceNPO5w3vwXm4VrBF3x2lAMEl06wgNdTSMiT7cNG4HIdW0JxxCIEBQP5O7HfqRZZyVtdeoI8OHOvtLUhVXPqWAsVUwGsYkRBVVIrvknRr0RZvcXu91pbY9UcSCmw30U6rdsGAI3zXXKOlZBeVpHJ9t1ONQbX03xqjUyCoslcbOnY9P8ZDGCXPmmELS5grE6qjkrhjXEOaTcOyKzicvvGC20ZOsqxTYA2ZtND33pRegRjuiKOrP9UvcelmBD094wlP5riiQpBiqsBI5Fv4RGxRSmOZs4JDVtCFacmVtDJWsF44vqaqdRTq2mb6d9XBVUSUKtPJj1pKM4UR797ViGesuGmJ582TeFKvOAHtxnhJ7EPjscVIBhXfVsR1Mlnp0FrKSb7Rrm4uNIFJ3rqdn5m0eedRbr44X6T09vrMLg3UdiQfPF1KlQVyAjjER7xqwOJ5ivaS9H40mw38uNYNDAhFGhhgIru4ZqgpjD3x5XaGDzK0ukH7ly2CEJGc1WwopAFijsqAiSCWFBEWsAdQdhLRpR7EGVQJCPFBWUhmUAe4L01KRjxFfxQwHkfzu009zd6zEhwzw5iYaFuo2meGPeQqtLdthd0O64T3kNeKFbC0CWePQ9GktH7gGwpj10EI4yCzKJrez8ixIBQ7IBcM5rSGj84bZfFO3siUetfDvIsARktdE1yrgyFne9619DcGQRH4QdMDyJ",
+      "aliexpressUrl": "https://s.click.aliexpress.com/s/fwx308cRD9Eny963e3KDdYxyIpNj8TXVr7saiF9Um5rMUg1kZtJALLnfa2LNXtiVgnxdD8Og6MmvwBoxhnSYQGM6r0c08U4TfX8DFGo7vviCuu3q62Q60OAhRZcqm3G8PtwM69xY7TOEWRrvulP5ukZQ4uQbBBtaVsdr6EffAqVmp3O5GyUANU2DoA3dJufNhDfh7KOlLgKIvRVhDxRESHLmea6fTE26gLUqKEUuuizJiLENrCbax94DZHDu8WhaXM9vQ86gzlqceNPO5w3vwXm4VrBF3x2lAMEl06wgNdTSMiT7cNG4HIdW0JxxCIEBQP5O7HfqRZZyVtdeoI8OHOvtLUhVXPqWAsVUwGsYkRBVVIrvknRr0RZvcXu91pbY9UcSCmw30U6rdsGAI3zXXKOlZBeVpHJ9t1ONQbX03xqjUyCoslcbOnY9P8ZDGCXPmmELS5grE6qjkrhjXEOaTcOyKzicvvGC20ZOsqxTYA2ZtND33pRegRjuiKOrP9UvcelmBD094wlP5riiQpBiqsBI5Fv4RGxRSmOZs4JDVtCFacmVtDJWsF44vqaqdRTq2mb6d9XBVUSUKtPJj1pKM4UR797ViGesuGmJ582TeFKvOAHtxnhJ7EPjscVIBhXfVsR1Mlnp0FrKSb7Rrm4uNIFJ3rqdn5m0eedRbr44X6T09vrMLg3UdiQfPF1KlQVyAjjER7xqwOJ5ivaS9H40mw38uNYNDAhFGhhgIru4ZqgpjD3x5XaGDzK0ukH7ly2CEJGc1WwopAFijsqAiSCWFBEWsAdQdhLRpR7EGVQJCPFBWUhmUAe4L01KRjxFfxQwHkfzu009zd6zEhwzw5iYaFuo2meGPeQqtLdthd0O64T3kNeKFbC0CWePQ9GktH7gGwpj10EI4yCzKJrez8ixIBQ7IBcM5rSGj84bZfFO3siUetfDvIsARktdE1yrgyFne9619DcGQRH4QdMDyJ",
+      "estimatedCost": 80
+    },
+    {
+      "id": "motor_front_left",
+      "name": "Motor Front Left",
+      "pins": [
+        "Motor Phase 1",
+        "Motor Phase 2",
+        "Motor Phase 3"
+      ],
+      "type": "actuator",
+      "partId": "4f624ee3-67f6-437c-b507-a53603820e25",
+      "ebayUrl": "https://www.ebay.com/sch/i.html?_nkw=2212+920KV+Brushless+DC+Motor&_sacat=0&_from=R40&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339153059&customid=blueprint&toolid=10001&mkevt=1",
+      "category": "electrical",
+      "imageUrl": "https://ae-pic-a1.aliexpress-media.com/kf/H9fb67b3792b047ba826fb4106d585398G.jpg",
+      "quantity": 1,
+      "research": {
+        "specs": [
+          {
+            "label": "pins",
+            "value": "3-phase wires"
+          }
+        ],
+        "sourcing": [
+          {
+            "url": "https://www.aliexpress.com/item/32678297467.html?pdp_npi=6%40dis%21USD%2128.18%2113.53%21%21%2128.18%2113.53%21%402140d36117793912411477244e0fe5%2110000002552882887%21affd%21%21%21%211%210%21",
+            "price": "$13.53",
+            "vendor": "AliExpress"
+          },
+          {
+            "url": "https://www.amazon.com/dp/B075DD16LK?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+            "price": "$39.99",
+            "vendor": "Amazon"
+          }
+        ]
+      },
+      "amazonUrl": "https://www.amazon.com/dp/B075DD16LK?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "dimensions": "27.8x27.8x27mm",
+      "description": "Brushless motor for propeller rotation.",
+      "productName": "2212 920KV Brushless DC Motor",
+      "purchaseUrl": "https://s.click.aliexpress.com/s/fwx308cRD9Eny963e3KDdYxyIpNj8TXVr7saiF9Um5rMUg1kZtJALLnfa2LNXtiVgnxdD8Og6MmvwBoxhnSYQGM6r0c08U4TfX8DFGo7vviCuu3q62Q60OAhRZcqm3G8PtwM69xY7TOEWRrvulP5ukZQ4uQbBBtaVsdr6EffAqVmp3O5GyUANU2DoA3dJufNhDfh7KOlLgKIvRVhDxRESHLmea6fTE26gLUqKEUuuizJiLENrCbax94DZHDu8WhaXM9vQ86gzlqceNPO5w3vwXm4VrBF3x3WCKGIMjWWmCLcj3QVJX1XYrsxehDzgIEwZX2WNugQ0IQXmXnNKqa0W2Fpdi0y1tjW6KpIRuMRijGlERcbqzhgsfKIciN6X3FUHz39ATMj6VVPxcS4aNdGdkIKNbyDZHcBVKZvWMQTbC0Vx3e6Cwa1AbnxhRdyeAJwCTyWJSaTrgdQYDmtXQSgh3mLVXASNdxDt1Zdg994XXWeIibdHv3GW1otNjgUPCjSut9NApT7HuxbcCgEmCfovzcHnFmDveWIWXLUlzfCGaLOvcKLEb7JYL5fEBFoPHCWP5uDoUUBjBSB7oKLafAgy0jcGnL1aKVZlydKRCmADrlJc70clhbvVbZM9Hn4gvJxNM3Wwiq4agFsGM0Uyy2dGxzaU6mzfIHkDmNeGhbPHxGc2Y7L7XxcvusunUrAN9z7QI8L6VUVnLHkyej2p7Y1HMApUwviSyizAfnFOR8ufDMUQS3PUIOCUqOI2OcCbQie62oU5T50NFjtep3toDlP61hKoqIpJ79EcDv46XykfwsYXEmUogyLWQ5cbb6jjRYhO1adePpncktMtpyH6fWAVdOANukcSUowLelEzPxZuag860BPrZYUwP0BL1AHPS1EUWkh2g7BK3aqESeSGSW60yv154X16HRnWz0DRzTJNStKKyTYUWPzTOJtPink4BYODHSXFJ5KEmywhJFTHv",
+      "aliexpressUrl": "https://s.click.aliexpress.com/s/fwx308cRD9Eny963e3KDdYxyIpNj8TXVr7saiF9Um5rMUg1kZtJALLnfa2LNXtiVgnxdD8Og6MmvwBoxhnSYQGM6r0c08U4TfX8DFGo7vviCuu3q62Q60OAhRZcqm3G8PtwM69xY7TOEWRrvulP5ukZQ4uQbBBtaVsdr6EffAqVmp3O5GyUANU2DoA3dJufNhDfh7KOlLgKIvRVhDxRESHLmea6fTE26gLUqKEUuuizJiLENrCbax94DZHDu8WhaXM9vQ86gzlqceNPO5w3vwXm4VrBF3x3WCKGIMjWWmCLcj3QVJX1XYrsxehDzgIEwZX2WNugQ0IQXmXnNKqa0W2Fpdi0y1tjW6KpIRuMRijGlERcbqzhgsfKIciN6X3FUHz39ATMj6VVPxcS4aNdGdkIKNbyDZHcBVKZvWMQTbC0Vx3e6Cwa1AbnxhRdyeAJwCTyWJSaTrgdQYDmtXQSgh3mLVXASNdxDt1Zdg994XXWeIibdHv3GW1otNjgUPCjSut9NApT7HuxbcCgEmCfovzcHnFmDveWIWXLUlzfCGaLOvcKLEb7JYL5fEBFoPHCWP5uDoUUBjBSB7oKLafAgy0jcGnL1aKVZlydKRCmADrlJc70clhbvVbZM9Hn4gvJxNM3Wwiq4agFsGM0Uyy2dGxzaU6mzfIHkDmNeGhbPHxGc2Y7L7XxcvusunUrAN9z7QI8L6VUVnLHkyej2p7Y1HMApUwviSyizAfnFOR8ufDMUQS3PUIOCUqOI2OcCbQie62oU5T50NFjtep3toDlP61hKoqIpJ79EcDv46XykfwsYXEmUogyLWQ5cbb6jjRYhO1adePpncktMtpyH6fWAVdOANukcSUowLelEzPxZuag860BPrZYUwP0BL1AHPS1EUWkh2g7BK3aqESeSGSW60yv154X16HRnWz0DRzTJNStKKyTYUWPzTOJtPink4BYODHSXFJ5KEmywhJFTHv",
+      "estimatedCost": 15
+    },
+    {
+      "id": "motor_front_right",
+      "name": "Motor Front Right",
+      "pins": [
+        "Motor Phase 1",
+        "Motor Phase 2",
+        "Motor Phase 3"
+      ],
+      "type": "actuator",
+      "partId": "4f624ee3-67f6-437c-b507-a53603820e25",
+      "ebayUrl": "https://www.ebay.com/sch/i.html?_nkw=2212+920KV+Brushless+DC+Motor&_sacat=0&_from=R40&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339153059&customid=blueprint&toolid=10001&mkevt=1",
+      "category": "electrical",
+      "imageUrl": "https://ae-pic-a1.aliexpress-media.com/kf/H9fb67b3792b047ba826fb4106d585398G.jpg",
+      "quantity": 1,
+      "research": {
+        "specs": [
+          {
+            "label": "pins",
+            "value": "3-phase wires"
+          }
+        ],
+        "sourcing": [
+          {
+            "url": "https://www.aliexpress.com/item/32678297467.html?pdp_npi=6%40dis%21USD%2128.18%2113.53%21%21%2128.18%2113.53%21%402140d36117793912411477244e0fe5%2110000002552882887%21affd%21%21%21%211%210%21",
+            "price": "$13.53",
+            "vendor": "AliExpress"
+          },
+          {
+            "url": "https://www.amazon.com/dp/B075DD16LK?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+            "price": "$39.99",
+            "vendor": "Amazon"
+          }
+        ]
+      },
+      "amazonUrl": "https://www.amazon.com/dp/B075DD16LK?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "dimensions": "27.8x27.8x27mm",
+      "description": "Brushless motor for propeller rotation.",
+      "productName": "2212 920KV Brushless DC Motor",
+      "purchaseUrl": "https://s.click.aliexpress.com/s/fwx308cRD9Eny963e3KDdYxyIpNj8TXVr7saiF9Um5rMUg1kZtJALLnfa2LNXtiVgnxdD8Og6MmvwBoxhnSYQGM6r0c08U4TfX8DFGo7vviCuu3q62Q60OAhRZcqm3G8PtwM69xY7TOEWRrvulP5ukZQ4uQbBBtaVsdr6EffAqVmp3O5GyUANU2DoA3dJufNhDfh7KOlLgKIvRVhDxRESHLmea6fTE26gLUqKEUuuizJiLENrCbax94DZHDu8WhaXM9vQ86gzlqceNPO5w3vwXm4VrBF3x3WCKGIMjWWmCLcj3QVJX1XYrsxehDzgIEwZX2WNugQ0IQXmXnNKqa0W2Fpdi0y1tjW6KpIRuMRijGlERcbqzhgsfKIciN6X3FUHz39ATMj6VVPxcS4aNdGdkIKNbyDZHcBVKZvWMQTbC0Vx3e6Cwa1AbnxhRdyeAJwCTyWJSaTrgdQYDmtXQSgh3mLVXASNdxDt1Zdg994XXWeIibdHv3GW1otNjgUPCjSut9NApT7HuxbcCgEmCfovzcHnFmDveWIWXLUlzfCGaLOvcKLEb7JYL5fEBFoPHCWP5uDoUUBjBSB7oKLafAgy0jcGnL1aKVZlydKRCmADrlJc70clhbvVbZM9Hn4gvJxNM3Wwiq4agFsGM0Uyy2dGxzaU6mzfIHkDmNeGhbPHxGc2Y7L7XxcvusunUrAN9z7QI8L6VUVnLHkyej2p7Y1HMApUwviSyizAfnFOR8ufDMUQS3PUIOCUqOI2OcCbQie62oU5T50NFjtep3toDlP61hKoqIpJ79EcDv46XykfwsYXEmUogyLWQ5cbb6jjRYhO1adePpncktMtpyH6fWAVdOANukcSUowLelEzPxZuag860BPrZYUwP0BL1AHPS1EUWkh2g7BK3aqESeSGSW60yv154X16HRnWz0DRzTJNStKKyTYUWPzTOJtPink4BYODHSXFJ5KEmywhJFTHv",
+      "aliexpressUrl": "https://s.click.aliexpress.com/s/fwx308cRD9Eny963e3KDdYxyIpNj8TXVr7saiF9Um5rMUg1kZtJALLnfa2LNXtiVgnxdD8Og6MmvwBoxhnSYQGM6r0c08U4TfX8DFGo7vviCuu3q62Q60OAhRZcqm3G8PtwM69xY7TOEWRrvulP5ukZQ4uQbBBtaVsdr6EffAqVmp3O5GyUANU2DoA3dJufNhDfh7KOlLgKIvRVhDxRESHLmea6fTE26gLUqKEUuuizJiLENrCbax94DZHDu8WhaXM9vQ86gzlqceNPO5w3vwXm4VrBF3x3WCKGIMjWWmCLcj3QVJX1XYrsxehDzgIEwZX2WNugQ0IQXmXnNKqa0W2Fpdi0y1tjW6KpIRuMRijGlERcbqzhgsfKIciN6X3FUHz39ATMj6VVPxcS4aNdGdkIKNbyDZHcBVKZvWMQTbC0Vx3e6Cwa1AbnxhRdyeAJwCTyWJSaTrgdQYDmtXQSgh3mLVXASNdxDt1Zdg994XXWeIibdHv3GW1otNjgUPCjSut9NApT7HuxbcCgEmCfovzcHnFmDveWIWXLUlzfCGaLOvcKLEb7JYL5fEBFoPHCWP5uDoUUBjBSB7oKLafAgy0jcGnL1aKVZlydKRCmADrlJc70clhbvVbZM9Hn4gvJxNM3Wwiq4agFsGM0Uyy2dGxzaU6mzfIHkDmNeGhbPHxGc2Y7L7XxcvusunUrAN9z7QI8L6VUVnLHkyej2p7Y1HMApUwviSyizAfnFOR8ufDMUQS3PUIOCUqOI2OcCbQie62oU5T50NFjtep3toDlP61hKoqIpJ79EcDv46XykfwsYXEmUogyLWQ5cbb6jjRYhO1adePpncktMtpyH6fWAVdOANukcSUowLelEzPxZuag860BPrZYUwP0BL1AHPS1EUWkh2g7BK3aqESeSGSW60yv154X16HRnWz0DRzTJNStKKyTYUWPzTOJtPink4BYODHSXFJ5KEmywhJFTHv",
+      "estimatedCost": 15
+    },
+    {
+      "id": "motor_rear_left",
+      "name": "Motor Rear Left",
+      "pins": [
+        "Motor Phase 1",
+        "Motor Phase 2",
+        "Motor Phase 3"
+      ],
+      "type": "actuator",
+      "partId": "4f624ee3-67f6-437c-b507-a53603820e25",
+      "ebayUrl": "https://www.ebay.com/sch/i.html?_nkw=2212+920KV+Brushless+DC+Motor&_sacat=0&_from=R40&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339153059&customid=blueprint&toolid=10001&mkevt=1",
+      "category": "electrical",
+      "imageUrl": "https://ae-pic-a1.aliexpress-media.com/kf/H9fb67b3792b047ba826fb4106d585398G.jpg",
+      "quantity": 1,
+      "research": {
+        "specs": [
+          {
+            "label": "pins",
+            "value": "3-phase wires"
+          }
+        ],
+        "sourcing": [
+          {
+            "url": "https://www.aliexpress.com/item/32678297467.html?pdp_npi=6%40dis%21USD%2128.18%2113.53%21%21%2128.18%2113.53%21%402140d36117793912411477244e0fe5%2110000002552882887%21affd%21%21%21%211%210%21",
+            "price": "$13.53",
+            "vendor": "AliExpress"
+          },
+          {
+            "url": "https://www.amazon.com/dp/B075DD16LK?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+            "price": "$39.99",
+            "vendor": "Amazon"
+          }
+        ]
+      },
+      "amazonUrl": "https://www.amazon.com/dp/B075DD16LK?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "dimensions": "27.8x27.8x27mm",
+      "description": "Brushless motor for propeller rotation.",
+      "productName": "2212 920KV Brushless DC Motor",
+      "purchaseUrl": "https://s.click.aliexpress.com/s/fwx308cRD9Eny963e3KDdYxyIpNj8TXVr7saiF9Um5rMUg1kZtJALLnfa2LNXtiVgnxdD8Og6MmvwBoxhnSYQGM6r0c08U4TfX8DFGo7vviCuu3q62Q60OAhRZcqm3G8PtwM69xY7TOEWRrvulP5ukZQ4uQbBBtaVsdr6EffAqVmp3O5GyUANU2DoA3dJufNhDfh7KOlLgKIvRVhDxRESHLmea6fTE26gLUqKEUuuizJiLENrCbax94DZHDu8WhaXM9vQ86gzlqceNPO5w3vwXm4VrBF3x3WCKGIMjWWmCLcj3QVJX1XYrsxehDzgIEwZX2WNugQ0IQXmXnNKqa0W2Fpdi0y1tjW6KpIRuMRijGlERcbqzhgsfKIciN6X3FUHz39ATMj6VVPxcS4aNdGdkIKNbyDZHcBVKZvWMQTbC0Vx3e6Cwa1AbnxhRdyeAJwCTyWJSaTrgdQYDmtXQSgh3mLVXASNdxDt1Zdg994XXWeIibdHv3GW1otNjgUPCjSut9NApT7HuxbcCgEmCfovzcHnFmDveWIWXLUlzfCGaLOvcKLEb7JYL5fEBFoPHCWP5uDoUUBjBSB7oKLafAgy0jcGnL1aKVZlydKRCmADrlJc70clhbvVbZM9Hn4gvJxNM3Wwiq4agFsGM0Uyy2dGxzaU6mzfIHkDmNeGhbPHxGc2Y7L7XxcvusunUrAN9z7QI8L6VUVnLHkyej2p7Y1HMApUwviSyizAfnFOR8ufDMUQS3PUIOCUqOI2OcCbQie62oU5T50NFjtep3toDlP61hKoqIpJ79EcDv46XykfwsYXEmUogyLWQ5cbb6jjRYhO1adePpncktMtpyH6fWAVdOANukcSUowLelEzPxZuag860BPrZYUwP0BL1AHPS1EUWkh2g7BK3aqESeSGSW60yv154X16HRnWz0DRzTJNStKKyTYUWPzTOJtPink4BYODHSXFJ5KEmywhJFTHv",
+      "aliexpressUrl": "https://s.click.aliexpress.com/s/fwx308cRD9Eny963e3KDdYxyIpNj8TXVr7saiF9Um5rMUg1kZtJALLnfa2LNXtiVgnxdD8Og6MmvwBoxhnSYQGM6r0c08U4TfX8DFGo7vviCuu3q62Q60OAhRZcqm3G8PtwM69xY7TOEWRrvulP5ukZQ4uQbBBtaVsdr6EffAqVmp3O5GyUANU2DoA3dJufNhDfh7KOlLgKIvRVhDxRESHLmea6fTE26gLUqKEUuuizJiLENrCbax94DZHDu8WhaXM9vQ86gzlqceNPO5w3vwXm4VrBF3x3WCKGIMjWWmCLcj3QVJX1XYrsxehDzgIEwZX2WNugQ0IQXmXnNKqa0W2Fpdi0y1tjW6KpIRuMRijGlERcbqzhgsfKIciN6X3FUHz39ATMj6VVPxcS4aNdGdkIKNbyDZHcBVKZvWMQTbC0Vx3e6Cwa1AbnxhRdyeAJwCTyWJSaTrgdQYDmtXQSgh3mLVXASNdxDt1Zdg994XXWeIibdHv3GW1otNjgUPCjSut9NApT7HuxbcCgEmCfovzcHnFmDveWIWXLUlzfCGaLOvcKLEb7JYL5fEBFoPHCWP5uDoUUBjBSB7oKLafAgy0jcGnL1aKVZlydKRCmADrlJc70clhbvVbZM9Hn4gvJxNM3Wwiq4agFsGM0Uyy2dGxzaU6mzfIHkDmNeGhbPHxGc2Y7L7XxcvusunUrAN9z7QI8L6VUVnLHkyej2p7Y1HMApUwviSyizAfnFOR8ufDMUQS3PUIOCUqOI2OcCbQie62oU5T50NFjtep3toDlP61hKoqIpJ79EcDv46XykfwsYXEmUogyLWQ5cbb6jjRYhO1adePpncktMtpyH6fWAVdOANukcSUowLelEzPxZuag860BPrZYUwP0BL1AHPS1EUWkh2g7BK3aqESeSGSW60yv154X16HRnWz0DRzTJNStKKyTYUWPzTOJtPink4BYODHSXFJ5KEmywhJFTHv",
+      "estimatedCost": 15
+    },
+    {
+      "id": "motor_rear_right",
+      "name": "Motor Rear Right",
+      "pins": [
+        "Motor Phase 1",
+        "Motor Phase 2",
+        "Motor Phase 3"
+      ],
+      "type": "actuator",
+      "partId": "4f624ee3-67f6-437c-b507-a53603820e25",
+      "ebayUrl": "https://www.ebay.com/sch/i.html?_nkw=2212+920KV+Brushless+DC+Motor&_sacat=0&_from=R40&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339153059&customid=blueprint&toolid=10001&mkevt=1",
+      "category": "electrical",
+      "imageUrl": "https://ae-pic-a1.aliexpress-media.com/kf/H9fb67b3792b047ba826fb4106d585398G.jpg",
+      "quantity": 1,
+      "research": {
+        "specs": [
+          {
+            "label": "pins",
+            "value": "3-phase wires"
+          }
+        ],
+        "sourcing": [
+          {
+            "url": "https://www.aliexpress.com/item/32678297467.html?pdp_npi=6%40dis%21USD%2128.18%2113.53%21%21%2128.18%2113.53%21%402140d36117793912411477244e0fe5%2110000002552882887%21affd%21%21%21%211%210%21",
+            "price": "$13.53",
+            "vendor": "AliExpress"
+          },
+          {
+            "url": "https://www.amazon.com/dp/B075DD16LK?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+            "price": "$39.99",
+            "vendor": "Amazon"
+          }
+        ]
+      },
+      "amazonUrl": "https://www.amazon.com/dp/B075DD16LK?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "dimensions": "27.8x27.8x27mm",
+      "description": "Brushless motor for propeller rotation.",
+      "productName": "2212 920KV Brushless DC Motor",
+      "purchaseUrl": "https://s.click.aliexpress.com/s/fwx308cRD9Eny963e3KDdYxyIpNj8TXVr7saiF9Um5rMUg1kZtJALLnfa2LNXtiVgnxdD8Og6MmvwBoxhnSYQGM6r0c08U4TfX8DFGo7vviCuu3q62Q60OAhRZcqm3G8PtwM69xY7TOEWRrvulP5ukZQ4uQbBBtaVsdr6EffAqVmp3O5GyUANU2DoA3dJufNhDfh7KOlLgKIvRVhDxRESHLmea6fTE26gLUqKEUuuizJiLENrCbax94DZHDu8WhaXM9vQ86gzlqceNPO5w3vwXm4VrBF3x3WCKGIMjWWmCLcj3QVJX1XYrsxehDzgIEwZX2WNugQ0IQXmXnNKqa0W2Fpdi0y1tjW6KpIRuMRijGlERcbqzhgsfKIciN6X3FUHz39ATMj6VVPxcS4aNdGdkIKNbyDZHcBVKZvWMQTbC0Vx3e6Cwa1AbnxhRdyeAJwCTyWJSaTrgdQYDmtXQSgh3mLVXASNdxDt1Zdg994XXWeIibdHv3GW1otNjgUPCjSut9NApT7HuxbcCgEmCfovzcHnFmDveWIWXLUlzfCGaLOvcKLEb7JYL5fEBFoPHCWP5uDoUUBjBSB7oKLafAgy0jcGnL1aKVZlydKRCmADrlJc70clhbvVbZM9Hn4gvJxNM3Wwiq4agFsGM0Uyy2dGxzaU6mzfIHkDmNeGhbPHxGc2Y7L7XxcvusunUrAN9z7QI8L6VUVnLHkyej2p7Y1HMApUwviSyizAfnFOR8ufDMUQS3PUIOCUqOI2OcCbQie62oU5T50NFjtep3toDlP61hKoqIpJ79EcDv46XykfwsYXEmUogyLWQ5cbb6jjRYhO1adePpncktMtpyH6fWAVdOANukcSUowLelEzPxZuag860BPrZYUwP0BL1AHPS1EUWkh2g7BK3aqESeSGSW60yv154X16HRnWz0DRzTJNStKKyTYUWPzTOJtPink4BYODHSXFJ5KEmywhJFTHv",
+      "aliexpressUrl": "https://s.click.aliexpress.com/s/fwx308cRD9Eny963e3KDdYxyIpNj8TXVr7saiF9Um5rMUg1kZtJALLnfa2LNXtiVgnxdD8Og6MmvwBoxhnSYQGM6r0c08U4TfX8DFGo7vviCuu3q62Q60OAhRZcqm3G8PtwM69xY7TOEWRrvulP5ukZQ4uQbBBtaVsdr6EffAqVmp3O5GyUANU2DoA3dJufNhDfh7KOlLgKIvRVhDxRESHLmea6fTE26gLUqKEUuuizJiLENrCbax94DZHDu8WhaXM9vQ86gzlqceNPO5w3vwXm4VrBF3x3WCKGIMjWWmCLcj3QVJX1XYrsxehDzgIEwZX2WNugQ0IQXmXnNKqa0W2Fpdi0y1tjW6KpIRuMRijGlERcbqzhgsfKIciN6X3FUHz39ATMj6VVPxcS4aNdGdkIKNbyDZHcBVKZvWMQTbC0Vx3e6Cwa1AbnxhRdyeAJwCTyWJSaTrgdQYDmtXQSgh3mLVXASNdxDt1Zdg994XXWeIibdHv3GW1otNjgUPCjSut9NApT7HuxbcCgEmCfovzcHnFmDveWIWXLUlzfCGaLOvcKLEb7JYL5fEBFoPHCWP5uDoUUBjBSB7oKLafAgy0jcGnL1aKVZlydKRCmADrlJc70clhbvVbZM9Hn4gvJxNM3Wwiq4agFsGM0Uyy2dGxzaU6mzfIHkDmNeGhbPHxGc2Y7L7XxcvusunUrAN9z7QI8L6VUVnLHkyej2p7Y1HMApUwviSyizAfnFOR8ufDMUQS3PUIOCUqOI2OcCbQie62oU5T50NFjtep3toDlP61hKoqIpJ79EcDv46XykfwsYXEmUogyLWQ5cbb6jjRYhO1adePpncktMtpyH6fWAVdOANukcSUowLelEzPxZuag860BPrZYUwP0BL1AHPS1EUWkh2g7BK3aqESeSGSW60yv154X16HRnWz0DRzTJNStKKyTYUWPzTOJtPink4BYODHSXFJ5KEmywhJFTHv",
+      "estimatedCost": 15
+    },
+    {
+      "id": "esc_front_left",
+      "name": "ESC Front Left",
+      "pins": [
+        "Power In (+/-)",
+        "Motor Out (x3)",
+        "PWM Signal In",
+        "GND"
+      ],
+      "type": "actuator",
+      "partId": "57ea8050-2584-44b4-b736-f76010d57ea3",
+      "ebayUrl": "https://www.ebay.com/sch/i.html?_nkw=30A+Brushless+ESC&_sacat=0&_from=R40&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339153059&customid=blueprint&toolid=10001&mkevt=1",
+      "category": "electrical",
+      "imageUrl": "https://m.media-amazon.com/images/I/41tRz0ntZpL._SL500_.jpg",
+      "quantity": 1,
+      "research": {
+        "specs": [
+          {
+            "label": "pins",
+            "value": "BAT+,BAT-,MOTOR_A,MOTOR_B,MOTOR_C,SIGNAL,GND"
+          }
+        ],
+        "sourcing": [
+          {
+            "url": "https://www.amazon.com/dp/B0CZNM4H7H?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+            "price": "$18.59",
+            "vendor": "Amazon"
+          },
+          {
+            "url": "https://www.aliexpress.com/item/1005008493717029.html?pdp_npi=6%40dis%21USD%219.30%214.65%21%21%2162.85%2131.42%21%402140d33617793400895751464e1064%2112000045394517549%21affd%21%21%21%211%210%21",
+            "price": "$4.65",
+            "vendor": "AliExpress"
+          }
+        ]
+      },
+      "amazonUrl": "https://www.amazon.com/dp/B0CZNM4H7H?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "dimensions": "45x24x9mm",
+      "description": "Electronic Speed Controller for the left brushless DC motor.",
+      "productName": "30A Brushless ESC",
+      "purchaseUrl": "https://s.click.aliexpress.com/s/fwx308cRD9Eny963e3KDdYxyIpNj8TXVr7saiF9Um5rMUg1kZtJALLnfa2LNXtiVgnxdD8Og6MmvwBoxhnSYQGM6r0c08U4TfX8DFGo7vviCuu3q62Q60OAhRZcqm3G8PtwM69xY7TOEWRrvulP5ukZQ4uQbBBtaVsdr6EffAqVmp3O5GyUANU2DoA3dJufNhDfh7KOlLgKIvRVhDxRESHLmea6fTE26gLUqKEUuuizJiLENrCbax94DZHDu8WhaXM9vQ86gzlqceNPO5w3vwXm4VrBF3x2lAMEl06wgNdTSMiT7cNG4HIdW0Jxher9vQzCVICf1ckyoKqTWDm8xDQLGT9Q9tkZdTEnrFVmx5D619KpYtdd8t80rxILMDfZY9sxhWS5f8NbIm3YQcX0s9hba0BuHhr9sXuz086lprkm0iawnRMIxHPigE1z9HACWbmnwgtCVSWZcoisFVfzAQXYwEBu8jNqJMKPZsnTZpMaUNyySonFfGLbSKuP6rtakgCrDEfmdwlZzZQyJUpXkar5tB3WE0Ea8q0B4tEY9NWMFB7RXzPUhORr0cOFWXS4dQzNU9cy9Kva44FJfZzIgnynmllR10vEPpVFGRfJtRsGI9eH71K597jyLlNlyeokp44zbAPD3yvrH2VChTyQpjcA1ifc6fYcLnADO2ylk2y5tuUn8lJTBrtJCNJpNUseFZHAdYcGLYODTmM5AY5Y2g76slLdxtvXllYghIsH6B6MyAfgoPpLDCFDYsJiKlAMPYpska35NN7Gzqm7IkQovY9zUyBvjlk3SfUx0nwGxAv10PnDCgawPP2UkbORFjZF1PaYGIiBZ0SesAFIvBnwYCC6BXvOzPo2LKvrmTNexbAHWnvcICcdO4uJWRkfLoGZwHzNN57Tg7XhLPAUuhwg7OUZ2RsTQpX4cBUkJHXG83WiDffj3p7poDPxcXR89AHsUBl4eCP7mBGfoUwDEjv",
+      "aliexpressUrl": "https://s.click.aliexpress.com/s/fwx308cRD9Eny963e3KDdYxyIpNj8TXVr7saiF9Um5rMUg1kZtJALLnfa2LNXtiVgnxdD8Og6MmvwBoxhnSYQGM6r0c08U4TfX8DFGo7vviCuu3q62Q60OAhRZcqm3G8PtwM69xY7TOEWRrvulP5ukZQ4uQbBBtaVsdr6EffAqVmp3O5GyUANU2DoA3dJufNhDfh7KOlLgKIvRVhDxRESHLmea6fTE26gLUqKEUuuizJiLENrCbax94DZHDu8WhaXM9vQ86gzlqceNPO5w3vwXm4VrBF3x2lAMEl06wgNdTSMiT7cNG4HIdW0Jxher9vQzCVICf1ckyoKqTWDm8xDQLGT9Q9tkZdTEnrFVmx5D619KpYtdd8t80rxILMDfZY9sxhWS5f8NbIm3YQcX0s9hba0BuHhr9sXuz086lprkm0iawnRMIxHPigE1z9HACWbmnwgtCVSWZcoisFVfzAQXYwEBu8jNqJMKPZsnTZpMaUNyySonFfGLbSKuP6rtakgCrDEfmdwlZzZQyJUpXkar5tB3WE0Ea8q0B4tEY9NWMFB7RXzPUhORr0cOFWXS4dQzNU9cy9Kva44FJfZzIgnynmllR10vEPpVFGRfJtRsGI9eH71K597jyLlNlyeokp44zbAPD3yvrH2VChTyQpjcA1ifc6fYcLnADO2ylk2y5tuUn8lJTBrtJCNJpNUseFZHAdYcGLYODTmM5AY5Y2g76slLdxtvXllYghIsH6B6MyAfgoPpLDCFDYsJiKlAMPYpska35NN7Gzqm7IkQovY9zUyBvjlk3SfUx0nwGxAv10PnDCgawPP2UkbORFjZF1PaYGIiBZ0SesAFIvBnwYCC6BXvOzPo2LKvrmTNexbAHWnvcICcdO4uJWRkfLoGZwHzNN57Tg7XhLPAUuhwg7OUZ2RsTQpX4cBUkJHXG83WiDffj3p7poDPxcXR89AHsUBl4eCP7mBGfoUwDEjv",
+      "estimatedCost": 10
+    },
+    {
+      "id": "esc_front_right",
+      "name": "ESC Front Right",
+      "pins": [
+        "Power In (+/-)",
+        "Motor Out (x3)",
+        "PWM Signal In",
+        "GND"
+      ],
+      "type": "actuator",
+      "partId": "57ea8050-2584-44b4-b736-f76010d57ea3",
+      "ebayUrl": "https://www.ebay.com/sch/i.html?_nkw=30A+Brushless+ESC&_sacat=0&_from=R40&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339153059&customid=blueprint&toolid=10001&mkevt=1",
+      "category": "electrical",
+      "imageUrl": "https://m.media-amazon.com/images/I/41tRz0ntZpL._SL500_.jpg",
+      "quantity": 1,
+      "research": {
+        "specs": [
+          {
+            "label": "pins",
+            "value": "BAT+,BAT-,MOTOR_A,MOTOR_B,MOTOR_C,SIGNAL,GND"
+          }
+        ],
+        "sourcing": [
+          {
+            "url": "https://www.amazon.com/dp/B0CZNM4H7H?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+            "price": "$18.59",
+            "vendor": "Amazon"
+          },
+          {
+            "url": "https://www.aliexpress.com/item/1005008493717029.html?pdp_npi=6%40dis%21USD%219.30%214.65%21%21%2162.85%2131.42%21%402140d33617793400895751464e1064%2112000045394517549%21affd%21%21%21%211%210%21",
+            "price": "$4.65",
+            "vendor": "AliExpress"
+          }
+        ]
+      },
+      "amazonUrl": "https://www.amazon.com/dp/B0CZNM4H7H?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "dimensions": "45x24x9mm",
+      "description": "Electronic Speed Controller for the left brushless DC motor.",
+      "productName": "30A Brushless ESC",
+      "purchaseUrl": "https://s.click.aliexpress.com/s/fwx308cRD9Eny963e3KDdYxyIpNj8TXVr7saiF9Um5rMUg1kZtJALLnfa2LNXtiVgnxdD8Og6MmvwBoxhnSYQGM6r0c08U4TfX8DFGo7vviCuu3q62Q60OAhRZcqm3G8PtwM69xY7TOEWRrvulP5ukZQ4uQbBBtaVsdr6EffAqVmp3O5GyUANU2DoA3dJufNhDfh7KOlLgKIvRVhDxRESHLmea6fTE26gLUqKEUuuizJiLENrCbax94DZHDu8WhaXM9vQ86gzlqceNPO5w3vwXm4VrBF3x2lAMEl06wgNdTSMiT7cNG4HIdW0Jxher9vQzCVICf1ckyoKqTWDm8xDQLGT9Q9tkZdTEnrFVmx5D619KpYtdd8t80rxILMDfZY9sxhWS5f8NbIm3YQcX0s9hba0BuHhr9sXuz086lprkm0iawnRMIxHPigE1z9HACWbmnwgtCVSWZcoisFVfzAQXYwEBu8jNqJMKPZsnTZpMaUNyySonFfGLbSKuP6rtakgCrDEfmdwlZzZQyJUpXkar5tB3WE0Ea8q0B4tEY9NWMFB7RXzPUhORr0cOFWXS4dQzNU9cy9Kva44FJfZzIgnynmllR10vEPpVFGRfJtRsGI9eH71K597jyLlNlyeokp44zbAPD3yvrH2VChTyQpjcA1ifc6fYcLnADO2ylk2y5tuUn8lJTBrtJCNJpNUseFZHAdYcGLYODTmM5AY5Y2g76slLdxtvXllYghIsH6B6MyAfgoPpLDCFDYsJiKlAMPYpska35NN7Gzqm7IkQovY9zUyBvjlk3SfUx0nwGxAv10PnDCgawPP2UkbORFjZF1PaYGIiBZ0SesAFIvBnwYCC6BXvOzPo2LKvrmTNexbAHWnvcICcdO4uJWRkfLoGZwHzNN57Tg7XhLPAUuhwg7OUZ2RsTQpX4cBUkJHXG83WiDffj3p7poDPxcXR89AHsUBl4eCP7mBGfoUwDEjv",
+      "aliexpressUrl": "https://s.click.aliexpress.com/s/fwx308cRD9Eny963e3KDdYxyIpNj8TXVr7saiF9Um5rMUg1kZtJALLnfa2LNXtiVgnxdD8Og6MmvwBoxhnSYQGM6r0c08U4TfX8DFGo7vviCuu3q62Q60OAhRZcqm3G8PtwM69xY7TOEWRrvulP5ukZQ4uQbBBtaVsdr6EffAqVmp3O5GyUANU2DoA3dJufNhDfh7KOlLgKIvRVhDxRESHLmea6fTE26gLUqKEUuuizJiLENrCbax94DZHDu8WhaXM9vQ86gzlqceNPO5w3vwXm4VrBF3x2lAMEl06wgNdTSMiT7cNG4HIdW0Jxher9vQzCVICf1ckyoKqTWDm8xDQLGT9Q9tkZdTEnrFVmx5D619KpYtdd8t80rxILMDfZY9sxhWS5f8NbIm3YQcX0s9hba0BuHhr9sXuz086lprkm0iawnRMIxHPigE1z9HACWbmnwgtCVSWZcoisFVfzAQXYwEBu8jNqJMKPZsnTZpMaUNyySonFfGLbSKuP6rtakgCrDEfmdwlZzZQyJUpXkar5tB3WE0Ea8q0B4tEY9NWMFB7RXzPUhORr0cOFWXS4dQzNU9cy9Kva44FJfZzIgnynmllR10vEPpVFGRfJtRsGI9eH71K597jyLlNlyeokp44zbAPD3yvrH2VChTyQpjcA1ifc6fYcLnADO2ylk2y5tuUn8lJTBrtJCNJpNUseFZHAdYcGLYODTmM5AY5Y2g76slLdxtvXllYghIsH6B6MyAfgoPpLDCFDYsJiKlAMPYpska35NN7Gzqm7IkQovY9zUyBvjlk3SfUx0nwGxAv10PnDCgawPP2UkbORFjZF1PaYGIiBZ0SesAFIvBnwYCC6BXvOzPo2LKvrmTNexbAHWnvcICcdO4uJWRkfLoGZwHzNN57Tg7XhLPAUuhwg7OUZ2RsTQpX4cBUkJHXG83WiDffj3p7poDPxcXR89AHsUBl4eCP7mBGfoUwDEjv",
+      "estimatedCost": 10
+    },
+    {
+      "id": "esc_rear_left",
+      "name": "ESC Rear Left",
+      "pins": [
+        "Power In (+/-)",
+        "Motor Out (x3)",
+        "PWM Signal In",
+        "GND"
+      ],
+      "type": "actuator",
+      "partId": "57ea8050-2584-44b4-b736-f76010d57ea3",
+      "ebayUrl": "https://www.ebay.com/sch/i.html?_nkw=30A+Brushless+ESC&_sacat=0&_from=R40&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339153059&customid=blueprint&toolid=10001&mkevt=1",
+      "category": "electrical",
+      "imageUrl": "https://m.media-amazon.com/images/I/41tRz0ntZpL._SL500_.jpg",
+      "quantity": 1,
+      "research": {
+        "specs": [
+          {
+            "label": "pins",
+            "value": "BAT+,BAT-,MOTOR_A,MOTOR_B,MOTOR_C,SIGNAL,GND"
+          }
+        ],
+        "sourcing": [
+          {
+            "url": "https://www.amazon.com/dp/B0CZNM4H7H?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+            "price": "$18.59",
+            "vendor": "Amazon"
+          },
+          {
+            "url": "https://www.aliexpress.com/item/1005008493717029.html?pdp_npi=6%40dis%21USD%219.30%214.65%21%21%2162.85%2131.42%21%402140d33617793400895751464e1064%2112000045394517549%21affd%21%21%21%211%210%21",
+            "price": "$4.65",
+            "vendor": "AliExpress"
+          }
+        ]
+      },
+      "amazonUrl": "https://www.amazon.com/dp/B0CZNM4H7H?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "dimensions": "45x24x9mm",
+      "description": "Electronic Speed Controller for the left brushless DC motor.",
+      "productName": "30A Brushless ESC",
+      "purchaseUrl": "https://s.click.aliexpress.com/s/fwx308cRD9Eny963e3KDdYxyIpNj8TXVr7saiF9Um5rMUg1kZtJALLnfa2LNXtiVgnxdD8Og6MmvwBoxhnSYQGM6r0c08U4TfX8DFGo7vviCuu3q62Q60OAhRZcqm3G8PtwM69xY7TOEWRrvulP5ukZQ4uQbBBtaVsdr6EffAqVmp3O5GyUANU2DoA3dJufNhDfh7KOlLgKIvRVhDxRESHLmea6fTE26gLUqKEUuuizJiLENrCbax94DZHDu8WhaXM9vQ86gzlqceNPO5w3vwXm4VrBF3x2lAMEl06wgNdTSMiT7cNG4HIdW0Jxher9vQzCVICf1ckyoKqTWDm8xDQLGT9Q9tkZdTEnrFVmx5D619KpYtdd8t80rxILMDfZY9sxhWS5f8NbIm3YQcX0s9hba0BuHhr9sXuz086lprkm0iawnRMIxHPigE1z9HACWbmnwgtCVSWZcoisFVfzAQXYwEBu8jNqJMKPZsnTZpMaUNyySonFfGLbSKuP6rtakgCrDEfmdwlZzZQyJUpXkar5tB3WE0Ea8q0B4tEY9NWMFB7RXzPUhORr0cOFWXS4dQzNU9cy9Kva44FJfZzIgnynmllR10vEPpVFGRfJtRsGI9eH71K597jyLlNlyeokp44zbAPD3yvrH2VChTyQpjcA1ifc6fYcLnADO2ylk2y5tuUn8lJTBrtJCNJpNUseFZHAdYcGLYODTmM5AY5Y2g76slLdxtvXllYghIsH6B6MyAfgoPpLDCFDYsJiKlAMPYpska35NN7Gzqm7IkQovY9zUyBvjlk3SfUx0nwGxAv10PnDCgawPP2UkbORFjZF1PaYGIiBZ0SesAFIvBnwYCC6BXvOzPo2LKvrmTNexbAHWnvcICcdO4uJWRkfLoGZwHzNN57Tg7XhLPAUuhwg7OUZ2RsTQpX4cBUkJHXG83WiDffj3p7poDPxcXR89AHsUBl4eCP7mBGfoUwDEjv",
+      "aliexpressUrl": "https://s.click.aliexpress.com/s/fwx308cRD9Eny963e3KDdYxyIpNj8TXVr7saiF9Um5rMUg1kZtJALLnfa2LNXtiVgnxdD8Og6MmvwBoxhnSYQGM6r0c08U4TfX8DFGo7vviCuu3q62Q60OAhRZcqm3G8PtwM69xY7TOEWRrvulP5ukZQ4uQbBBtaVsdr6EffAqVmp3O5GyUANU2DoA3dJufNhDfh7KOlLgKIvRVhDxRESHLmea6fTE26gLUqKEUuuizJiLENrCbax94DZHDu8WhaXM9vQ86gzlqceNPO5w3vwXm4VrBF3x2lAMEl06wgNdTSMiT7cNG4HIdW0Jxher9vQzCVICf1ckyoKqTWDm8xDQLGT9Q9tkZdTEnrFVmx5D619KpYtdd8t80rxILMDfZY9sxhWS5f8NbIm3YQcX0s9hba0BuHhr9sXuz086lprkm0iawnRMIxHPigE1z9HACWbmnwgtCVSWZcoisFVfzAQXYwEBu8jNqJMKPZsnTZpMaUNyySonFfGLbSKuP6rtakgCrDEfmdwlZzZQyJUpXkar5tB3WE0Ea8q0B4tEY9NWMFB7RXzPUhORr0cOFWXS4dQzNU9cy9Kva44FJfZzIgnynmllR10vEPpVFGRfJtRsGI9eH71K597jyLlNlyeokp44zbAPD3yvrH2VChTyQpjcA1ifc6fYcLnADO2ylk2y5tuUn8lJTBrtJCNJpNUseFZHAdYcGLYODTmM5AY5Y2g76slLdxtvXllYghIsH6B6MyAfgoPpLDCFDYsJiKlAMPYpska35NN7Gzqm7IkQovY9zUyBvjlk3SfUx0nwGxAv10PnDCgawPP2UkbORFjZF1PaYGIiBZ0SesAFIvBnwYCC6BXvOzPo2LKvrmTNexbAHWnvcICcdO4uJWRkfLoGZwHzNN57Tg7XhLPAUuhwg7OUZ2RsTQpX4cBUkJHXG83WiDffj3p7poDPxcXR89AHsUBl4eCP7mBGfoUwDEjv",
+      "estimatedCost": 10
+    },
+    {
+      "id": "esc_rear_right",
+      "name": "ESC Rear Right",
+      "pins": [
+        "Power In (+/-)",
+        "Motor Out (x3)",
+        "PWM Signal In",
+        "GND"
+      ],
+      "type": "actuator",
+      "partId": "57ea8050-2584-44b4-b736-f76010d57ea3",
+      "ebayUrl": "https://www.ebay.com/sch/i.html?_nkw=30A+Brushless+ESC&_sacat=0&_from=R40&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339153059&customid=blueprint&toolid=10001&mkevt=1",
+      "category": "electrical",
+      "imageUrl": "https://m.media-amazon.com/images/I/41tRz0ntZpL._SL500_.jpg",
+      "quantity": 1,
+      "research": {
+        "specs": [
+          {
+            "label": "pins",
+            "value": "BAT+,BAT-,MOTOR_A,MOTOR_B,MOTOR_C,SIGNAL,GND"
+          }
+        ],
+        "sourcing": [
+          {
+            "url": "https://www.amazon.com/dp/B0CZNM4H7H?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+            "price": "$18.59",
+            "vendor": "Amazon"
+          },
+          {
+            "url": "https://www.aliexpress.com/item/1005008493717029.html?pdp_npi=6%40dis%21USD%219.30%214.65%21%21%2162.85%2131.42%21%402140d33617793400895751464e1064%2112000045394517549%21affd%21%21%21%211%210%21",
+            "price": "$4.65",
+            "vendor": "AliExpress"
+          }
+        ]
+      },
+      "amazonUrl": "https://www.amazon.com/dp/B0CZNM4H7H?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "dimensions": "45x24x9mm",
+      "description": "Electronic Speed Controller for the left brushless DC motor.",
+      "productName": "30A Brushless ESC",
+      "purchaseUrl": "https://s.click.aliexpress.com/s/fwx308cRD9Eny963e3KDdYxyIpNj8TXVr7saiF9Um5rMUg1kZtJALLnfa2LNXtiVgnxdD8Og6MmvwBoxhnSYQGM6r0c08U4TfX8DFGo7vviCuu3q62Q60OAhRZcqm3G8PtwM69xY7TOEWRrvulP5ukZQ4uQbBBtaVsdr6EffAqVmp3O5GyUANU2DoA3dJufNhDfh7KOlLgKIvRVhDxRESHLmea6fTE26gLUqKEUuuizJiLENrCbax94DZHDu8WhaXM9vQ86gzlqceNPO5w3vwXm4VrBF3x2lAMEl06wgNdTSMiT7cNG4HIdW0Jxher9vQzCVICf1ckyoKqTWDm8xDQLGT9Q9tkZdTEnrFVmx5D619KpYtdd8t80rxILMDfZY9sxhWS5f8NbIm3YQcX0s9hba0BuHhr9sXuz086lprkm0iawnRMIxHPigE1z9HACWbmnwgtCVSWZcoisFVfzAQXYwEBu8jNqJMKPZsnTZpMaUNyySonFfGLbSKuP6rtakgCrDEfmdwlZzZQyJUpXkar5tB3WE0Ea8q0B4tEY9NWMFB7RXzPUhORr0cOFWXS4dQzNU9cy9Kva44FJfZzIgnynmllR10vEPpVFGRfJtRsGI9eH71K597jyLlNlyeokp44zbAPD3yvrH2VChTyQpjcA1ifc6fYcLnADO2ylk2y5tuUn8lJTBrtJCNJpNUseFZHAdYcGLYODTmM5AY5Y2g76slLdxtvXllYghIsH6B6MyAfgoPpLDCFDYsJiKlAMPYpska35NN7Gzqm7IkQovY9zUyBvjlk3SfUx0nwGxAv10PnDCgawPP2UkbORFjZF1PaYGIiBZ0SesAFIvBnwYCC6BXvOzPo2LKvrmTNexbAHWnvcICcdO4uJWRkfLoGZwHzNN57Tg7XhLPAUuhwg7OUZ2RsTQpX4cBUkJHXG83WiDffj3p7poDPxcXR89AHsUBl4eCP7mBGfoUwDEjv",
+      "aliexpressUrl": "https://s.click.aliexpress.com/s/fwx308cRD9Eny963e3KDdYxyIpNj8TXVr7saiF9Um5rMUg1kZtJALLnfa2LNXtiVgnxdD8Og6MmvwBoxhnSYQGM6r0c08U4TfX8DFGo7vviCuu3q62Q60OAhRZcqm3G8PtwM69xY7TOEWRrvulP5ukZQ4uQbBBtaVsdr6EffAqVmp3O5GyUANU2DoA3dJufNhDfh7KOlLgKIvRVhDxRESHLmea6fTE26gLUqKEUuuizJiLENrCbax94DZHDu8WhaXM9vQ86gzlqceNPO5w3vwXm4VrBF3x2lAMEl06wgNdTSMiT7cNG4HIdW0Jxher9vQzCVICf1ckyoKqTWDm8xDQLGT9Q9tkZdTEnrFVmx5D619KpYtdd8t80rxILMDfZY9sxhWS5f8NbIm3YQcX0s9hba0BuHhr9sXuz086lprkm0iawnRMIxHPigE1z9HACWbmnwgtCVSWZcoisFVfzAQXYwEBu8jNqJMKPZsnTZpMaUNyySonFfGLbSKuP6rtakgCrDEfmdwlZzZQyJUpXkar5tB3WE0Ea8q0B4tEY9NWMFB7RXzPUhORr0cOFWXS4dQzNU9cy9Kva44FJfZzIgnynmllR10vEPpVFGRfJtRsGI9eH71K597jyLlNlyeokp44zbAPD3yvrH2VChTyQpjcA1ifc6fYcLnADO2ylk2y5tuUn8lJTBrtJCNJpNUseFZHAdYcGLYODTmM5AY5Y2g76slLdxtvXllYghIsH6B6MyAfgoPpLDCFDYsJiKlAMPYpska35NN7Gzqm7IkQovY9zUyBvjlk3SfUx0nwGxAv10PnDCgawPP2UkbORFjZF1PaYGIiBZ0SesAFIvBnwYCC6BXvOzPo2LKvrmTNexbAHWnvcICcdO4uJWRkfLoGZwHzNN57Tg7XhLPAUuhwg7OUZ2RsTQpX4cBUkJHXG83WiDffj3p7poDPxcXR89AHsUBl4eCP7mBGfoUwDEjv",
+      "estimatedCost": 10
+    },
+    {
+      "id": "telemetry_radio",
+      "name": "Telemetry Radio Module",
+      "pins": [
+        "VCC",
+        "GND",
+        "RX",
+        "TX"
+      ],
+      "type": "module",
+      "partId": "2eee8e09-70bf-44cb-959f-291a3bebd5e7",
+      "ebayUrl": "https://www.ebay.com/sch/i.html?_nkw=Holybro+SiK+Telemetry+Radio+V3+%28433MHz+or+915MHz%29&_sacat=0&_from=R40&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339153059&customid=blueprint&toolid=10001&mkevt=1",
+      "category": "electrical",
+      "imageUrl": "https://m.media-amazon.com/images/I/41VctnIOzXL._SL500_.jpg",
+      "quantity": 1,
+      "research": {
+        "sourcing": [
+          {
+            "url": "https://www.aliexpress.com/item/1005009044729569.html?pdp_npi=6%40dis%21USD%2183.08%2183.08%21%21%21562.10%21562.10%21%402140d36117794535414205564e0f13%2112000047695411910%21affd%21%21%21%211%210%21",
+            "price": "$83.08",
+            "vendor": "AliExpress"
+          },
+          {
+            "url": "https://www.amazon.com/dp/B0C9DYFC73?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+            "price": "$90",
+            "vendor": "Amazon"
+          },
+          {
+            "url": "https://www.amazon.com/dp/B0768WQ989?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+            "price": "$63.99",
+            "vendor": "Amazon"
+          }
+        ]
+      },
+      "dimensions": "50x25x10mm",
+      "productName": "Holybro SiK Telemetry Radio V3 (433MHz or 915MHz)",
+      "purchaseUrl": "https://www.getfpv.com/holybro-sik-telemetry-radio-v3-433mhz-915mhz.html",
+      "aliexpressUrl": "https://s.click.aliexpress.com/s/fwx308cRD9Eny963e3KDdYxyIpNj8TXVr7saiF9Um5rMUg1kZtJALLnfa2LNXtiVgnxdD8Og6MmvwBoxhnSYQGM6r0c08U4TfX8DFGo7vviCuu3q62Q60OAhRZcqm3G8PtwM69xY7TOEWRrvulP5ukZQ4uQbBBtaVsdr6EffAqVmp3O5GyUANU2DoA3dJufNhDfh7KOlLgKIvRVhDxRESHLmea6fTE26gLUqKEUuuizJiLENrCbax94DZHDu8WhaXM9vQ86gzlqceNPO5w3vwXm4VrBF3x2lAMEl06wgNdTSMiT7cNG4HIdW0JxxaIT0TApPuZY9WGd2pQJt2WiGmSbqvHfH9jxWvVu8MIh9cV3cfISqhOsOkWaLJDAgemFT4jnxrgVsiS0OgmqXOldS9aznPrPKc4jenWsxzTK6w0afXNS1IouhM23iSY9ucTxFATdHEm4eHQPIlVL7X3X30FPstfrrMGGYtom9AvLukOG9H3KlzxED0uo7CPdhYyQym2hdFBtxi0tFfJf7jkneOsE3MGmk0rd2nVhe8Cc6R4f8ypZFwqv1n7MnNef9K6HuMv9V2JX7p7pLNhbMGD5w5z9m6dRw6YoFVKOI4wENEbLml3rAmUDvkYugtmoA0OwvamehiTDr0W59i04tmyKzqAXf2qbXObGVm0P97vJgdjiVa0BvOrjAPRkaHeONWoExtZs4BrdyMhQqhj5dEvcAuTjSa1yDW4KWdTMCI2hs7o4cjLHTpHeAy4GbZKeNQhgHKqs26pjCyHjX25yCU4pGAVThkXnIJsw4MYgSmSCU97gZMD8ECOXF0wSoBt4I8lprPc3KrFhlmlobsG5zGsucm4LOjpyQdYrI1xIhPrTu1KudCK6s8IejsooACazHGl2j3aWSacurgw4PxQEUhipQffegqDS7GUrbwGTy78DsBeErwUyl75I62XVPPbjnzz5RVsoBBuON2ajWGP6v4J",
+      "estimatedCost": 60,
+      "amazonUrl": "https://www.amazon.com/dp/B0C9DYFC73?tag=blueprintam-20&linkCode=osi&th=1&psc=1"
+    },
+    {
+      "id": "main_frame_bottom_plate",
+      "name": "Main Frame Bottom Plate",
+      "type": "structural",
+      "partId": "e7d702f6-ea72-4155-aa00-70ccc81e0a43",
+      "ebayUrl": "https://www.ebay.com/sch/i.html?_nkw=DJI+F450+Quadcopter+Frame+Carbon+Fiber+Plate&_sacat=0&_from=R40&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339153059&customid=blueprint&toolid=10001&mkevt=1",
+      "category": "mechanical",
+      "imageUrl": "https://m.media-amazon.com/images/I/41Q5svD8eLL._SL500_.jpg",
+      "quantity": 1,
+      "research": {
+        "sourcing": [
+          {
+            "url": "https://www.aliexpress.com/w/wholesale-450mm-carbon-fiber-quadcopter-frame-bottom.html",
+            "vendor": "AliExpress"
+          },
+          {
+            "url": "https://www.amazon.com/dp/B087LT81C8?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+            "price": "$79.99",
+            "vendor": "Amazon"
+          },
+          {
+            "url": "https://www.amazon.com/dp/B09P43BS55?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+            "price": "$102.69",
+            "vendor": "Amazon"
+          }
+        ]
+      },
+      "dimensions": "215x215x1.5mm",
+      "description": "Bottom plate of the quadcopter frame, typically holding the power distribution board and providing mounting points for arms and landing gear.",
+      "productName": "DJI F450 Quadcopter Frame Carbon Fiber Plate",
+      "purchaseUrl": "https://www.amazon.com/dp/B087LT81C8?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "aliexpressUrl": "https://s.click.aliexpress.com/e/_c4PDzhQd",
+      "estimatedCost": 12,
+      "amazonUrl": "https://www.amazon.com/dp/B087LT81C8?tag=blueprintam-20&linkCode=osi&th=1&psc=1"
+    },
+    {
+      "id": "main_frame_top_plate",
+      "name": "Main Frame Top Plate",
+      "type": "structural",
+      "partId": "e7d702f6-ea72-4155-aa00-70ccc81e0a43",
+      "ebayUrl": "https://www.ebay.com/sch/i.html?_nkw=DJI+F450+Quadcopter+Frame+Carbon+Fiber+Plate&_sacat=0&_from=R40&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339153059&customid=blueprint&toolid=10001&mkevt=1",
+      "category": "mechanical",
+      "imageUrl": "https://m.media-amazon.com/images/I/41Q5svD8eLL._SL500_.jpg",
+      "quantity": 1,
+      "research": {
+        "sourcing": [
+          {
+            "url": "https://www.aliexpress.com/w/wholesale-450mm-carbon-fiber-quadcopter-frame-bottom.html",
+            "vendor": "AliExpress"
+          },
+          {
+            "url": "https://www.amazon.com/dp/B087LT81C8?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+            "price": "$79.99",
+            "vendor": "Amazon"
+          },
+          {
+            "url": "https://www.amazon.com/dp/B09P43BS55?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+            "price": "$102.69",
+            "vendor": "Amazon"
+          }
+        ]
+      },
+      "dimensions": "215x215x1.5mm",
+      "description": "Top plate of the quadcopter frame, providing mounting for flight controller, battery, and other electronics.",
+      "productName": "DJI F450 Quadcopter Frame Carbon Fiber Plate",
+      "purchaseUrl": "https://www.amazon.com/dp/B087LT81C8?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "aliexpressUrl": "https://s.click.aliexpress.com/e/_c4PDzhQd",
+      "estimatedCost": 12,
+      "amazonUrl": "https://www.amazon.com/dp/B087LT81C8?tag=blueprintam-20&linkCode=osi&th=1&psc=1"
+    },
+    {
+      "id": "frame_arm_front_left",
+      "name": "Frame Arm Front Left",
+      "type": "structural",
+      "partId": "04fed19e-bcd2-4a8f-9022-726643c7bae1",
+      "ebayUrl": "https://www.ebay.com/sch/i.html?_nkw=DJI+F450+Quadcopter+Frame+Arm&_sacat=0&_from=R40&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339153059&customid=blueprint&toolid=10001&mkevt=1",
+      "category": "mechanical",
+      "imageUrl": "https://m.media-amazon.com/images/I/41-5BHd6mcL._SL500_.jpg",
+      "quantity": 1,
+      "research": {
+        "sourcing": [
+          {
+            "url": "https://www.amazon.com/dp/B087LT81C8?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+            "price": "$79.99",
+            "vendor": "Amazon"
+          },
+          {
+            "url": "https://www.aliexpress.com/w/wholesale-f450-carbon-fiber-frame-arm.html",
+            "vendor": "AliExpress"
+          }
+        ]
+      },
+      "amazonUrl": "https://www.amazon.com/dp/B087LT81C8?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "dimensions": "230x40x12mm",
+      "description": "Front left arm of the quadcopter frame, supporting the motor and ESC.",
+      "productName": "DJI F450 Quadcopter Frame Arm",
+      "purchaseUrl": "https://www.amazon.com/dp/B087LT81C8?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "aliexpressUrl": "https://s.click.aliexpress.com/e/_c4XmpMlR",
+      "estimatedCost": 3
+    },
+    {
+      "id": "frame_arm_front_right",
+      "name": "Frame Arm Front Right",
+      "type": "structural",
+      "partId": "04fed19e-bcd2-4a8f-9022-726643c7bae1",
+      "ebayUrl": "https://www.ebay.com/sch/i.html?_nkw=DJI+F450+Quadcopter+Frame+Arm&_sacat=0&_from=R40&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339153059&customid=blueprint&toolid=10001&mkevt=1",
+      "category": "mechanical",
+      "imageUrl": "https://m.media-amazon.com/images/I/41-5BHd6mcL._SL500_.jpg",
+      "quantity": 1,
+      "research": {
+        "sourcing": [
+          {
+            "url": "https://www.amazon.com/dp/B087LT81C8?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+            "price": "$79.99",
+            "vendor": "Amazon"
+          },
+          {
+            "url": "https://www.aliexpress.com/w/wholesale-f450-carbon-fiber-frame-arm.html",
+            "vendor": "AliExpress"
+          }
+        ]
+      },
+      "amazonUrl": "https://www.amazon.com/dp/B087LT81C8?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "dimensions": "230x40x12mm",
+      "description": "Front right arm of the quadcopter frame, supporting the motor and ESC.",
+      "productName": "DJI F450 Quadcopter Frame Arm",
+      "purchaseUrl": "https://www.amazon.com/dp/B087LT81C8?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "aliexpressUrl": "https://s.click.aliexpress.com/e/_c4XmpMlR",
+      "estimatedCost": 3
+    },
+    {
+      "id": "frame_arm_rear_left",
+      "name": "Frame Arm Rear Left",
+      "type": "structural",
+      "partId": "04fed19e-bcd2-4a8f-9022-726643c7bae1",
+      "ebayUrl": "https://www.ebay.com/sch/i.html?_nkw=DJI+F450+Quadcopter+Frame+Arm&_sacat=0&_from=R40&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339153059&customid=blueprint&toolid=10001&mkevt=1",
+      "category": "mechanical",
+      "imageUrl": "https://m.media-amazon.com/images/I/41-5BHd6mcL._SL500_.jpg",
+      "quantity": 1,
+      "research": {
+        "sourcing": [
+          {
+            "url": "https://www.amazon.com/dp/B087LT81C8?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+            "price": "$79.99",
+            "vendor": "Amazon"
+          },
+          {
+            "url": "https://www.aliexpress.com/w/wholesale-f450-carbon-fiber-frame-arm.html",
+            "vendor": "AliExpress"
+          }
+        ]
+      },
+      "amazonUrl": "https://www.amazon.com/dp/B087LT81C8?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "dimensions": "230x40x12mm",
+      "description": "Rear left arm of the quadcopter frame, supporting the motor and ESC.",
+      "productName": "DJI F450 Quadcopter Frame Arm",
+      "purchaseUrl": "https://www.amazon.com/dp/B087LT81C8?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "aliexpressUrl": "https://s.click.aliexpress.com/e/_c4XmpMlR",
+      "estimatedCost": 3
+    },
+    {
+      "id": "frame_arm_rear_right",
+      "name": "Frame Arm Rear Right",
+      "type": "structural",
+      "partId": "04fed19e-bcd2-4a8f-9022-726643c7bae1",
+      "ebayUrl": "https://www.ebay.com/sch/i.html?_nkw=DJI+F450+Quadcopter+Frame+Arm&_sacat=0&_from=R40&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339153059&customid=blueprint&toolid=10001&mkevt=1",
+      "category": "mechanical",
+      "imageUrl": "https://m.media-amazon.com/images/I/41-5BHd6mcL._SL500_.jpg",
+      "quantity": 1,
+      "research": {
+        "sourcing": [
+          {
+            "url": "https://www.amazon.com/dp/B087LT81C8?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+            "price": "$79.99",
+            "vendor": "Amazon"
+          },
+          {
+            "url": "https://www.aliexpress.com/w/wholesale-f450-carbon-fiber-frame-arm.html",
+            "vendor": "AliExpress"
+          }
+        ]
+      },
+      "amazonUrl": "https://www.amazon.com/dp/B087LT81C8?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "dimensions": "230x40x12mm",
+      "description": "Rear right arm of the quadcopter frame, supporting the motor and ESC.",
+      "productName": "DJI F450 Quadcopter Frame Arm",
+      "purchaseUrl": "https://www.amazon.com/dp/B087LT81C8?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "aliexpressUrl": "https://s.click.aliexpress.com/e/_c4XmpMlR",
+      "estimatedCost": 3
+    },
+    {
+      "id": "landing_skid_set",
+      "name": "Landing Skid Set",
+      "type": "structural",
+      "partId": "c817d15d-77dc-43af-a42f-b7991875cfc7",
+      "ebayUrl": "https://www.ebay.com/sch/i.html?_nkw=DJI+F450+Landing+Gear+Skids&_sacat=0&_from=R40&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339153059&customid=blueprint&toolid=10001&mkevt=1",
+      "category": "mechanical",
+      "imageUrl": "https://m.media-amazon.com/images/I/41yDQXyf24L._SL500_.jpg",
+      "material": "ABS Plastic",
+      "quantity": 1,
+      "research": {
+        "sourcing": [
+          {
+            "url": "https://www.amazon.com/dp/B07H98L613?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+            "price": "$7.99",
+            "vendor": "Amazon"
+          },
+          {
+            "url": "https://www.aliexpress.com/item/1005009728843223.html?pdp_npi=6%40dis%21USD%215.60%215.60%21%21%215.60%215.60%21%402101611117799712853617062e106e%2112000049972039782%21affd%21%21%21%211%210%21",
+            "price": "$5.6",
+            "vendor": "AliExpress"
+          }
+        ]
+      },
+      "dimensions": "200x50x100mm",
+      "description": "Standard landing gear skids to provide stable ground clearance for the drone.",
+      "productName": "DJI F450 Landing Gear Skids",
+      "purchaseUrl": "https://s.click.aliexpress.com/s/fwx308cRD9Eny963e3KDdYxyIpNj8TXVr7saiF9Um5rMUg1kZtJALLnfa2LNXtiVgnxdD8Og6MmvwBoxhnSYQGM6r0c08U4TfX8DFGo7vviCuu3q62Q60OAhRZcqm3G8PtwM69xY7TOEWRrvulP5ukZQ4uQbBBtaVsdr6EffAqVmp3O5GyUANU2DoA3dJufNhDfh7KOlLgKIvRVhDxRESHLmea6fTE26gLUqKEUuuizJiLENrCbax94DZHDu8WhaXM9vQ86gzlqceNPO5w3vwXm4VrBF3x2lAMEl06wgNdTSMiT7cNG4HIdW0JxI5u6mGLm2brOZ5cjXb4ksgRfzy6Fy8MyWDOWA4BtE5VcjDC8YgHPWdSCVioXsSJD2HROENK86QArpfzmiDAyvKfnKWOVFviaw43TFPnOFyDgT8WvaLwIP0GROcbWEyYBwaJRED4nwkDk816WYeqioKQDPcbCzJFXGiuawTTxEZCrLmkxSMwMKk0lTT5KGRpAQPi35QnvLDQ5W69234Byu9xJLoAOhRyuK8lu5dZrZCwX2rNXWcR6W2PcMTITVCregihWg7iHkjKBN8rlX0H1F0de0HcnenjEl2vZMaQHzoXdwtHglG9frbIDk292soFHrcQ2sjsAJUD5zWE7bDMW50ZDEEsqDoLEt46MbmgBurw01djBDSCOczyx1rEKYKqFVrtuLEjhKQXjxaIFdLXb8r6QJyBUoz1ocaznmvQxU6qlS4YmLIhxiIWWGBMeovskvE9V3WmG7LZDLcmWTFpTGPTuhvIyQ7s9KxVnQmuLz5ujMU8PsxSx9JrS0rQoc2EJhar2NnATAils25QrGlaWJkMMN5wRBmTIxKVu1RTTmBZvSlq1tK8lRsZRvqSXsvtAaOrKxpVVMviCluk8F4o03dLzHFjPIUO29qaNsaSH1i9brrJQnrVN2TPBUTuQKeoBHz5n3uSZ1mJRwVD4vMhtDFz",
+      "aliexpressUrl": "https://s.click.aliexpress.com/s/fwx308cRD9Eny963e3KDdYxyIpNj8TXVr7saiF9Um5rMUg1kZtJALLnfa2LNXtiVgnxdD8Og6MmvwBoxhnSYQGM6r0c08U4TfX8DFGo7vviCuu3q62Q60OAhRZcqm3G8PtwM69xY7TOEWRrvulP5ukZQ4uQbBBtaVsdr6EffAqVmp3O5GyUANU2DoA3dJufNhDfh7KOlLgKIvRVhDxRESHLmea6fTE26gLUqKEUuuizJiLENrCbax94DZHDu8WhaXM9vQ86gzlqceNPO5w3vwXm4VrBF3x2lAMEl06wgNdTSMiT7cNG4HIdW0JxI5u6mGLm2brOZ5cjXb4ksgRfzy6Fy8MyWDOWA4BtE5VcjDC8YgHPWdSCVioXsSJD2HROENK86QArpfzmiDAyvKfnKWOVFviaw43TFPnOFyDgT8WvaLwIP0GROcbWEyYBwaJRED4nwkDk816WYeqioKQDPcbCzJFXGiuawTTxEZCrLmkxSMwMKk0lTT5KGRpAQPi35QnvLDQ5W69234Byu9xJLoAOhRyuK8lu5dZrZCwX2rNXWcR6W2PcMTITVCregihWg7iHkjKBN8rlX0H1F0de0HcnenjEl2vZMaQHzoXdwtHglG9frbIDk292soFHrcQ2sjsAJUD5zWE7bDMW50ZDEEsqDoLEt46MbmgBurw01djBDSCOczyx1rEKYKqFVrtuLEjhKQXjxaIFdLXb8r6QJyBUoz1ocaznmvQxU6qlS4YmLIhxiIWWGBMeovskvE9V3WmG7LZDLcmWTFpTGPTuhvIyQ7s9KxVnQmuLz5ujMU8PsxSx9JrS0rQoc2EJhar2NnATAils25QrGlaWJkMMN5wRBmTIxKVu1RTTmBZvSlq1tK8lRsZRvqSXsvtAaOrKxpVVMviCluk8F4o03dLzHFjPIUO29qaNsaSH1i9brrJQnrVN2TPBUTuQKeoBHz5n3uSZ1mJRwVD4vMhtDFz",
+      "estimatedCost": 15,
+      "amazonUrl": "https://www.amazon.com/dp/B07H98L613?tag=blueprintam-20&linkCode=osi&th=1&psc=1"
+    },
+    {
+      "id": "motor_propeller_front_left",
+      "name": "Propeller Front Left",
+      "type": "mechanism",
+      "partId": "a9fa63af-7522-489b-9516-fcdffda541fa",
+      "ebayUrl": "https://www.ebay.com/sch/i.html?_nkw=1045+Propeller+CW%2FCCW&_sacat=0&_from=R40&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339153059&customid=blueprint&toolid=10001&mkevt=1",
+      "category": "mechanical",
+      "imageUrl": "https://m.media-amazon.com/images/I/41impPvqJrL._SL500_.jpg",
+      "material": "Plastic",
+      "quantity": 1,
+      "research": {
+        "sourcing": [
+          {
+            "url": "https://www.amazon.com/dp/B0823NNTKD?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+            "price": "$16.99",
+            "vendor": "Amazon"
+          },
+          {
+            "url": "https://www.aliexpress.com/w/wholesale-1045-propeller-cw-ccw.html",
+            "vendor": "AliExpress"
+          }
+        ]
+      },
+      "amazonUrl": "https://www.amazon.com/dp/B0823NNTKD?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "mountsFor": "motor_front_left",
+      "dimensions": "254mm diameter",
+      "description": "Self-tightening plastic propeller for the front left motor, rotating clockwise.",
+      "productName": "1045 Propeller CW/CCW",
+      "purchaseUrl": "https://www.amazon.com/dp/B0823NNTKD?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "aliexpressUrl": "https://s.click.aliexpress.com/e/_c3xBtXcD",
+      "estimatedCost": 3.5
+    },
+    {
+      "id": "motor_propeller_front_right",
+      "name": "Propeller Front Right",
+      "type": "mechanism",
+      "partId": "a9fa63af-7522-489b-9516-fcdffda541fa",
+      "ebayUrl": "https://www.ebay.com/sch/i.html?_nkw=1045+Propeller+CW%2FCCW&_sacat=0&_from=R40&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339153059&customid=blueprint&toolid=10001&mkevt=1",
+      "category": "mechanical",
+      "imageUrl": "https://m.media-amazon.com/images/I/41impPvqJrL._SL500_.jpg",
+      "material": "Plastic",
+      "quantity": 1,
+      "research": {
+        "sourcing": [
+          {
+            "url": "https://www.amazon.com/dp/B0823NNTKD?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+            "price": "$16.99",
+            "vendor": "Amazon"
+          },
+          {
+            "url": "https://www.aliexpress.com/w/wholesale-1045-propeller-cw-ccw.html",
+            "vendor": "AliExpress"
+          }
+        ]
+      },
+      "amazonUrl": "https://www.amazon.com/dp/B0823NNTKD?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "mountsFor": "motor_front_right",
+      "dimensions": "254mm diameter",
+      "description": "Self-tightening plastic propeller for the front right motor, rotating counter-clockwise.",
+      "productName": "1045 Propeller CW/CCW",
+      "purchaseUrl": "https://www.amazon.com/dp/B0823NNTKD?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "aliexpressUrl": "https://s.click.aliexpress.com/e/_c3xBtXcD",
+      "estimatedCost": 3.5
+    },
+    {
+      "id": "motor_propeller_rear_left",
+      "name": "Propeller Rear Left",
+      "type": "mechanism",
+      "partId": "a9fa63af-7522-489b-9516-fcdffda541fa",
+      "ebayUrl": "https://www.ebay.com/sch/i.html?_nkw=1045+Propeller+CW%2FCCW&_sacat=0&_from=R40&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339153059&customid=blueprint&toolid=10001&mkevt=1",
+      "category": "mechanical",
+      "imageUrl": "https://m.media-amazon.com/images/I/41impPvqJrL._SL500_.jpg",
+      "material": "Plastic",
+      "quantity": 1,
+      "research": {
+        "sourcing": [
+          {
+            "url": "https://www.amazon.com/dp/B0823NNTKD?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+            "price": "$16.99",
+            "vendor": "Amazon"
+          },
+          {
+            "url": "https://www.aliexpress.com/w/wholesale-1045-propeller-cw-ccw.html",
+            "vendor": "AliExpress"
+          }
+        ]
+      },
+      "amazonUrl": "https://www.amazon.com/dp/B0823NNTKD?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "mountsFor": "motor_rear_left",
+      "dimensions": "254mm diameter",
+      "description": "Self-tightening plastic propeller for the rear left motor, rotating counter-clockwise.",
+      "productName": "1045 Propeller CW/CCW",
+      "purchaseUrl": "https://www.amazon.com/dp/B0823NNTKD?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "aliexpressUrl": "https://s.click.aliexpress.com/e/_c3xBtXcD",
+      "estimatedCost": 3.5
+    },
+    {
+      "id": "motor_propeller_rear_right",
+      "name": "Propeller Rear Right",
+      "type": "mechanism",
+      "partId": "a9fa63af-7522-489b-9516-fcdffda541fa",
+      "ebayUrl": "https://www.ebay.com/sch/i.html?_nkw=1045+Propeller+CW%2FCCW&_sacat=0&_from=R40&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339153059&customid=blueprint&toolid=10001&mkevt=1",
+      "category": "mechanical",
+      "imageUrl": "https://m.media-amazon.com/images/I/41impPvqJrL._SL500_.jpg",
+      "material": "Plastic",
+      "quantity": 1,
+      "research": {
+        "sourcing": [
+          {
+            "url": "https://www.amazon.com/dp/B0823NNTKD?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+            "price": "$16.99",
+            "vendor": "Amazon"
+          },
+          {
+            "url": "https://www.aliexpress.com/w/wholesale-1045-propeller-cw-ccw.html",
+            "vendor": "AliExpress"
+          }
+        ]
+      },
+      "amazonUrl": "https://www.amazon.com/dp/B0823NNTKD?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "mountsFor": "motor_rear_right",
+      "dimensions": "254mm diameter",
+      "description": "Self-tightening plastic propeller for the rear right motor, rotating clockwise.",
+      "productName": "1045 Propeller CW/CCW",
+      "purchaseUrl": "https://www.amazon.com/dp/B0823NNTKD?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "aliexpressUrl": "https://s.click.aliexpress.com/e/_c3xBtXcD",
+      "estimatedCost": 3.5
+    },
+    {
+      "id": "collapsible_sensor_boom",
+      "name": "Collapsible Sensor Boom",
+      "type": "mechanism",
+      "partId": "ba6c50a4-4e81-47f8-8b1e-1439e86a58b2",
+      "ebayUrl": "https://www.ebay.com/sch/i.html?_nkw=Carbon+Fiber+Telescopic+Pole&_sacat=0&_from=R40&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339153059&customid=blueprint&toolid=10001&mkevt=1",
+      "category": "mechanical",
+      "imageUrl": "https://m.media-amazon.com/images/I/31fRup7A6GL._SL500_.jpg",
+      "quantity": 1,
+      "research": {
+        "sourcing": [
+          {
+            "url": "https://www.amazon.com/dp/B0GGH6DW1R?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+            "price": "$129.99",
+            "vendor": "Amazon"
+          },
+          {
+            "url": "https://www.aliexpress.com/item/1005007033481061.html?pdp_npi=6%40dis%21USD%2148.23%2124.11%21%21%21325.45%21162.72%21%402140da8b17797536003842895e111a%2112000039164063830%21affd%21%21%21%211%210%21",
+            "price": "$24.11",
+            "vendor": "AliExpress"
+          }
+        ]
+      },
+      "amazonUrl": "https://www.amazon.com/dp/B0GGH6DW1R?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "dimensions": "300-500x10mm (extended)",
+      "description": "Lightweight, non-magnetic carbon fiber telescopic pole, 30-50cm extended, to minimize magnetic interference from the drone.",
+      "productName": "Carbon Fiber Telescopic Pole",
+      "purchaseUrl": "https://s.click.aliexpress.com/s/fwx308cRD9Eny963e3KDdYxyIpNj8TXVr7saiF9Um5rMUg1kZtJALLnfa2LNXtiVgnxdD8Og6MmvwBoxhnSYQGM6r0c08U4TfX8DFGo7vviCuu3q62Q60OAhRZcqm3G8PtwM69xY7TOEWRrvulP5ukZQ4uQbBBtaVsdr6EffAqVmp3O5GyUANU2DoA3dJufNhDfh7KOlLgKIvRVhDxRESHLmea6fTE26gLUqKEUuuizJiLENrCbax94DZHDu8WhaXM9vQ86gzlqceNPO5w3vwXm4VrBF3x2lAMEl06wgNdTSMiT7cNG4HIdW0JxxaJBbtb8NVOBUEOdQYKphtEGazmnk4lsWFEND7PCw78BmmsQq9c0cIO21PkfFak57nzi4znXZXZEKFJcWkuEbDMdqGawH5sjBsZEv8WhWz5M2guw02uIJahNpU2QM3SQ4pAV5jgiHT5ZivdlyLaEgGQK0v00yrQ1MwdtvpVSfPSZweAn7vQeaubAUN1TDC3ZO1LSjaeKMQYzdWIztEIr4xIrIC1kugayQ6bhefA2itXnufkLXvMkIdZkWO0snPjOyeAIeRxqrdBRIfEWX78smT9fB3Hp5fA1GnT4uxjAkdy9Q8asIcCGWace4DBr0y7I8grAyaNiCiOigSkTIhOOtDwJYJA84FGbODASNJ1XakAJaTnTa6sWJw875kpdg6FlVd37c0TOKNU72SiLNrMO4NfwMDqrc7JIaDOmgmhyPquMNcjUAMkEcUnD10a1Hpjh9wXEOLeCsN7zIRL4TJsOyPnP8EkKi6ZAfGh3pNZYuzHECpSbqbvfWF9vl9Yez8QvZsiZrBIE3McumexbgHMN1VszneB8Q3HCQncZApAK7CLZ6mrSbmsFgYtYxcsGb1GMciXEnUlb077IMdDl4537U9IjJG8MFsZKOWgd9AInMu8I2LKRQnB5u8CbmoI3MQeEEGLb1zBQTeWXtwMynUm1FBN",
+      "aliexpressUrl": "https://s.click.aliexpress.com/s/fwx308cRD9Eny963e3KDdYxyIpNj8TXVr7saiF9Um5rMUg1kZtJALLnfa2LNXtiVgnxdD8Og6MmvwBoxhnSYQGM6r0c08U4TfX8DFGo7vviCuu3q62Q60OAhRZcqm3G8PtwM69xY7TOEWRrvulP5ukZQ4uQbBBtaVsdr6EffAqVmp3O5GyUANU2DoA3dJufNhDfh7KOlLgKIvRVhDxRESHLmea6fTE26gLUqKEUuuizJiLENrCbax94DZHDu8WhaXM9vQ86gzlqceNPO5w3vwXm4VrBF3x2lAMEl06wgNdTSMiT7cNG4HIdW0JxxaJBbtb8NVOBUEOdQYKphtEGazmnk4lsWFEND7PCw78BmmsQq9c0cIO21PkfFak57nzi4znXZXZEKFJcWkuEbDMdqGawH5sjBsZEv8WhWz5M2guw02uIJahNpU2QM3SQ4pAV5jgiHT5ZivdlyLaEgGQK0v00yrQ1MwdtvpVSfPSZweAn7vQeaubAUN1TDC3ZO1LSjaeKMQYzdWIztEIr4xIrIC1kugayQ6bhefA2itXnufkLXvMkIdZkWO0snPjOyeAIeRxqrdBRIfEWX78smT9fB3Hp5fA1GnT4uxjAkdy9Q8asIcCGWace4DBr0y7I8grAyaNiCiOigSkTIhOOtDwJYJA84FGbODASNJ1XakAJaTnTa6sWJw875kpdg6FlVd37c0TOKNU72SiLNrMO4NfwMDqrc7JIaDOmgmhyPquMNcjUAMkEcUnD10a1Hpjh9wXEOLeCsN7zIRL4TJsOyPnP8EkKi6ZAfGh3pNZYuzHECpSbqbvfWF9vl9Yez8QvZsiZrBIE3McumexbgHMN1VszneB8Q3HCQncZApAK7CLZ6mrSbmsFgYtYxcsGb1GMciXEnUlb077IMdDl4537U9IjJG8MFsZKOWgd9AInMu8I2LKRQnB5u8CbmoI3MQeEEGLb1zBQTeWXtwMynUm1FBN",
+      "estimatedCost": 25
+    },
+    {
+      "id": "boom_retraction_mechanism",
+      "name": "Boom Retraction Mechanism",
+      "type": "3d_printed",
+      "category": "mechanical",
+      "material": "PETG",
+      "quantity": 1,
+      "dimensions": "40x30x25mm",
+      "description": "3D-printed mechanism to attach and allow retraction/extension of the sensor boom, operated by a micro servo.",
+      "purchaseUrl": "",
+      "estimatedCost": 1.5,
+      "printSettings": "25% infill, 0.2mm layer"
+    },
+    {
+      "id": "magnetometer_z_mount",
+      "name": "Z-Axis Magnetometer Mount",
+      "type": "3d_printed",
+      "category": "mechanical",
+      "material": "PETG",
+      "quantity": 1,
+      "mountsFor": "magnetometer_z",
+      "dimensions": "30x20x25mm",
+      "description": "3D-printed mount for the vertical magnetometer, ensuring Z-axis orientation and secure attachment to the sensor boom.",
+      "purchaseUrl": "",
+      "estimatedCost": 0.75,
+      "printSettings": "25% infill, 0.2mm layer"
+    },
+    {
+      "id": "magnetometer_x_mount",
+      "name": "X-Axis Magnetometer Mount",
+      "type": "3d_printed",
+      "category": "mechanical",
+      "material": "PETG",
+      "quantity": 1,
+      "mountsFor": "magnetometer_x",
+      "dimensions": "30x20x25mm",
+      "description": "3D-printed mount for the horizontal magnetometer, ensuring X-axis orientation and secure attachment to the sensor boom, next to the Z-axis mag.",
+      "purchaseUrl": "",
+      "estimatedCost": 0.75,
+      "printSettings": "25% infill, 0.2mm layer"
+    },
+    {
+      "id": "laser_altimeter_mount",
+      "name": "Laser Altimeter Mount",
+      "type": "3d_printed",
+      "category": "mechanical",
+      "material": "PETG",
+      "quantity": 1,
+      "mountsFor": "laser_altimeter",
+      "dimensions": "60x40x20mm",
+      "description": "3D-printed bracket to securely attach the laser altimeter to the sensor boom, ensuring an unobstructed downward view.",
+      "purchaseUrl": "",
+      "estimatedCost": 1.2,
+      "printSettings": "20% infill, 0.2mm layer"
+    },
+    {
+      "id": "flight_controller_mount",
+      "name": "Flight Controller Mount",
+      "type": "3d_printed",
+      "category": "mechanical",
+      "material": "TPU",
+      "quantity": 1,
+      "mountsFor": "flight_controller",
+      "dimensions": "60x60x15mm",
+      "description": "Vibration-dampening mount for the Pixhawk flight controller, isolating it from frame vibrations for better IMU performance.",
+      "purchaseUrl": "",
+      "estimatedCost": 2,
+      "printSettings": "100% infill, 0.2mm layer"
+    },
+    {
+      "id": "payload_mcu_mount",
+      "name": "Payload MCU Mount",
+      "type": "3d_printed",
+      "category": "mechanical",
+      "material": "PLA",
+      "quantity": 1,
+      "mountsFor": "payload_mcu",
+      "dimensions": "110x60x10mm",
+      "description": "3D-printed tray or standoffs to mount the Arduino Mega payload microcontroller securely on the frame's top plate.",
+      "purchaseUrl": "",
+      "estimatedCost": 1,
+      "printSettings": "20% infill, 0.2mm layer"
+    },
+    {
+      "id": "gnss_module_mast",
+      "name": "GNSS Module Mast",
+      "type": "3d_printed",
+      "category": "mechanical",
+      "material": "PETG",
+      "quantity": 1,
+      "mountsFor": "gnss_module",
+      "dimensions": "10x10x150mm",
+      "description": "Tall 3D-printed mast for elevating the GNSS module above the main frame to improve signal reception.",
+      "purchaseUrl": "",
+      "estimatedCost": 1,
+      "printSettings": "50% infill, 0.2mm layer"
+    },
+    {
+      "id": "gnss_module_top_mount",
+      "name": "GNSS Module Top Mount",
+      "type": "3d_printed",
+      "category": "mechanical",
+      "material": "PETG",
+      "quantity": 1,
+      "mountsFor": "gnss_module",
+      "dimensions": "50x50x10mm",
+      "description": "Small 3D-printed platform to mount the GNSS module securely on top of the GNSS mast.",
+      "purchaseUrl": "",
+      "estimatedCost": 0.5,
+      "printSettings": "25% infill, 0.2mm layer"
+    },
+    {
+      "id": "telemetry_radio_mount",
+      "name": "Telemetry Radio Mount",
+      "type": "3d_printed",
+      "category": "mechanical",
+      "material": "PLA",
+      "quantity": 1,
+      "mountsFor": "telemetry_radio",
+      "dimensions": "40x30x15mm",
+      "description": "3D-printed enclosure or bracket for the telemetry radio module, typically mounted on a frame arm or side.",
+      "purchaseUrl": "",
+      "estimatedCost": 0.6,
+      "printSettings": "20% infill, 0.2mm layer"
+    },
+    {
+      "id": "lipo_battery_strap",
+      "name": "LiPo Battery Strap",
+      "type": "misc",
+      "partId": "216c0ab1-d4f1-4d8a-a6ae-3f67d0a4e9b3",
+      "ebayUrl": "https://www.ebay.com/sch/i.html?_nkw=Velcro+LiPo+Battery+Strap&_sacat=0&_from=R40&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339153059&customid=blueprint&toolid=10001&mkevt=1",
+      "category": "mechanical",
+      "imageUrl": "https://m.media-amazon.com/images/I/512ZAIr9dtL._SL500_.jpg",
+      "material": "Nylon/Velcro",
+      "quantity": 2,
+      "research": {
+        "sourcing": [
+          {
+            "url": "https://www.aliexpress.com/item/1005012237232963.html?pdp_npi=6%40dis%21USD%216.80%216.36%21%21%216.80%216.36%21%40212a7b8d17793253851337397e107c%2112000057820413560%21affd%21%21%21%211%210%21",
+            "price": "$6.36",
+            "vendor": "AliExpress"
+          },
+          {
+            "url": "",
+            "vendor": "Amazon"
+          },
+          {
+            "url": "https://www.amazon.com/dp/B019QWZYU8?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+            "price": "$8.99",
+            "vendor": "Amazon"
+          }
+        ]
+      },
+      "amazonUrl": "https://www.amazon.com/dp/B019QWZYU8?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "mountsFor": "main_lipo_battery",
+      "dimensions": "20x300mm",
+      "description": "Velcro strap for securing the main LiPo battery to the drone's top plate.",
+      "productName": "Velcro LiPo Battery Strap",
+      "purchaseUrl": "https://s.click.aliexpress.com/s/fwx308cRD9Eny963e3KDdYxyIpNj8TXVr7saiF9Um5rMUg1kZtJALLnfa2LNXtiVgnxdD8Og6MmvwBoxhnSYQGM6r0c08U4TfX8DFGo7vviCuu3q62Q60OAhRZcqm3G8PtwM69xY7TOEWRrvulP5ukZQ4uQbBBtaVsdr6EffAqVmp3O5GyUANU2DoA3dJufNhDfh7KOlLgKIvRVhDxRESHLmea6fTE26gLUqKEUuuizJiLENrCbax94DZHDu8WhaXM9vQ86gzlqceNPO5w3vwXm4VrBF3x2lAMEl06wgNdTSMiT7cNG4HIdW0JxRMkxiw5NlRAyimJJ0LswnzQZIZq5emVeC2Hpxed7dvW7rcLMCLoq1XO5wRfryEZo0kfQabSi03L88oHTEr3KOjrU996eSPpPlFOtZkJL9t4yYWLToktmQWQhXPdQsntVbfMtLQvnIGiNJxLR5xE10CjHcnLxgaRCsVaCxKNgIjweHBMgXyUJcJoEG53sgwDrZmZ9IpIy7Y8b7ltRXlrUf052KGrIhyRRfA1deXVGhmLd5OlF8OpZ3wTUY5jjFEWhX1BpkkBCc7jB9aZrqjkg6pee9vjIrLpg9QoUThOuHKL6JUoia8yExHyPXGJPV6Av3frRvfhfqr61okIJusfXZMHNLvfA6wAE68ioIkIyfCeWZ6Rsbb9ilcsYXfkdKarpXhCTOjnoUB6tnwADWQiLj40xFXDQAOC1ZB3GOs8VknmBIxG6D3KM56oohhHHt1H0rk8eTrt5XwXHJsuCMuslyMET2PkyzoKrKukQxJQ85AihC6KvdC9qBzkmjgr5PQ7mAkRdnRzxBna5DjfGc6IH46r5RlvM4F1tnihxrnaqeyDe9r5ptyBvPDN6ibZaJwgKI9MN2rpVEmx9kez4hDUMYimVeZk2cTyTGnZg52dAKPuY5ox3JXIFhhMALOdMoPjF5bPFH3kPSOabPdxnE7M7qGL",
+      "aliexpressUrl": "https://s.click.aliexpress.com/s/fwx308cRD9Eny963e3KDdYxyIpNj8TXVr7saiF9Um5rMUg1kZtJALLnfa2LNXtiVgnxdD8Og6MmvwBoxhnSYQGM6r0c08U4TfX8DFGo7vviCuu3q62Q60OAhRZcqm3G8PtwM69xY7TOEWRrvulP5ukZQ4uQbBBtaVsdr6EffAqVmp3O5GyUANU2DoA3dJufNhDfh7KOlLgKIvRVhDxRESHLmea6fTE26gLUqKEUuuizJiLENrCbax94DZHDu8WhaXM9vQ86gzlqceNPO5w3vwXm4VrBF3x2lAMEl06wgNdTSMiT7cNG4HIdW0JxRMkxiw5NlRAyimJJ0LswnzQZIZq5emVeC2Hpxed7dvW7rcLMCLoq1XO5wRfryEZo0kfQabSi03L88oHTEr3KOjrU996eSPpPlFOtZkJL9t4yYWLToktmQWQhXPdQsntVbfMtLQvnIGiNJxLR5xE10CjHcnLxgaRCsVaCxKNgIjweHBMgXyUJcJoEG53sgwDrZmZ9IpIy7Y8b7ltRXlrUf052KGrIhyRRfA1deXVGhmLd5OlF8OpZ3wTUY5jjFEWhX1BpkkBCc7jB9aZrqjkg6pee9vjIrLpg9QoUThOuHKL6JUoia8yExHyPXGJPV6Av3frRvfhfqr61okIJusfXZMHNLvfA6wAE68ioIkIyfCeWZ6Rsbb9ilcsYXfkdKarpXhCTOjnoUB6tnwADWQiLj40xFXDQAOC1ZB3GOs8VknmBIxG6D3KM56oohhHHt1H0rk8eTrt5XwXHJsuCMuslyMET2PkyzoKrKukQxJQ85AihC6KvdC9qBzkmjgr5PQ7mAkRdnRzxBna5DjfGc6IH46r5RlvM4F1tnihxrnaqeyDe9r5ptyBvPDN6ibZaJwgKI9MN2rpVEmx9kez4hDUMYimVeZk2cTyTGnZg52dAKPuY5ox3JXIFhhMALOdMoPjF5bPFH3kPSOabPdxnE7M7qGL",
+      "estimatedCost": 2
+    },
+    {
+      "id": "m3_nylon_standoff",
+      "name": "M3 Nylon Standoff",
+      "type": "misc",
+      "partId": "60cd6118-b04c-43e6-801b-9ed15b00fafb",
+      "ebayUrl": "https://www.ebay.com/sch/i.html?_nkw=M3+Nylon+Hex+Standoff+Kit&_sacat=0&_from=R40&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339153059&customid=blueprint&toolid=10001&mkevt=1",
+      "category": "mechanical",
+      "imageUrl": "https://m.media-amazon.com/images/I/51b0tijbJfL._SL500_.jpg",
+      "material": "Nylon",
+      "quantity": 16,
+      "research": {
+        "sourcing": [
+          {
+            "url": "https://www.amazon.com/dp/B0CBPGKDP4?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+            "price": "$14.99",
+            "vendor": "Amazon"
+          },
+          {
+            "url": "https://www.aliexpress.com/item/1005007123661699.html?pdp_npi=6%40dis%21USD%2114.78%217.10%21%21%2199.91%2147.96%21%400b8ded7b17793640637823582e0ed4%2112000047638270035%21affd%21%21%21%211%210%21",
+            "price": "$7.1",
+            "vendor": "AliExpress"
+          }
+        ]
+      },
+      "amazonUrl": "https://www.amazon.com/dp/B0CBPGKDP4?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "dimensions": "M3x10mm",
+      "description": "Nylon standoffs used for mounting PCBs and components to avoid short circuits and provide spacing.",
+      "productName": "M3 Nylon Hex Standoff Kit",
+      "purchaseUrl": "https://s.click.aliexpress.com/s/fwx308cRD9Eny963e3KDdYxyIpNj8TXVr7saiF9Um5rMUg1kZtJALLnfa2LNXtiVgnxdD8Og6MmvwBoxhnSYQGM6r0c08U4TfX8DFGo7vviCuu3q62Q60OAhRZcqm3G8PtwM69xY7TOEWRrvulP5ukZQ4uQbBBtaVsdr6EffAqVmp3O5GyUANU2DoA3dJufNhDfh7KOlLgKIvRVhDxRESHLmea6fTE26gLUqKEUuuizJiLENrCbax94DZHDu8WhaXM9vQ86gzlqceNPO5w3vwXm4VrBF3x2lAMEl06wgNdTSMiT7cNG4HIdW0JxwRZzPyacKAkPdKDBDnPZUjhWXR2NqrwBtXaSouCM9FPNVOq7ofQWRP71TIPopaXdmydGA12iihDiBsjeuB2yAzscRgAATxu1f45BJr5t4Thbvq38F17oSZGIL5GWFMiuafRRjRuVY2wMMjv9blDVjAvwWoQ6ApvJ6fMZ3ebZsDmZ8p4d4vwUdX0Jbs6UgPbyKJ715C6izEON5PYdLZEfim9GxnzPNSWlZYBUcVF9Vopjrep5PBbKhrSyz4iA7GGwJWzkzKFD7OCY46dLUCvG7iLQYu0S2SvxQfUDLFX93s5Q1xx5avkL4Z2YrXEsM9m4EioUsY4mm6JxmueF6OGFCIkTKToBFSL2pSQdjIwJ7Tbzumft9RSsscoKoNpx7PlTtypsOHVeMjzkNVRONnAJ3rNPDVaHxEpkeVah76EJo2RviPVroEvdme6A1FuT55ot9hK6TTfKSQAIr2c4QVkN7yyGYxG3CWTu2EbmWVwH8NPn9Puoc9sVnI5CPlcJujGBbLon5c2gjKFGUdgFw8BvUl8eZngddR2YczgbBVuI2Yj9p8iywlTOpNK3wKL19zuk0lRfEXYtXI7z8GExpMSJ6cLMdeKTVJ7VU7zr1Qcx7YAakXJBiLTQVsdsq9JYsMeVZJaPHQIkYPcq5sn4TxY5cg7",
+      "aliexpressUrl": "https://s.click.aliexpress.com/s/fwx308cRD9Eny963e3KDdYxyIpNj8TXVr7saiF9Um5rMUg1kZtJALLnfa2LNXtiVgnxdD8Og6MmvwBoxhnSYQGM6r0c08U4TfX8DFGo7vviCuu3q62Q60OAhRZcqm3G8PtwM69xY7TOEWRrvulP5ukZQ4uQbBBtaVsdr6EffAqVmp3O5GyUANU2DoA3dJufNhDfh7KOlLgKIvRVhDxRESHLmea6fTE26gLUqKEUuuizJiLENrCbax94DZHDu8WhaXM9vQ86gzlqceNPO5w3vwXm4VrBF3x2lAMEl06wgNdTSMiT7cNG4HIdW0JxwRZzPyacKAkPdKDBDnPZUjhWXR2NqrwBtXaSouCM9FPNVOq7ofQWRP71TIPopaXdmydGA12iihDiBsjeuB2yAzscRgAATxu1f45BJr5t4Thbvq38F17oSZGIL5GWFMiuafRRjRuVY2wMMjv9blDVjAvwWoQ6ApvJ6fMZ3ebZsDmZ8p4d4vwUdX0Jbs6UgPbyKJ715C6izEON5PYdLZEfim9GxnzPNSWlZYBUcVF9Vopjrep5PBbKhrSyz4iA7GGwJWzkzKFD7OCY46dLUCvG7iLQYu0S2SvxQfUDLFX93s5Q1xx5avkL4Z2YrXEsM9m4EioUsY4mm6JxmueF6OGFCIkTKToBFSL2pSQdjIwJ7Tbzumft9RSsscoKoNpx7PlTtypsOHVeMjzkNVRONnAJ3rNPDVaHxEpkeVah76EJo2RviPVroEvdme6A1FuT55ot9hK6TTfKSQAIr2c4QVkN7yyGYxG3CWTu2EbmWVwH8NPn9Puoc9sVnI5CPlcJujGBbLon5c2gjKFGUdgFw8BvUl8eZngddR2YczgbBVuI2Yj9p8iywlTOpNK3wKL19zuk0lRfEXYtXI7z8GExpMSJ6cLMdeKTVJ7VU7zr1Qcx7YAakXJBiLTQVsdsq9JYsMeVZJaPHQIkYPcq5sn4TxY5cg7",
+      "estimatedCost": 0.1
+    },
+    {
+      "id": "m3_nylon_screw",
+      "name": "M3 Nylon Screw",
+      "type": "misc",
+      "partId": "2a4177f8-66e9-4f3a-8fe6-7783f03adc42",
+      "ebayUrl": "https://www.ebay.com/sch/i.html?_nkw=M3+Nylon+Screw+Kit&_sacat=0&_from=R40&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339153059&customid=blueprint&toolid=10001&mkevt=1",
+      "category": "mechanical",
+      "imageUrl": "https://m.media-amazon.com/images/I/31NW4wZJJOL._SL500_.jpg",
+      "quantity": 24,
+      "research": {
+        "sourcing": [
+          {
+            "url": "https://www.aliexpress.com/w/wholesale-m3x4mm-nylon-screws.html",
+            "vendor": "AliExpress"
+          },
+          {
+            "url": "https://www.amazon.com/dp/B0F1NLJFZG?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+            "price": "$5.19",
+            "vendor": "Amazon"
+          }
+        ]
+      },
+      "amazonUrl": "https://www.amazon.com/dp/B0F1NLJFZG?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "dimensions": "M3x6mm",
+      "description": "Nylon screws used with standoffs for mounting components, non-magnetic.",
+      "productName": "M3 Nylon Screw Kit",
+      "purchaseUrl": "https://www.amazon.com/dp/B0F1NLJFZG?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "aliexpressUrl": "https://s.click.aliexpress.com/e/_c4L15eCN",
+      "estimatedCost": 0.05
+    },
+    {
+      "id": "m3_nylon_nut",
+      "name": "M3 Nylon Nut",
+      "type": "misc",
+      "partId": "967c1e77-0577-4519-8d1c-ad321238a4c9",
+      "ebayUrl": "https://www.ebay.com/sch/i.html?_nkw=M3+Nylon+Nut+Kit&_sacat=0&_from=R40&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339153059&customid=blueprint&toolid=10001&mkevt=1",
+      "category": "mechanical",
+      "imageUrl": "https://m.media-amazon.com/images/I/51p31lqau+L._SL500_.jpg",
+      "quantity": 16,
+      "research": {
+        "sourcing": [
+          {
+            "url": "https://www.amazon.com/dp/B0B17JHRKV?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+            "price": "$8.99",
+            "vendor": "Amazon"
+          },
+          {
+            "url": "https://www.aliexpress.com/item/1005009738248385.html?pdp_npi=6%40dis%21USD%2119.45%219.73%21%21%21131.12%2165.56%21%40212a7b8d17799995276596375e109d%2112000050001574980%21affd%21%21%21%211%210%21",
+            "price": "$9.73",
+            "vendor": "AliExpress"
+          }
+        ]
+      },
+      "dimensions": "M3",
+      "description": "Nylon nuts for securing nylon screws and standoffs, non-magnetic.",
+      "productName": "M3 Nylon Nut Kit",
+      "purchaseUrl": "https://www.amazon.com/dp/B0B17JHRKV?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "aliexpressUrl": "https://s.click.aliexpress.com/s/fwx308cRD9Eny963e3KDdYxyIpNj8TXVr7saiF9Um5rMUg1kZtJALLnfa2LNXtiVgnxdD8Og6MmvwBoxhnSYQGM6r0c08U4TfX8DFGo7vviCuu3q62Q60OAhRZcqm3G8PtwM69xY7TOEWRrvulP5ukZQ4uQbBBtaVsdr6EffAqVmp3O5GyUANU2DoA3dJufNhDfh7KOlLgKIvRVhDxRESHLmea6fTE26gLUqKEUuuizJiLENrCbax94DZHDu8WhaXM9vQ86gzlqceNPO5w3vwXm4VrBF3x2lAMEl06wgNdTSMiT7cNG4HIdW0JxwbQdAEkvUSpLCak31911369IXvJYuEKGQUouEJusVWm6oWTnglJCDJcieUOF2a2cZLrI0bjRTfsxCalxZEGesd6u60ROsAd97pUNkemMLPIHznZUEqREnEoa5J8qRtCRKr6h7t9sXk8bfQtWkNu2JqnfNBVNMWGItxeyDAKBkbfioSWfnfHYSJr5uh3PEspl2qhsY0khIRJuteAk0UQPi30Ey5Rb9umjqLTyHnLrX3GRFOXKA0J23piHj3aPvzeiHjjbFy7RG5upzcoOHGTmWTkgzd4OXMrFNaI86Y50rEKhm49B8M5rcPqpoyF2sD8wnH9q0JMNHnkJCfCNUI2QQJrjKgM4G4rc1jPBNBGwcPHLuLknLUurLGh1Y92xVxw3JOrD0kR1e8g5RodTfSRjBm3J2irvLIR7Xzw9kaXrTufKrcfDbJNYwl6ennvAL6GwHzlGSEEcIqTpiHKRqlafxqXleRMxVuOWM0bBdHTTfiS8tFbQeE1Pb2bx8peNrXnxSgL2edw9EYMZNG2iwqvEPWQuhis0yy5J0UUJcLz59poREMeDCHhS8qE2IeAsmipykHMRK1a31zQerEoA3MqxmzKNKRFJJrT765kWCc0gWYJAZ6UpbK9i75MBU91955jdi5alsbMYVTf47E8s3yLrkPZ",
+      "estimatedCost": 0.03,
+      "amazonUrl": "https://www.amazon.com/dp/B0B17JHRKV?tag=blueprintam-20&linkCode=osi&th=1&psc=1"
+    },
+    {
+      "id": "cable_ties",
+      "name": "Cable Ties",
+      "type": "misc",
+      "partId": "47c76487-ac07-4059-a225-ed961c7b8cda",
+      "ebayUrl": "https://www.ebay.com/sch/i.html?_nkw=Small+Zip+Ties&_sacat=0&_from=R40&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339153059&customid=blueprint&toolid=10001&mkevt=1",
+      "category": "mechanical",
+      "imageUrl": "https://m.media-amazon.com/images/I/413rBv1IrAL._SL500_.jpg",
+      "material": "Nylon",
+      "quantity": 50,
+      "research": {
+        "sourcing": [
+          {
+            "url": "https://www.amazon.com/dp/B0BC1VH4XB?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+            "price": "$3.49",
+            "vendor": "Amazon"
+          },
+          {
+            "url": "https://www.aliexpress.com/item/1005009941433767.html?pdp_npi=6%40dis%21USD%216.98%213.42%21%21%2147.24%2123.15%21%402151fca717794415783343138e0f14%2112000050638370037%21affd%21%21%21%211%210%21",
+            "price": "$3.42",
+            "vendor": "AliExpress"
+          }
+        ]
+      },
+      "amazonUrl": "https://www.amazon.com/dp/B0BC1VH4XB?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "dimensions": "2.5x100mm",
+      "description": "Assorted small plastic cable ties for wire management and securing lightweight components.",
+      "productName": "Small Zip Ties",
+      "purchaseUrl": "https://s.click.aliexpress.com/s/fwx308cRD9Eny963e3KDdYxyIpNj8TXVr7saiF9Um5rMUg1kZtJALLnfa2LNXtiVgnxdD8Og6MmvwBoxhnSYQGM6r0c08U4TfX8DFGo7vviCuu3q62Q60OAhRZcqm3G8PtwM69xY7TOEWRrvulP5ukZQ4uQbBBtaVsdr6EffAqVmp3O5GyUANU2DoA3dJufNhDfh7KOlLgKIvRVhDxRESHLmea6fTE26gLUqKEUuuizJiLENrCbax94DZHDu8WhaXM9vQ86gzlqceNPO5w3vwXm4VrBF3x2lAMEl06wgNdTSMiT7cNG4HIdW0Jxwr7BCIN1lpcvWYWPv21fhF3wrbip5LpsR3AlXofxNsNYokQDyNM6pVrq2zrziJB3e11ySaOjTbKe165Dc5HfKAc5M84AhcJu0qPYHz7dDj0T81p8hWQOXWXwKsIdp3afyVJ7kK87ujIQsNEStGVTLQTlPQgZ2o07pO4JiIVdaOYN4gkLFFbsi3qPxJJZr1fA7lRXKXcrEEcO3VGLeDZb9FGa1uPITnTLt0JhbDPSSfxvMhZNarywOo652d6nfnDTaVaFsteQjJchzpNyb8whaSjuDoT6ZPpdszyKRsPey1lPTMPyZD5x7E2VOFzT68vO7BlSBaHlJvyFFu4jDah1Z7Qm3I1tc4RxzHldA6T8QeOTC5rVU9VDRhOM1jNqkyEarVevk6FTIoOOYBgisWVLlSlwm64AtrS3tBQIkxCTn8RAwoQ5thgA52bQLj4FpM40lsy0Da3uveM0WMtDlESQruVrFqWdy50NP1vBS52Ohi2k1wCxtYnYao1qUDdl1wGXLYNV9T8hau2Y746nHVhwFCQpUgpD2HZliGDD2rzUEq9L89v8c4EnPwt4SPRlOg5XA5VMMJGLmRC7LpeUrG45DanrAEQ2iEzeFJYCDydzW9KVI9jKnBsq2j9xRd1cjxTFpVd8Wv3relO8S3NoNhWZQob",
+      "aliexpressUrl": "https://s.click.aliexpress.com/s/fwx308cRD9Eny963e3KDdYxyIpNj8TXVr7saiF9Um5rMUg1kZtJALLnfa2LNXtiVgnxdD8Og6MmvwBoxhnSYQGM6r0c08U4TfX8DFGo7vviCuu3q62Q60OAhRZcqm3G8PtwM69xY7TOEWRrvulP5ukZQ4uQbBBtaVsdr6EffAqVmp3O5GyUANU2DoA3dJufNhDfh7KOlLgKIvRVhDxRESHLmea6fTE26gLUqKEUuuizJiLENrCbax94DZHDu8WhaXM9vQ86gzlqceNPO5w3vwXm4VrBF3x2lAMEl06wgNdTSMiT7cNG4HIdW0Jxwr7BCIN1lpcvWYWPv21fhF3wrbip5LpsR3AlXofxNsNYokQDyNM6pVrq2zrziJB3e11ySaOjTbKe165Dc5HfKAc5M84AhcJu0qPYHz7dDj0T81p8hWQOXWXwKsIdp3afyVJ7kK87ujIQsNEStGVTLQTlPQgZ2o07pO4JiIVdaOYN4gkLFFbsi3qPxJJZr1fA7lRXKXcrEEcO3VGLeDZb9FGa1uPITnTLt0JhbDPSSfxvMhZNarywOo652d6nfnDTaVaFsteQjJchzpNyb8whaSjuDoT6ZPpdszyKRsPey1lPTMPyZD5x7E2VOFzT68vO7BlSBaHlJvyFFu4jDah1Z7Qm3I1tc4RxzHldA6T8QeOTC5rVU9VDRhOM1jNqkyEarVevk6FTIoOOYBgisWVLlSlwm64AtrS3tBQIkxCTn8RAwoQ5thgA52bQLj4FpM40lsy0Da3uveM0WMtDlESQruVrFqWdy50NP1vBS52Ohi2k1wCxtYnYao1qUDdl1wGXLYNV9T8hau2Y746nHVhwFCQpUgpD2HZliGDD2rzUEq9L89v8c4EnPwt4SPRlOg5XA5VMMJGLmRC7LpeUrG45DanrAEQ2iEzeFJYCDydzW9KVI9jKnBsq2j9xRd1cjxTFpVd8Wv3relO8S3NoNhWZQob",
+      "estimatedCost": 0.02
+    },
+    {
+      "id": "esc_front_left_mount",
+      "name": "ESC Front Left Mount",
+      "type": "3d_printed",
+      "category": "mechanical",
+      "material": "PETG",
+      "quantity": 1,
+      "mountsFor": "esc_front_left",
+      "dimensions": "50x50x20mm",
+      "description": "Per-position bracket for the ESC Front Left with M3 mounting holes matched to its bolt pattern. Rated for the actuator's continuous torque/load class.",
+      "purchaseUrl": "",
+      "estimatedCost": 2,
+      "printSettings": "30% infill, 0.2mm layer, 4 perimeters"
+    },
+    {
+      "id": "esc_front_right_mount",
+      "name": "ESC Front Right Mount",
+      "type": "3d_printed",
+      "category": "mechanical",
+      "material": "PETG",
+      "quantity": 1,
+      "mountsFor": "esc_front_right",
+      "dimensions": "50x50x20mm",
+      "description": "Per-position bracket for the ESC Front Right with M3 mounting holes matched to its bolt pattern. Rated for the actuator's continuous torque/load class.",
+      "purchaseUrl": "",
+      "estimatedCost": 2,
+      "printSettings": "30% infill, 0.2mm layer, 4 perimeters"
+    },
+    {
+      "id": "esc_rear_left_mount",
+      "name": "ESC Rear Left Mount",
+      "type": "3d_printed",
+      "category": "mechanical",
+      "material": "PETG",
+      "quantity": 1,
+      "mountsFor": "esc_rear_left",
+      "dimensions": "50x50x20mm",
+      "description": "Per-position bracket for the ESC Rear Left with M3 mounting holes matched to its bolt pattern. Rated for the actuator's continuous torque/load class.",
+      "purchaseUrl": "",
+      "estimatedCost": 2,
+      "printSettings": "30% infill, 0.2mm layer, 4 perimeters"
+    },
+    {
+      "id": "esc_rear_right_mount",
+      "name": "ESC Rear Right Mount",
+      "type": "3d_printed",
+      "category": "mechanical",
+      "material": "PETG",
+      "quantity": 1,
+      "mountsFor": "esc_rear_right",
+      "dimensions": "50x50x20mm",
+      "description": "Per-position bracket for the ESC Rear Right with M3 mounting holes matched to its bolt pattern. Rated for the actuator's continuous torque/load class.",
+      "purchaseUrl": "",
+      "estimatedCost": 2,
+      "printSettings": "30% infill, 0.2mm layer, 4 perimeters"
+    }
+  ],
+  "notes": [
+    "Quadcopter type",
+    "Max 1.5 kg MTOW",
+    "15 min endurance",
+    "0.5-1.0 m AGL flight",
+    "Terrain following",
+    "Non-magnetic frame",
+    "Retractable boom",
+    "Centimeter-level GPS"
+  ],
+  "projectName": "UXO Detection Drone",
+  "originalPrompt": "Design a drone for magnetometer-based landmine/UXO detection based on the scientific paper \"Intelligent, Automated, Rapid, and Safe Landmine, IED and UXO Detection Using Maggy\" (IEEE Access, 2024, DOI: 10.1109/ACCESS.2024.3493013).\n\n**Drone platform:**\n- Type: Quadcopter, inspired by DJI F-450 frame\n- Maximum takeoff weight: 1.5 kg (including payload)\n- Operational weight with sensors and battery: ~880 g\n- Flight speed: 1 m/s for detailed scanning (can be increased to 2–5 m/s)\n- Flight altitude: 0.5–1.0 m above ground level (AGL) with terrain following capability using altimeter\n- Endurance: Minimum 15 minutes (improve from original 4.5 min by using larger battery, e.g., 4S 5000mAh LiPo)\n- Frame material: Carbon fiber or plastic (non-magnetic to reduce interference)\n\n**Sensor payload:**\n- Primary sensor: Two triaxial fluxgate magnetometers (e.g., HWT3100-485 or FGM3D/75)\n  - Magnetic field range: ±800 µT\n  - Sensitivity: 13 nT/LSB\n  - Sampling rate: 10–200 Hz (configurable)\n  - Output: Serial 485 / Modbus / Bluetooth\n- Mounting: One magnetometer oriented to measure Z-axis (vertical), another for X-axis (horizontal). Place sensors below the drone on a non-magnetic retractable boom (30–50 cm) to minimize interference from motors and ESCs.\n- Secondary sensor (optional): Altimeter (sonic/laser) for precision height hold under 1 m.\n- GPS: Internal + external GNSS (e.g., ZED-F9P) for centimeter-level positioning.\n\n**Processing unit:**\n- Low-power microcontroller (Arduino Mega or similar) for real-time sensor data acquisition at 200 Hz.\n- Optional onboard computer (Raspberry Pi 4 or Zero) for data processing, logging, and communication with ground station.\n\n**Signal processing and detection:**\n- Convert raw data to magnetic field (µT) using: MF = (raw × sensitivity)/1000 (sensitivity = 13 nT/LSB).\n- Compute total field magnitude: MF_XYZ = sqrt(MFX² + MFY² + MFZ²).\n- Compute heading: heading = atan2(MFY, MFX) × (180/π).\n- Apply threshold classification (user-selectable) to identify anomalies above background magnetic field.\n- Implement real-time filtering (e.g., moving average or median filter) to reduce noise.\n\n**Flight control and navigation:**\n- Flight controller: Pixhawk 6C or equivalent with ArduPilot firmware.\n- Modes: Position hold, altitude hold, waypoint navigation, terrain following.\n- Ground control station: QGroundControl or Mission Planner running on laptop/tablet.\n\n**Power system:**\n- Battery: 4S LiPo, 5000 mAh (minimum) to achieve 15–20 min flight time.\n- Power distribution board with regulated 5V and 12V outputs for sensors and Arduino.\n\n**Data telemetry:**\n- Telemetry link: 433/915 MHz SiK radio for live data streaming to ground station.\n- Data logging: Onboard SD card (2 GB minimum) for storing raw MF data with GPS timestamps.\n\n**Software:**\n- Arduino code for sensor reading (Python or C++).\n- Ground station software for real-time magnetic field mapping (color-coded anomalies).\n- Optional: Integration with deep learning model (YOLOv5 as in NPA study) for automated target recognition.\n\n**References:**\n- Kuru et al., \"Intelligent, Automated, Rapid, and Safe Landmine, IED and UXO Detection Using Maggy\", IEEE Access, 2024.\n- Garcia-Fernandez et al., \"Drone-mounted Magnetometer Interference Removal\", arXiv:2510.01417, 2025.\n\nDeliverables required from Blueprints.am:\n1. Complete BOM (Bill of Materials) with component specifications and estimated costs.\n2. Circuit schematic diagram for sensor integration (Arduino + magnetometers + GPS + telemetry).\n3. 3D CAD model of the drone frame with sensor boom mounting.\n4. Step-by-step assembly and calibration instructions.\n5. Flight parameters (PIDs, waypoint planning for grid scanning).",
+  "instructionSteps": [
+    {
+      "id": "fabricate",
+      "subSteps": [
+        {
+          "id": "fabricate_1",
+          "title": "3D print all custom mounts and mechanisms using specified materials and settings",
+          "partIds": [
+            "boom_retraction_mechanism",
+            "magnetometer_z_mount",
+            "magnetometer_x_mount",
+            "laser_altimeter_mount",
+            "flight_controller_mount",
+            "payload_mcu_mount",
+            "gnss_module_mast",
+            "gnss_module_top_mount",
+            "telemetry_radio_mount",
+            "esc_front_left_mount",
+            "esc_front_right_mount",
+            "esc_rear_left_mount",
+            "esc_rear_right_mount"
+          ]
+        },
+        {
+          "id": "fabricate_2",
+          "title": "Deburr and clean all 3D printed parts, ensuring smooth surfaces and proper fit",
+          "partIds": [
+            "boom_retraction_mechanism",
+            "magnetometer_z_mount",
+            "magnetometer_x_mount",
+            "laser_altimeter_mount",
+            "flight_controller_mount",
+            "payload_mcu_mount",
+            "gnss_module_mast",
+            "gnss_module_top_mount",
+            "telemetry_radio_mount",
+            "esc_front_left_mount",
+            "esc_front_right_mount",
+            "esc_rear_left_mount",
+            "esc_rear_right_mount"
+          ]
+        },
+        {
+          "id": "fabricate_3",
+          "title": "Inspect main frame components for manufacturing defects and ensure hole alignment",
+          "partIds": [
+            "main_frame_bottom_plate",
+            "main_frame_top_plate",
+            "frame_arm_front_left",
+            "frame_arm_front_right",
+            "frame_arm_rear_left",
+            "frame_arm_rear_right"
+          ]
+        },
+        {
+          "id": "fabricate_4",
+          "title": "Pre-assemble mechanical joints and test fit to verify clearances",
+          "partIds": [
+            "main_frame_bottom_plate",
+            "main_frame_top_plate",
+            "frame_arm_front_left",
+            "frame_arm_front_right",
+            "frame_arm_rear_left",
+            "frame_arm_rear_right",
+            "m3_nylon_standoff",
+            "m3_nylon_screw",
+            "m3_nylon_nut"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wire",
+      "subSteps": [
+        {
+          "id": "wire_1",
+          "title": "Solder XT60 connector to Main LiPo Battery (if not pre-attached) and to Power Distribution Board",
+          "partIds": [
+            "main_lipo_battery",
+            "power_distribution_board"
+          ]
+        },
+        {
+          "id": "wire_2",
+          "title": "Solder motor phase wires from each ESC to its corresponding motor",
+          "partIds": [
+            "esc_front_left",
+            "esc_front_right",
+            "esc_rear_left",
+            "esc_rear_right",
+            "motor_front_left",
+            "motor_front_right",
+            "motor_rear_left",
+            "motor_rear_right"
+          ]
+        },
+        {
+          "id": "wire_3",
+          "title": "Solder power input wires from Power Distribution Board to each ESC",
+          "partIds": [
+            "power_distribution_board",
+            "esc_front_left",
+            "esc_front_right",
+            "esc_rear_left",
+            "esc_rear_right"
+          ]
+        },
+        {
+          "id": "wire_4",
+          "title": "Connect power output (5V, 12V) from Power Distribution Board to Flight Controller, Payload MCU, GNSS Module, Telemetry Radio, Magnetometers, and Laser Altimeter",
+          "partIds": [
+            "power_distribution_board",
+            "flight_controller",
+            "payload_mcu",
+            "gnss_module",
+            "telemetry_radio",
+            "magnetometer_z",
+            "magnetometer_x",
+            "laser_altimeter"
+          ]
+        },
+        {
+          "id": "wire_5",
+          "title": "Connect PWM signal wires from Flight Controller to each ESC",
+          "partIds": [
+            "flight_controller",
+            "esc_front_left",
+            "esc_front_right",
+            "esc_rear_left",
+            "esc_rear_right"
+          ]
+        },
+        {
+          "id": "wire_6",
+          "title": "Wire all UART/I2C/RS485 data connections between Flight Controller, Payload MCU, GNSS Module, Telemetry Radio, Magnetometers, and Laser Altimeter",
+          "partIds": [
+            "flight_controller",
+            "payload_mcu",
+            "gnss_module",
+            "telemetry_radio",
+            "magnetometer_z",
+            "magnetometer_x",
+            "laser_altimeter"
+          ]
+        },
+        {
+          "id": "wire_7",
+          "title": "Perform continuity checks on all power and data lines to prevent shorts",
+          "partIds": [
+            "power_distribution_board",
+            "flight_controller",
+            "payload_mcu",
+            "gnss_module",
+            "telemetry_radio",
+            "magnetometer_z",
+            "magnetometer_x",
+            "laser_altimeter",
+            "esc_front_left",
+            "esc_front_right",
+            "esc_rear_left",
+            "esc_rear_right",
+            "motor_front_left",
+            "motor_front_right",
+            "motor_rear_left",
+            "motor_rear_right"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bringup",
+      "subSteps": [
+        {
+          "id": "bringup_1",
+          "title": "Connect Flight Controller to computer, flash drone firmware, and perform initial configuration",
+          "partIds": [
+            "flight_controller"
+          ]
+        },
+        {
+          "id": "bringup_2",
+          "title": "Connect Payload MCU to computer, upload custom sensor acquisition and processing code",
+          "partIds": [
+            "payload_mcu"
+          ]
+        },
+        {
+          "id": "bringup_3",
+          "title": "Power on the system (without propellers), verify 5V and 12V power rails with multimeter",
+          "partIds": [
+            "power_distribution_board",
+            "main_lipo_battery",
+            "flight_controller",
+            "payload_mcu",
+            "gnss_module",
+            "telemetry_radio",
+            "magnetometer_z",
+            "magnetometer_x",
+            "laser_altimeter"
+          ]
+        },
+        {
+          "id": "bringup_4",
+          "title": "Verify GNSS module is recognized by Flight Controller and receiving satellite data",
+          "partIds": [
+            "gnss_module",
+            "flight_controller"
+          ]
+        },
+        {
+          "id": "bringup_5",
+          "title": "Test Telemetry Radio communication between drone and ground station",
+          "partIds": [
+            "telemetry_radio",
+            "flight_controller"
+          ]
+        },
+        {
+          "id": "bringup_6",
+          "title": "Verify data acquisition from magnetometers and laser altimeter via Payload MCU serial console",
+          "partIds": [
+            "payload_mcu",
+            "magnetometer_z",
+            "magnetometer_x",
+            "laser_altimeter"
+          ]
+        },
+        {
+          "id": "bringup_7",
+          "title": "Calibrate ESCs and perform individual motor spin tests using flight controller software (without propellers)",
+          "partIds": [
+            "esc_front_left",
+            "esc_front_right",
+            "esc_rear_left",
+            "esc_rear_right",
+            "motor_front_left",
+            "motor_front_right",
+            "motor_rear_left",
+            "motor_rear_right",
+            "flight_controller"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "assemble",
+      "subSteps": [
+        {
+          "id": "assemble_1",
+          "title": "Assemble the main frame by attaching arms to the bottom plate and then securing the top plate with standoffs and screws",
+          "partIds": [
+            "main_frame_bottom_plate",
+            "main_frame_top_plate",
+            "frame_arm_front_left",
+            "frame_arm_front_right",
+            "frame_arm_rear_left",
+            "frame_arm_rear_right",
+            "m3_nylon_standoff",
+            "m3_nylon_screw"
+          ]
+        },
+        {
+          "id": "assemble_2",
+          "title": "Mount ESCs into their respective 3D printed mounts and attach mounts to the main frame bottom plate",
+          "partIds": [
+            "esc_front_left",
+            "esc_front_right",
+            "esc_rear_left",
+            "esc_rear_right",
+            "esc_front_left_mount",
+            "esc_front_right_mount",
+            "esc_rear_left_mount",
+            "esc_rear_right_mount",
+            "main_frame_bottom_plate"
+          ]
+        },
+        {
+          "id": "assemble_3",
+          "title": "Mount motors to the frame arms and attach propellers, ensuring correct rotation direction and tight fit",
+          "partIds": [
+            "motor_front_left",
+            "motor_front_right",
+            "motor_rear_left",
+            "motor_rear_right",
+            "motor_propeller_front_left",
+            "motor_propeller_front_right",
+            "motor_propeller_rear_left",
+            "motor_propeller_rear_right",
+            "frame_arm_front_left",
+            "frame_arm_front_right",
+            "frame_arm_rear_left",
+            "frame_arm_rear_right"
+          ]
+        },
+        {
+          "id": "assemble_4",
+          "title": "Mount the Flight Controller and Payload MCU to their 3D printed mounts and secure them to the main frame bottom plate using nylon standoffs/screws",
+          "partIds": [
+            "flight_controller",
+            "flight_controller_mount",
+            "payload_mcu",
+            "payload_mcu_mount",
+            "main_frame_bottom_plate",
+            "m3_nylon_standoff",
+            "m3_nylon_screw"
+          ]
+        },
+        {
+          "id": "assemble_5",
+          "title": "Mount the Boom Retraction Mechanism to the bottom plate and attach the Collapsible Sensor Boom, then mount magnetometers and laser altimeter to boom mounts",
+          "partIds": [
+            "boom_retraction_mechanism",
+            "collapsible_sensor_boom",
+            "magnetometer_z",
+            "magnetometer_z_mount",
+            "magnetometer_x",
+            "magnetometer_x_mount",
+            "laser_altimeter",
+            "laser_altimeter_mount",
+            "main_frame_bottom_plate"
+          ]
+        },
+        {
+          "id": "assemble_6",
+          "title": "Assemble the GNSS mast and mount the GNSS module to its top mount, then attach the mast to the main frame top plate",
+          "partIds": [
+            "gnss_module_mast",
+            "gnss_module_top_mount",
+            "gnss_module",
+            "main_frame_top_plate"
+          ]
+        },
+        {
+          "id": "assemble_7",
+          "title": "Mount the Telemetry Radio into its 3D printed mount and secure it to the main frame bottom plate",
+          "partIds": [
+            "telemetry_radio",
+            "telemetry_radio_mount",
+            "main_frame_bottom_plate"
+          ]
+        },
+        {
+          "id": "assemble_8",
+          "title": "Route all cables neatly, use cable ties for strain relief, and secure the Main LiPo Battery with the battery strap",
+          "partIds": [
+            "cable_ties",
+            "lipo_battery_strap",
+            "main_lipo_battery"
+          ]
+        }
+      ]
+    }
+  ],
+  "projectDescription": "This quadcopter drone employs two triaxial fluxgate magnetometers on a retractable boom to detect unexploded ordnance. It uses centimeter-level GPS for precise mapping and a laser altimeter for autonomous, low-altitude terrain following. The non-magnetic frame minimizes interference for accurate magnetic anomaly detection.",
+  "imagePromptSnapshot": {
+    "tags": [
+      "Quadcopter type",
+      "Max 1.5 kg MTOW",
+      "15 min endurance",
+      "0.5-1.0 m AGL flight",
+      "Terrain following",
+      "Non-magnetic frame",
+      "Retractable boom",
+      "Centimeter-level GPS"
+    ],
+    "description": "Project idea: Design a drone for magnetometer-based landmine/UXO detection based on the scientific paper \"Intelligent, Automated, Rapid, and Safe Landmine, IED and UXO Detection Using Maggy\" (IEEE Access, 2024, DOI: 10.1109/ACCESS.2024.3493013).\n\n**Drone platform:**\n- Type: Quadcopter, inspired by DJI F-450 frame\n- Maximum takeoff weight: 1.5 kg (including payload)\n- Operational weight with sensors and battery: ~880 g\n- Flight speed: 1 m/s for detailed scanning (can be increased to 2–5 m/s)\n- Flight altitude: 0.5–1.0 m above ground level (AGL) with terrain following capability using altimeter\n- Endurance: Minimum 15 minutes (improve from original 4.5 min by using larger battery, e.g., 4S 5000mAh LiPo)\n- Frame material: Carbon fiber or plastic (non-magnetic to reduce interference)\n\n**Sensor payload:**\n- Primary sensor: Two triaxial fluxgate magnetometers (e.g., HWT3100-485 or FGM3D/75)\n  - Magnetic field range: ±800 µT\n  - Sensitivity: 13 nT/LSB\n  - Sampling rate: 10–200 Hz (configurable)\n  - Output: Serial 485 / Modbus / Bluetooth\n- Mounting: One magnetometer oriented to measure Z-axis (vertical), another for X-axis (horizontal). Place sensors below the drone on a non-magnetic retractable boom (30–50 cm) to minimize interference from motors and ESCs.\n- Secondary sensor (optional): Altimeter (sonic/laser) for precision height hold under 1 m.\n- GPS: Internal + external GNSS (e.g., ZED-F9P) for centimeter-level positioning.\n\n**Processing unit:**\n- Low-power microcontroller (Arduino Mega or similar) for real-time sensor data acquisition at 200 Hz.\n- Optional onboard computer (Raspberry Pi 4 or Zero) for data processing, logging, and communication with ground station.\n\n**Signal processing and detection:**\n- Convert raw data to magnetic field (µT) using: MF = (raw × sensitivity)/1000 (sensitivity = 13 nT/LSB).\n- Compute total field magnitude: MF_XYZ = sqrt(MFX² + MFY² + MFZ²).\n- Compute heading: heading = atan2(MFY, MFX) × (180/π).\n- Apply threshold classification (user-selectable) to identify anomalies above background magnetic field.\n- Implement real-time filtering (e.g., moving average or median filter) to reduce noise.\n\n**Flight control and navigation:**\n- Flight controller: Pixhawk 6C or equivalent with ArduPilot firmware.\n- Modes: Position hold, altitude hold, waypoint navigation, terrain following.\n- Ground control station: QGroundControl or Mission Planner running on laptop/tablet.\n\n**Power system:**\n- Battery: 4S LiPo, 5000 mAh (minimum) to achieve 15–20 min flight time.\n- Power distribution board with regulated 5V and 12V outputs for sensors and Arduino.\n\n**Data telemetry:**\n- Telemetry link: 433/915 MHz SiK radio for live data streaming to ground station.\n- Data logging: Onboard SD card (2 GB minimum) for storing raw MF data with GPS timestamps.\n\n**Software:**\n- Arduino code for sensor reading (Python or C++).\n- Ground station software for real-time magnetic field mapping (color-coded anomalies).\n- Optional: Integration with deep learning model (YOLOv5 as in NPA study) for automated target recognition.\n\n**References:**\n- Kuru et al., \"Intelligent, Automated, Rapid, and Safe Landmine, IED and UXO Detection Using Maggy\", IEEE Access, 2024.\n- Garcia-Fernandez et al., \"Drone-mounted Magnetometer Interference Removal\", arXiv:2510.01417, 2025.\n\nDeliverables required from Blueprints.am:\n1. Complete BOM (Bill of Materials) with component specifications and estimated costs.\n2. Circuit schematic diagram for sensor integration (Arduino + magnetometers + GPS + telemetry).\n3. 3D CAD model of the drone frame with sensor boom mounting.\n4. Step-by-step assembly and calibration instructions.\n5. Flight parameters (PIDs, waypoint planning for grid scanning).\n\nDesign notes: Quadcopter type, Max 1.5 kg MTOW, 15 min endurance, 0.5-1.0 m AGL flight, Terrain following, Non-magnetic frame, Retractable boom, Centimeter-level GPS\n\nElectrical components (current): 2x mcu: Flight Controller, Payload Data Acquisition MCU; 4x sensor: Centimeter-Level GPS Module, Vertical Magnetometer (Z-axis), Horizontal Magnetometer (X-axis), Precision Laser Altimeter; 2x power: Power Distribution Board with BECs, Main LiPo Battery; 8x actuator: Motor Front Left, Motor Front Right, Motor Rear Left, Motor Rear Right +4 more; Telemetry Radio Module (module, 50x25x10mm)\n\nMechanical/structural parts (current): 7x structural: Main Frame Bottom Plate, Main Frame Top Plate, Frame Arm Front Left, Frame Arm Front Right +3 more; 5x mechanism: Propeller Front Left, Propeller Front Right, Propeller Rear Left, Propeller Rear Right +1 more; 13x 3d_printed: Boom Retraction Mechanism, Z-Axis Magnetometer Mount, X-Axis Magnetometer Mount, Laser Altimeter Mount +9 more; 5x misc: LiPo Battery Strap, M3 Nylon Standoff, M3 Nylon Screw, M3 Nylon Nut +1 more\n\nAssembly: Main Frame Bottom Plate → Main Frame Top Plate (M3 nylon standoffs and screws); Main Frame Bottom Plate → Frame Arm Front Left (M3 bolts); Main Frame Bottom Plate → Frame Arm Front Right (M3 bolts); Main Frame Bottom Plate → Frame Arm Rear Left (M3 bolts); Main Frame Bottom Plate → Frame Arm Rear Right (M3 bolts); Main Frame Bottom Plate → Landing Skid Set (M3 bolts); Frame Arm Front Left → Propeller Front Left (M3 bolts); Frame Arm Front Right → Propeller Front Right (M3 bolts); Frame Arm Rear Left → Propeller Rear Left (M3 bolts); Frame Arm Rear Right → Propeller Rear Right (M3 bolts); Main Frame Bottom Plate → Boom Retraction Mechanism (M3 bolts); Boom Retraction Mechanism → Collapsible Sensor Boom (integrated mounting); Collapsible Sensor Boom → Z-Axis Magnetometer Mount (M2 screws); Collapsible Sensor Boom → X-Axis Magnetometer Mount (M2 screws); Collapsible Sensor Boom → Laser Altimeter Mount (M2 screws) (+27 more connections)"
+  },
+  "instructionPreamble": {
+    "tools": [
+      "Soldering iron with fine tip",
+      "Solder",
+      "Wire strippers",
+      "Wire cutters",
+      "Precision pliers",
+      "Digital Multimeter",
+      "M3 hex key",
+      "M2 screwdriver",
+      "Small Phillips head screwdriver",
+      "Tweezers",
+      "Hot glue gun",
+      "3D printer (PETG, PLA, TPU capable)",
+      "Hobby knife/Deburring tool"
+    ],
+    "assumptions": [
+      "Basic soldering experience",
+      "Familiarity with drone flight controller software (e.g., ArduPilot, PX4) setup and flashing",
+      "Experience with programming microcontrollers (e.g., Arduino IDE for Payload MCU)",
+      "Understanding of LiPo battery safety and handling",
+      "Access to a computer with necessary drivers and software for component configuration",
+      "Knowledge of basic serial communication protocols (UART, I2C, RS485)"
+    ]
+  },
+  "electricalConnections": [
+    {
+      "type": "power",
+      "label": "Main Battery Power",
+      "source": "main_lipo_battery",
+      "target": "power_distribution_board",
+      "current": "50A",
+      "voltage": "14.8V"
+    },
+    {
+      "type": "power",
+      "label": "ESC FL Power",
+      "source": "power_distribution_board",
+      "target": "esc_front_left",
+      "current": "25A",
+      "voltage": "14.8V"
+    },
+    {
+      "type": "power",
+      "label": "ESC FR Power",
+      "source": "power_distribution_board",
+      "target": "esc_front_right",
+      "current": "25A",
+      "voltage": "14.8V"
+    },
+    {
+      "type": "power",
+      "label": "ESC RL Power",
+      "source": "power_distribution_board",
+      "target": "esc_rear_left",
+      "current": "25A",
+      "voltage": "14.8V"
+    },
+    {
+      "type": "power",
+      "label": "ESC RR Power",
+      "source": "power_distribution_board",
+      "target": "esc_rear_right",
+      "current": "25A",
+      "voltage": "14.8V"
+    },
+    {
+      "type": "power",
+      "label": "Motor FL Power",
+      "source": "esc_front_left",
+      "target": "motor_front_left",
+      "current": "25A",
+      "voltage": "14.8V"
+    },
+    {
+      "type": "power",
+      "label": "Motor FR Power",
+      "source": "esc_front_right",
+      "target": "motor_front_right",
+      "current": "25A",
+      "voltage": "14.8V"
+    },
+    {
+      "type": "power",
+      "label": "Motor RL Power",
+      "source": "esc_rear_left",
+      "target": "motor_rear_left",
+      "current": "25A",
+      "voltage": "14.8V"
+    },
+    {
+      "type": "power",
+      "label": "Motor RR Power",
+      "source": "esc_rear_right",
+      "target": "motor_rear_right",
+      "current": "25A",
+      "voltage": "14.8V"
+    },
+    {
+      "type": "power",
+      "label": "FC Power",
+      "source": "power_distribution_board",
+      "target": "flight_controller",
+      "current": "2A",
+      "voltage": "5V"
+    },
+    {
+      "type": "power",
+      "label": "Payload MCU Power",
+      "source": "power_distribution_board",
+      "target": "payload_mcu",
+      "current": "500mA",
+      "voltage": "5V"
+    },
+    {
+      "type": "power",
+      "label": "GNSS Power",
+      "source": "power_distribution_board",
+      "target": "gnss_module",
+      "current": "100mA",
+      "voltage": "5V"
+    },
+    {
+      "type": "power",
+      "label": "Telemetry Radio Power",
+      "source": "power_distribution_board",
+      "target": "telemetry_radio",
+      "current": "100mA",
+      "voltage": "5V"
+    },
+    {
+      "type": "power",
+      "label": "Mag Z Power",
+      "source": "power_distribution_board",
+      "target": "magnetometer_z",
+      "current": "50mA",
+      "voltage": "12V"
+    },
+    {
+      "type": "power",
+      "label": "Mag X Power",
+      "source": "power_distribution_board",
+      "target": "magnetometer_x",
+      "current": "50mA",
+      "voltage": "12V"
+    },
+    {
+      "type": "power",
+      "label": "Altimeter Power",
+      "source": "power_distribution_board",
+      "target": "laser_altimeter",
+      "current": "150mA",
+      "voltage": "12V"
+    },
+    {
+      "type": "data",
+      "label": "FC to ESC FL",
+      "source": "flight_controller",
+      "target": "esc_front_left",
+      "protocol": "pwm",
+      "sourcePin": "PWM Out 1",
+      "targetPin": "PWM Signal In"
+    },
+    {
+      "type": "data",
+      "label": "FC to ESC FR",
+      "source": "flight_controller",
+      "target": "esc_front_right",
+      "protocol": "pwm",
+      "sourcePin": "PWM Out 2",
+      "targetPin": "PWM Signal In"
+    },
+    {
+      "type": "data",
+      "label": "FC to ESC RL",
+      "source": "flight_controller",
+      "target": "esc_rear_left",
+      "protocol": "pwm",
+      "sourcePin": "PWM Out 3",
+      "targetPin": "PWM Signal In"
+    },
+    {
+      "type": "data",
+      "label": "FC to ESC RR",
+      "source": "flight_controller",
+      "target": "esc_rear_right",
+      "protocol": "pwm",
+      "sourcePin": "PWM Out 4",
+      "targetPin": "PWM Signal In"
+    },
+    {
+      "type": "data",
+      "label": "FC to GNSS RX",
+      "source": "flight_controller",
+      "target": "gnss_module",
+      "protocol": "uart",
+      "sourcePin": "UART1 RX",
+      "targetPin": "TX"
+    },
+    {
+      "type": "data",
+      "label": "GNSS to FC TX",
+      "source": "gnss_module",
+      "target": "flight_controller",
+      "protocol": "uart",
+      "sourcePin": "TX",
+      "targetPin": "UART1 TX"
+    },
+    {
+      "type": "data",
+      "label": "FC to Telemetry RX",
+      "source": "flight_controller",
+      "target": "telemetry_radio",
+      "protocol": "uart",
+      "sourcePin": "UART2 RX",
+      "targetPin": "TX"
+    },
+    {
+      "type": "data",
+      "label": "Telemetry to FC TX",
+      "source": "telemetry_radio",
+      "target": "flight_controller",
+      "protocol": "uart",
+      "sourcePin": "TX",
+      "targetPin": "UART2 TX"
+    },
+    {
+      "type": "data",
+      "label": "Payload MCU to Mag Z (TX/A)",
+      "source": "payload_mcu",
+      "target": "magnetometer_z",
+      "protocol": "uart",
+      "sourcePin": "Serial1 TX",
+      "targetPin": "RS485-A"
+    },
+    {
+      "type": "data",
+      "label": "Mag Z to Payload MCU (A/RX)",
+      "source": "magnetometer_z",
+      "target": "payload_mcu",
+      "protocol": "uart",
+      "sourcePin": "RS485-A",
+      "targetPin": "Serial1 RX"
+    },
+    {
+      "type": "data",
+      "label": "Payload MCU to Mag X (TX/A)",
+      "source": "payload_mcu",
+      "target": "magnetometer_x",
+      "protocol": "uart",
+      "sourcePin": "Serial2 TX",
+      "targetPin": "RS485-A"
+    },
+    {
+      "type": "data",
+      "label": "Mag X to Payload MCU (A/RX)",
+      "source": "magnetometer_x",
+      "target": "payload_mcu",
+      "protocol": "uart",
+      "sourcePin": "RS485-A",
+      "targetPin": "Serial2 RX"
+    },
+    {
+      "type": "data",
+      "label": "Payload MCU to Altimeter RX",
+      "source": "payload_mcu",
+      "target": "laser_altimeter",
+      "protocol": "uart",
+      "sourcePin": "Serial3 TX",
+      "targetPin": "RX"
+    },
+    {
+      "type": "data",
+      "label": "Altimeter to Payload MCU TX",
+      "source": "laser_altimeter",
+      "target": "payload_mcu",
+      "protocol": "uart",
+      "sourcePin": "TX",
+      "targetPin": "Serial3 RX"
+    },
+    {
+      "type": "data",
+      "label": "FC to Payload MCU (GPS Sync/Trigger)",
+      "source": "flight_controller",
+      "target": "payload_mcu",
+      "protocol": "uart",
+      "sourcePin": "UART3 RX",
+      "targetPin": "Serial4 TX"
+    },
+    {
+      "type": "data",
+      "label": "Payload MCU to FC (Status)",
+      "source": "payload_mcu",
+      "target": "flight_controller",
+      "protocol": "uart",
+      "sourcePin": "Serial4 RX",
+      "targetPin": "UART3 TX"
+    }
+  ],
+  "mechanicalConnections": [
+    {
+      "label": "M3 nylon standoffs and screws",
+      "source": "main_frame_bottom_plate",
+      "target": "main_frame_top_plate"
+    },
+    {
+      "label": "M3 bolts",
+      "source": "main_frame_bottom_plate",
+      "target": "frame_arm_front_left"
+    },
+    {
+      "label": "M3 bolts",
+      "source": "main_frame_bottom_plate",
+      "target": "frame_arm_front_right"
+    },
+    {
+      "label": "M3 bolts",
+      "source": "main_frame_bottom_plate",
+      "target": "frame_arm_rear_left"
+    },
+    {
+      "label": "M3 bolts",
+      "source": "main_frame_bottom_plate",
+      "target": "frame_arm_rear_right"
+    },
+    {
+      "label": "M3 bolts",
+      "source": "main_frame_bottom_plate",
+      "target": "landing_skid_set"
+    },
+    {
+      "label": "M3 bolts",
+      "source": "frame_arm_front_left",
+      "target": "motor_propeller_front_left"
+    },
+    {
+      "label": "M3 bolts",
+      "source": "frame_arm_front_right",
+      "target": "motor_propeller_front_right"
+    },
+    {
+      "label": "M3 bolts",
+      "source": "frame_arm_rear_left",
+      "target": "motor_propeller_rear_left"
+    },
+    {
+      "label": "M3 bolts",
+      "source": "frame_arm_rear_right",
+      "target": "motor_propeller_rear_right"
+    },
+    {
+      "label": "M3 bolts",
+      "source": "main_frame_bottom_plate",
+      "target": "boom_retraction_mechanism"
+    },
+    {
+      "label": "integrated mounting",
+      "source": "boom_retraction_mechanism",
+      "target": "collapsible_sensor_boom"
+    },
+    {
+      "label": "M2 screws",
+      "source": "collapsible_sensor_boom",
+      "target": "magnetometer_z_mount"
+    },
+    {
+      "label": "M2 screws",
+      "source": "collapsible_sensor_boom",
+      "target": "magnetometer_x_mount"
+    },
+    {
+      "label": "M2 screws",
+      "source": "collapsible_sensor_boom",
+      "target": "laser_altimeter_mount"
+    },
+    {
+      "label": "M3 nylon standoffs and screws",
+      "source": "main_frame_bottom_plate",
+      "target": "flight_controller_mount"
+    },
+    {
+      "label": "M3 nylon standoffs and screws",
+      "source": "main_frame_bottom_plate",
+      "target": "payload_mcu_mount"
+    },
+    {
+      "label": "loop slots",
+      "source": "main_frame_bottom_plate",
+      "target": "lipo_battery_strap"
+    },
+    {
+      "label": "M3 nylon standoffs and screws",
+      "source": "main_frame_bottom_plate",
+      "target": "telemetry_radio_mount"
+    },
+    {
+      "label": "M2 screws",
+      "source": "main_frame_bottom_plate",
+      "target": "esc_front_left_mount"
+    },
+    {
+      "label": "M2 screws",
+      "source": "main_frame_bottom_plate",
+      "target": "esc_front_right_mount"
+    },
+    {
+      "label": "M2 screws",
+      "source": "main_frame_bottom_plate",
+      "target": "esc_rear_left_mount"
+    },
+    {
+      "label": "M2 screws",
+      "source": "main_frame_bottom_plate",
+      "target": "esc_rear_right_mount"
+    },
+    {
+      "label": "M3 bolts",
+      "source": "main_frame_top_plate",
+      "target": "gnss_module_mast"
+    },
+    {
+      "label": "M2 screws",
+      "source": "gnss_module_mast",
+      "target": "gnss_module_top_mount"
+    },
+    {
+      "label": "mount",
+      "source": "motor_propeller_front_left",
+      "target": "motor_front_left"
+    },
+    {
+      "label": "mount",
+      "source": "motor_propeller_front_right",
+      "target": "motor_front_right"
+    },
+    {
+      "label": "mount",
+      "source": "motor_propeller_rear_left",
+      "target": "motor_rear_left"
+    },
+    {
+      "label": "mount",
+      "source": "motor_propeller_rear_right",
+      "target": "motor_rear_right"
+    },
+    {
+      "label": "mount",
+      "source": "magnetometer_z_mount",
+      "target": "magnetometer_z"
+    },
+    {
+      "label": "mount",
+      "source": "magnetometer_x_mount",
+      "target": "magnetometer_x"
+    },
+    {
+      "label": "mount",
+      "source": "laser_altimeter_mount",
+      "target": "laser_altimeter"
+    },
+    {
+      "label": "mount",
+      "source": "flight_controller_mount",
+      "target": "flight_controller"
+    },
+    {
+      "label": "mount",
+      "source": "payload_mcu_mount",
+      "target": "payload_mcu"
+    },
+    {
+      "label": "mount",
+      "source": "gnss_module_mast",
+      "target": "gnss_module"
+    },
+    {
+      "label": "mount",
+      "source": "gnss_module_top_mount",
+      "target": "gnss_module"
+    },
+    {
+      "label": "mount",
+      "source": "telemetry_radio_mount",
+      "target": "telemetry_radio"
+    },
+    {
+      "label": "mount",
+      "source": "lipo_battery_strap",
+      "target": "main_lipo_battery"
+    },
+    {
+      "label": "mount",
+      "source": "esc_front_left_mount",
+      "target": "esc_front_left"
+    },
+    {
+      "label": "mount",
+      "source": "esc_front_right_mount",
+      "target": "esc_front_right"
+    },
+    {
+      "label": "mount",
+      "source": "esc_rear_left_mount",
+      "target": "esc_rear_left"
+    },
+    {
+      "label": "mount",
+      "source": "esc_rear_right_mount",
+      "target": "esc_rear_right"
+    }
+  ],
+  "projectId": "ab63fdc6-d3ef-4d9c-a7dc-0c8522554b5f"
+}
