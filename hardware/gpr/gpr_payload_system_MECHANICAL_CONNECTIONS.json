@@ -1,0 +1,87 @@
+[
+  {
+    "label": "M3 bolts",
+    "source": "main_chassis",
+    "target": "left_antenna_mount"
+  },
+  {
+    "label": "M3 bolts",
+    "source": "main_chassis",
+    "target": "right_antenna_mount"
+  },
+  {
+    "label": "M3 bolts with M3 heat set inserts",
+    "source": "main_chassis",
+    "target": "electronics_enclosure_base"
+  },
+  {
+    "label": "M3 bolts",
+    "source": "main_chassis",
+    "target": "drone_quick_release_adapter"
+  },
+  {
+    "label": "M3 screws with M3 heat set inserts",
+    "source": "electronics_enclosure_base",
+    "target": "electronics_enclosure_lid"
+  },
+  {
+    "label": "integrated",
+    "source": "electronics_enclosure_base",
+    "target": "nanovna_mount_integrated"
+  },
+  {
+    "label": "integrated",
+    "source": "electronics_enclosure_base",
+    "target": "pi_mount_integrated"
+  },
+  {
+    "label": "M2.5 screws",
+    "source": "electronics_enclosure_base",
+    "target": "power_module_mount"
+  },
+  {
+    "label": "integrated",
+    "source": "electronics_enclosure_base",
+    "target": "sma_cable_1_mount"
+  },
+  {
+    "label": "integrated",
+    "source": "electronics_enclosure_base",
+    "target": "sma_cable_2_mount"
+  },
+  {
+    "label": "mount",
+    "source": "left_antenna_mount",
+    "target": "antenna_tx"
+  },
+  {
+    "label": "mount",
+    "source": "right_antenna_mount",
+    "target": "antenna_rx"
+  },
+  {
+    "label": "mount",
+    "source": "nanovna_mount_integrated",
+    "target": "nanovna_gpr"
+  },
+  {
+    "label": "mount",
+    "source": "pi_mount_integrated",
+    "target": "raspberry_pi_controller"
+  },
+  {
+    "label": "mount",
+    "source": "power_module_mount",
+    "target": "dc_dc_stepdown"
+  },
+  {
+    "label": "mount",
+    "source": "sma_cable_1_mount",
+    "target": "sma_cable_1"
+  },
+  {
+    "label": "mount",
+    "source": "sma_cable_2_mount",
+    "target": "sma_cable_2"
+  }
+]

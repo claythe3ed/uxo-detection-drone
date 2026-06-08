@@ -1,0 +1,156 @@
+[
+  {
+    "type": "power",
+    "label": "Main MCU Power",
+    "source": "power_supply_module",
+    "target": "main_mcu",
+    "current": "3A",
+    "voltage": "5V"
+  },
+  {
+    "type": "power",
+    "label": "GPS/RTK Power",
+    "source": "power_supply_module",
+    "target": "gps_rtk_module",
+    "current": "500mA",
+    "voltage": "5V"
+  },
+  {
+    "type": "power",
+    "label": "Magnetometer Power",
+    "source": "power_supply_module",
+    "target": "fluxgate_magnetometer",
+    "current": "100mA",
+    "voltage": "5V"
+  },
+  {
+    "type": "power",
+    "label": "Thermal Cam Breakout Power",
+    "source": "power_supply_module",
+    "target": "thermal_camera_breakout",
+    "current": "1A",
+    "voltage": "5V"
+  },
+  {
+    "type": "power",
+    "label": "Laser Power",
+    "source": "power_supply_module",
+    "target": "laser_line_module",
+    "current": "200mA",
+    "voltage": "5V"
+  },
+  {
+    "type": "power",
+    "label": "Global Shutter Cam Power",
+    "source": "power_supply_module",
+    "target": "global_shutter_camera",
+    "current": "500mA",
+    "voltage": "5V"
+  },
+  {
+    "type": "power",
+    "label": "Audio Amplifier Power",
+    "source": "power_supply_module",
+    "target": "audio_amplifier",
+    "current": "1A",
+    "voltage": "5V"
+  },
+  {
+    "type": "power",
+    "label": "NanoVNA Power (USB-C)",
+    "source": "power_supply_module",
+    "target": "nanovna_gpr",
+    "current": "1A",
+    "voltage": "5V"
+  },
+  {
+    "type": "data",
+    "label": "GPS/RTK Data",
+    "source": "main_mcu",
+    "target": "gps_rtk_module",
+    "protocol": "uart",
+    "sourcePin": "UART",
+    "targetPin": "UART"
+  },
+  {
+    "type": "data",
+    "label": "Magnetometer Data",
+    "source": "main_mcu",
+    "target": "fluxgate_magnetometer",
+    "protocol": "i2c",
+    "sourcePin": "I2C",
+    "targetPin": "I2C"
+  },
+  {
+    "type": "data",
+    "label": "Thermal Cam Data",
+    "source": "main_mcu",
+    "target": "thermal_camera_breakout",
+    "protocol": "usb",
+    "sourcePin": "USB",
+    "targetPin": "USB-C"
+  },
+  {
+    "type": "data",
+    "label": "Global Shutter Cam Data",
+    "source": "main_mcu",
+    "target": "global_shutter_camera",
+    "protocol": "csi",
+    "sourcePin": "CSI",
+    "targetPin": "CSI"
+  },
+  {
+    "type": "data",
+    "label": "Laser Enable",
+    "source": "main_mcu",
+    "target": "laser_line_module",
+    "protocol": "gpio",
+    "sourcePin": "GPIO",
+    "targetPin": "VCC"
+  },
+  {
+    "type": "data",
+    "label": "Speaker Audio L",
+    "source": "main_mcu",
+    "target": "audio_amplifier",
+    "protocol": "pwm",
+    "sourcePin": "GPIO",
+    "targetPin": "Audio_IN_L"
+  },
+  {
+    "type": "data",
+    "label": "Speaker Audio R",
+    "source": "main_mcu",
+    "target": "audio_amplifier",
+    "protocol": "pwm",
+    "sourcePin": "GPIO",
+    "targetPin": "Audio_IN_R"
+  },
+  {
+    "type": "data",
+    "label": "Speaker Output L",
+    "source": "audio_amplifier",
+    "target": "acoustic_speaker",
+    "protocol": "analog",
+    "sourcePin": "Speaker_OUT_L",
+    "targetPin": "Audio_L"
+  },
+  {
+    "type": "data",
+    "label": "Speaker Output R",
+    "source": "audio_amplifier",
+    "target": "acoustic_speaker",
+    "protocol": "analog",
+    "sourcePin": "Speaker_OUT_R",
+    "targetPin": "Audio_R"
+  },
+  {
+    "type": "data",
+    "label": "NanoVNA Data",
+    "source": "main_mcu",
+    "target": "nanovna_gpr",
+    "protocol": "usb",
+    "sourcePin": "USB",
+    "targetPin": "USB-C"
+  }
+]

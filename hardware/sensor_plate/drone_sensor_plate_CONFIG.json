@@ -1,0 +1,1836 @@
+{
+  "plan": "- Design a universal mounting plate, either laser-cut carbon fiber or 3D-printed PLA, compatible with a 450mm quadcopter frame and optimized for weight under 150g.\n- Integrate vibration-dampened hardpoints for rigid and aligned attachment of all four sensor payloads: Fluxgate Magnetometer, FLIR Lepton, Laser Speckle Vibrometry components, and SFCW GPR (NanoVNA-V2 + Vivaldi Antennas).\n- Develop custom 3D-printed housings for the Raspberry Pi 4 and u-blox ZED-F9P GPS/RTK module, ensuring clear FOV for all optical sensors and minimizing EMI.\n- Implement a retractable boom mechanism for the fluxgate magnetometer for optimal performance and protection during transit.\n- Source COTS components for all specified sensors and electronics, focusing on low-cost and open-source compatibility.\n- Plan for detailed mechanical connections, assembly guide with sensor positioning, and a visual rendering to validate the design.",
+  "nodes": [
+    {
+      "id": "main_mcu",
+      "name": "Main Payload Controller",
+      "pins": [
+        "GPIO",
+        "I2C",
+        "SPI",
+        "UART",
+        "USB",
+        "CSI",
+        "DSI",
+        "HDMI"
+      ],
+      "type": "mcu",
+      "partId": "0eadbfad-70e2-4907-948c-e4dae67aae5d",
+      "ebayUrl": "https://www.ebay.com/sch/i.html?_nkw=Raspberry+Pi+4+Model+B+%284GB%29&_sacat=0&_from=R40&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339153059&customid=blueprint&toolid=10001&mkevt=1",
+      "category": "electrical",
+      "imageUrl": "https://m.media-amazon.com/images/I/415S0PcseXL._SL500_.jpg",
+      "quantity": 1,
+      "research": {
+        "specs": [
+          {
+            "label": "USB",
+            "value": "USB 2.0 (2), USB 3.0 (2)"
+          },
+          {
+            "label": "pins",
+            "value": "5V,3.3V,GND,GPIO2,GPIO3,GPIO4,GPIO5,GPIO6,GPIO7,GPIO8,GPIO9,GPIO10,GPIO11,GPIO12,GPIO13,GPIO14,GPIO15,GPIO16,GPIO17,GPIO18,GPIO19,GPIO20,GPIO21,GPIO22,GPIO23,GPIO24,GPIO25,GPIO26,GPIO27"
+          },
+          {
+            "label": "Speed",
+            "value": "1.5GHz"
+          },
+          {
+            "label": "Contents",
+            "value": "-"
+          },
+          {
+            "label": "Ethernet",
+            "value": "GbE"
+          },
+          {
+            "label": "Form Factor",
+            "value": "-"
+          },
+          {
+            "label": "Cooling Type",
+            "value": "-"
+          },
+          {
+            "label": "Power (Watts)",
+            "value": "-"
+          },
+          {
+            "label": "Video Outputs",
+            "value": "CSI, DSI, HDMI"
+          },
+          {
+            "label": "Core Processor",
+            "value": "Broadcom BCM2711 ARM Cortex-A72"
+          },
+          {
+            "label": "Watchdog Timer",
+            "value": "-"
+          },
+          {
+            "label": "Number of Cores",
+            "value": "4"
+          },
+          {
+            "label": "Size / Dimension",
+            "value": "3.346\" x 2.205\" (85.00mm x 56.00mm)"
+          },
+          {
+            "label": "Digital I/O Lines",
+            "value": "40"
+          },
+          {
+            "label": "Storage Interface",
+            "value": "MicroSD"
+          },
+          {
+            "label": "Expansion Site/Bus",
+            "value": "-"
+          },
+          {
+            "label": "Analog Input:Output",
+            "value": "-"
+          },
+          {
+            "label": "Operating Temperature",
+            "value": "0°C ~ 50°C"
+          },
+          {
+            "label": "RAM Capacity/Installed",
+            "value": "4GB/4GB"
+          }
+        ],
+        "sourcing": [
+          {
+            "url": "https://www.adafruit.com/product/4027",
+            "price": "$25",
+            "vendor": "Adafruit"
+          },
+          {
+            "url": "https://www.digikey.com/en/products/detail/raspberry-pi/SC0194-9/10258781",
+            "price": "$100",
+            "vendor": "DigiKey"
+          },
+          {
+            "url": "https://www.amazon.com/dp/B07V5JTMV9?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+            "price": "$149.98",
+            "vendor": "Amazon"
+          },
+          {
+            "url": "https://www.aliexpress.com/item/1005002668353357.html?pdp_npi=6%40dis%21USD%21106.82%21106.82%21%21%21724.22%21724.22%21%402140d36217793302416023829e1132%2112000033660204498%21affd%21%21%21%211%210%21",
+            "price": "$106.82",
+            "vendor": "AliExpress"
+          },
+          {
+            "url": "https://www.amazon.com/dp/B07TC2BK1X?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+            "price": "$124.21",
+            "vendor": "Amazon"
+          }
+        ],
+        "datasheetUrl": "//mm.digikey.com/Volume0/opasdata/d220001/medias/docus/7844/SC0192%289%29.pdf"
+      },
+      "amazonUrl": "https://www.amazon.com/dp/B07V5JTMV9?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "dimensions": "85x56x17mm",
+      "description": "SBC 1.5GHZ 4 CORE 4GB PI 4 MOD B",
+      "productName": "Raspberry Pi 4 Model B (4GB)",
+      "purchaseUrl": "https://www.adafruit.com/product/4296",
+      "aliexpressUrl": "https://s.click.aliexpress.com/s/fwx308cRD9Eny963e3KDdYxyIpNj8TXVr7saiF9Um5rMUg1kZtJALLnfa2LNXtiVgnxdD8Og6MmvwBoxhnSYQGM6r0c08U4TfX8DFGo7vviCuu3q62Q60OAhRZcqm3G8PtwM69xY7TOEWRrvulP5ukZQ4uQbBBtaVsdr6EffAqVmp3O5GyUANU2DoA3dJufNhDfh7KOlLgKIvRVhDxRESHLmea6fTE26gLUqKEUuuizJiLENrCbax94DZHDu8WhaXM9vQ86gzlqceNPO5w3vwXm4VrBF3x2lAMEl06wgNdTSMiT7cNG4HIdW0Jxwo4zRYEy8cgdMy9eZbTv6Y0CbEBtu2Pd1pSrxS4PpGfQcAvWie09RqrJOsTPRzQ5kwFw5O70L5cfLplHxdQdGGHGbBsoITjIqRC6MvOxaziElkpAffXnIIS5hgbZz64WIazid05uESyzEb1kYziz5G4AmhSJ55qegmlNdBoMcU93CoCPMIMw8r5vaVlcxguXbSc6J1i6L5fb9A6Hn0AVHfzC78p1rmuqURAQm4dAXqXxz9af6TRcHF68FIMOyrWi01Ylx6Up2ej6QxZLywHfUS7Ue5hjpwM3JKmBM4skVfw4orJY6XrHkbe31kpboeVzqVMYNrSERCUFZgAIHM4TOP7dtoI4RiTV59XCGtxAxU5KmbQOM0wBiauCqo0R5hWEbb3WqrEDVCt4yBQVh5IvNLIO8aqoMtxL3GSaGbexoKoKR9d9HBadXNdLchfSoN02FvUgNEK8AyPn4NWg5M6HVF4hU9L9bvvGIXGbtou4AYx7OLG3dGy5EJq9XKfVGqwPMTNoffY9PMr2p8tqzkxsiv9RuRQ0xU3146TIPxQXjtmI9Xl2SZZYuMa4zfiC003ijbDO2eXWvN9VwMkgrNkEPaFAbpuYjGPKHiq3xQGPLnHwRg7AmfvHIGe6sacFhZZHy6sS2TLPn7yv71PqC0PxNxz",
+      "estimatedCost": 55
+    },
+    {
+      "id": "gps_rtk_module",
+      "name": "GPS/RTK Module",
+      "pins": [
+        "UART",
+        "I2C",
+        "SPI",
+        "PPS"
+      ],
+      "type": "module",
+      "partId": "356fb984-a6ed-4a55-9190-0304d3ae5798",
+      "ebayUrl": "https://www.ebay.com/sch/i.html?_nkw=u-blox+ZED-F9P&_sacat=0&_from=R40&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339153059&customid=blueprint&toolid=10001&mkevt=1",
+      "category": "electrical",
+      "imageUrl": "https://ae-pic-a1.aliexpress-media.com/kf/S16b014bbc8e24f4295c7a64461d7402eB.jpg",
+      "quantity": 1,
+      "research": {
+        "specs": [
+          {
+            "label": "pins",
+            "value": "UART_TX,UART_RX,I2C_SDA,I2C_SCL,PPS,3V3,GND"
+          }
+        ],
+        "sourcing": [
+          {
+            "url": "",
+            "vendor": "Amazon"
+          },
+          {
+            "url": "https://www.aliexpress.com/item/1005011822768412.html?pdp_npi=6%40dis%21USD%21148.31%2196.40%21%21%211002.75%21651.79%21%4021013cc017793824927116139e0e70%2112000056687593492%21affd%21%21%21%211%210%21",
+            "price": "$96.4",
+            "vendor": "AliExpress"
+          }
+        ]
+      },
+      "amazonUrl": null,
+      "dimensions": "17x22x2.4mm",
+      "description": "Provides precise positioning data for autonomous navigation.",
+      "productName": "u-blox ZED-F9P",
+      "purchaseUrl": "https://www.sparkfun.com/products/16481",
+      "aliexpressUrl": "https://s.click.aliexpress.com/s/fwx308cRD9Eny963e3KDdYxyIpNj8TXVr7saiF9Um5rMUg1kZtJALLnfa2LNXtiVgnxdD8Og6MmvwBoxhnSYQGM6r0c08U4TfX8DFGo7vviCuu3q62Q60OAhRZcqm3G8PtwM69xY7TOEWRrvulP5ukZQ4uQbBBtaVsdr6EffAqVmp3O5GyUANU2DoA3dJufNhDfh7KOlLgKIvRVhDxRESHLmea6fTE26gLUqKEUuuizJiLENrCbax94DZHDu8WhaXM9vQ86gzlqceNPO5w3vwXm4VrBF3x2lAMEl06wgNdTSMiT7cNG4HIdW0JxH3xXZWNyDiPiodHhaAW7jkyRg2ciA3KqLWnOQjkPFC3h60GGjN0TSDxJNbHfoQUTydUuvSl7qVBIauYrnMSLlwYV7Z4G6dt8Lazce6VQFjtA7KiFT7PaVfEsc2vF2eFbw2SeBz2TbfBBo3eOyi7VS3ysRikPdddBwxYaeOtwaQpC1ArqAttBiJbFPwRy7KsIZnpv98ICqsfqkxz2sRtynaATqh6VxBdayYLN5akj5l30yyvn9X8Cyrx1pSeWbUdrVfaaml8u6B8gtyheCIRupvhB5zoSHU20u6hSBLqkRWoqSDG8tGbVnXeHe6GLVTyHk5CPJlcJdSsO1dStZ8NFkspzRPnxTMpG3Lw19TWUBlPSZOMjNlflaQmbdFmHvkwfOy9bHKWP6jjoSaCqz4soMiPxI6RPowf24eJEhwKddIKHIg7cJU2gjtFhPChqOV8KdfIGZmnGvPoWmXAT6FgM4Znrqeuvr5Ibpij1ruI0210rYwFx3IjfiyhlprJfTYcKzneM9TmR246Y9hlORwtb3q110YQBYXbnB84k6mxKGBydAPr9GuAwNa3MQuYSPuiXw4rdNPYkN6Sug703TWu9zsRXq5cDfor20Axdwsyp3rDYOO2vqQgeqeEBD8SqGGI1JFYujbpYbcfDjsV0xYcKhQL",
+      "estimatedCost": 250
+    },
+    {
+      "id": "fluxgate_magnetometer",
+      "name": "Fluxgate Magnetometer",
+      "pins": [
+        "I2C",
+        "VCC",
+        "GND"
+      ],
+      "type": "sensor",
+      "partId": "2ba7ecfd-6949-4917-9752-ebd42ea6374e",
+      "ebayUrl": "https://www.ebay.com/sch/i.html?_nkw=PicoMAG+PM3+Magnetometer&_sacat=0&_from=R40&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339153059&customid=blueprint&toolid=10001&mkevt=1",
+      "category": "electrical",
+      "imageUrl": "https://imgs.search.brave.com/pEa1pBuVABLYcKAhbasAREpry5jmiz6JONcw4r5SoTY/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9hZS1w/aWMtYTEuYWxpZXhw/cmVzcy1tZWRpYS5j/b20va2YvUzY2Njc2/MDFlYzNiOTRiMTVi/YTQ4YTUwZDg4N2U5/ZjhmMS5qcGc",
+      "quantity": 1,
+      "amazonUrl": null,
+      "dimensions": "20x15x6mm",
+      "productName": "PicoMAG PM3 Magnetometer",
+      "purchaseUrl": "https://pico-mag.com/products/pm3",
+      "aliexpressUrl": "https://s.click.aliexpress.com/e/_c4d68o2d",
+      "estimatedCost": 120
+    },
+    {
+      "id": "thermal_camera",
+      "name": "FLIR Lepton Thermal Camera",
+      "pins": [
+        "SPI",
+        "I2C",
+        "GPIO",
+        "Power"
+      ],
+      "type": "sensor",
+      "partId": "03c95705-47af-44b9-9913-2bb4ce479805",
+      "ebayUrl": "https://www.ebay.com/sch/i.html?_nkw=FLIR+Lepton+3.5+Radiometric+Module&_sacat=0&_from=R40&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339153059&customid=blueprint&toolid=10001&mkevt=1",
+      "category": "electrical",
+      "imageUrl": "https://imgs.search.brave.com/xChX9poZKIDg3eks6PWEKnn-GWSpx8Xc8zqM2R2ilp8/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly93d3cu/cGljY2xpY2tpbWcu/Y29tL0pvc0FBT1N3/MEhsYnJNZTAvRmxp/ci1MZXB0b24tMzUt/UmFkaW9tZXRyaWMt/TFdJUi1UaGVybWFs/LUNhbWVyYS13Lndl/YnA",
+      "quantity": 1,
+      "research": {
+        "specs": [
+          {
+            "label": "pins",
+            "value": "SPI_MISO,SPI_MOSI,SPI_CLK,SPI_CS,I2C_SDA,I2C_SCL,VSYNC,2.8V,1.2V,GND"
+          }
+        ],
+        "sourcing": [
+          {
+            "url": "https://www.aliexpress.com/w/wholesale-flir-lepton-3-5-radiometric-module.html",
+            "vendor": "AliExpress"
+          },
+          {
+            "url": "",
+            "vendor": "Amazon"
+          }
+        ]
+      },
+      "amazonUrl": null,
+      "dimensions": "11.8x12.7x7.2mm",
+      "description": "Thermal camera for night operations.",
+      "productName": "FLIR Lepton 3.5 Radiometric Module",
+      "purchaseUrl": "https://www.flir.com/products/lepton/",
+      "aliexpressUrl": "https://s.click.aliexpress.com/e/_c3lkbJdj",
+      "estimatedCost": 350
+    },
+    {
+      "id": "thermal_camera_breakout",
+      "name": "FLIR Lepton Breakout Board",
+      "pins": [
+        "USB-C",
+        "Power"
+      ],
+      "type": "module",
+      "partId": "7bbb5dda-ad6a-4f86-8abf-b258bd71c787",
+      "ebayUrl": "https://www.ebay.com/sch/i.html?_nkw=Pure+Thermal+2+Mini+Breakout+Board&_sacat=0&_from=R40&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339153059&customid=blueprint&toolid=10001&mkevt=1",
+      "category": "electrical",
+      "imageUrl": "https://imgs.search.brave.com/WpsCqjPvAno6Rimqo-rRHezkbdOMyMpJAh49_j-ecH8/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9sZWN0/cm9uei1pbWFnZXMu/Yi1jZG4ubmV0L2xl/Y3Ryb256L2FjdGl2/ZV9zdG9yYWdlL3Jl/cHJlc2VudGF0aW9u/cy9wcm94eS9leUpm/Y21GcGJITWlPbnNp/WkdGMFlTSTZPVEl5/Tnl3aWNIVnlJam9p/WW14dllsOXBaQ0o5/ZlE9PS0tYTU3Njcx/NjZlZDM1ZjczZTg5/NzlhNWM5NTYwZDA2/MTUxY2Q2MGI2Mi9l/eUpmY21GcGJITWlP/bnNpWkdGMFlTSTZl/eUptYjNKdFlYUWlP/aUpxY0djaUxDSnla/WE5wZW1WZmRHOWZi/R2x0YVhRaU9sczVO/akFzTmpRd1hTd2lj/MkYyWlhJaU9uc2lj/M1J5YVhBaU9uUnlk/V1Y5ZlN3aWNIVnlJ/am9pZG1GeWFXRjBh/Vzl1SW4xOS0tOTcw/YzE2NTgzNmE4MzA5/MTcyNWExYTBmZDRm/MzdjZTk0MDhkYTFi/Zi8yMDIzMDUxMF8x/NTI0NTBfY2xlYW5l/ZF9jcm9wcGVkLmpw/Zw",
+      "quantity": 1,
+      "amazonUrl": null,
+      "dimensions": "25x25x6mm",
+      "productName": "Pure Thermal 2 Mini Breakout Board",
+      "purchaseUrl": "https://groupgets.com/manufacturers/getlab/products/pure-thermal-2-mini",
+      "aliexpressUrl": "https://s.click.aliexpress.com/e/_c3F28SZ7",
+      "estimatedCost": 75
+    },
+    {
+      "id": "laser_line_module",
+      "name": "Laser Line Module",
+      "pins": [
+        "VCC",
+        "GND"
+      ],
+      "type": "actuator",
+      "partId": "adbdffea-75e2-4393-8568-398a392c1536",
+      "ebayUrl": "https://www.ebay.com/sch/i.html?_nkw=650nm+5mW+Red+Line+Laser+Module&_sacat=0&_from=R40&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339153059&customid=blueprint&toolid=10001&mkevt=1",
+      "category": "electrical",
+      "imageUrl": "https://cdn-shop.adafruit.com/640x480/1057-07.jpg",
+      "quantity": 1,
+      "research": {
+        "sourcing": [
+          {
+            "url": "https://www.amazon.com/dp/B01N48M1VR?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+            "price": "$6.99",
+            "vendor": "Amazon"
+          },
+          {
+            "url": "https://www.aliexpress.com/item/1005007479445389.html?pdp_npi=6%40dis%21USD%2110.98%215.49%21%21%2173.88%2136.94%21%4021013cc617805037561466793e0f99%2112000057244779031%21affd%21%21%21%211%210%21",
+            "price": "$5.49",
+            "vendor": "AliExpress"
+          },
+          {
+            "url": "https://www.adafruit.com/product/1057",
+            "price": "$8.95",
+            "vendor": "Adafruit"
+          }
+        ],
+        "documentationUrls": [
+          {
+            "url": "https://www.adafruit.com/product/1057",
+            "title": "Product Page (Adafruit)"
+          }
+        ]
+      },
+      "amazonUrl": "https://www.amazon.com/dp/B01N48M1VR?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "dimensions": "9x23mm",
+      "description": "Low-power, eye-safe red line laser module for illuminating the toilet bowl.",
+      "productName": "650nm 5mW Red Line Laser Module",
+      "purchaseUrl": "https://s.click.aliexpress.com/s/fwx308cRD9Eny963e3KDdYxyIpNj8TXVr7saiF9Um5rMUg1kZtJALLnfa2LNXtiVgnxdD8Og6MmvwBoxhnSYQGM6r0c08U4TfX8DFGo7vviCuu3q62Q60OAhRZcqm3G8PtwM69xY7TOEWRrvulP5ukZQ4uQbBBtaVsdr6EffAqVmp3O5GyUANU2DoA3dJufNhDfh7KOlLgKIvRVhDxRESHLmea6fTE26gLUqKEUuuizJiLENrCbax94DZHDu8WhaXM9vQ86gzlqceNPO5w3vwXm4VrBF3x2lAMEl06wgNdTSMiT7cNG4HIdW0Jxvvhnj6JUwl6sUKviNDOc1WDftFlf0EUWxrRiac5kw5LkPP9D42CyjsXR32gudhhIhT6f8Wtx2UZP4raPlY8z8VgtwTmlz0B4cGAJCC2ZTER8WY6VdEQrnVHVEo9nhhWhTE8FPiDYUGPfaWw3aqa3NJPG5B8YgU4z5xOZNFqd8p8177VlnNXAIgpxAlnVkTMRYeV07mwhRmWZS85Kw7VjpSWiJJscWru0BHrZtAQTaKQaxRU8K2lV6M03uaGKzvl4XsoF45kQ73J0k5LL23AcO1C9jYuMKkAZQLFtOuACpCh992bY1LJklYg56hMLt3ZvkEFWH5nRSpqZ54hadwqRllcGOLlxzc3pZ4QN95U4PDXJa5BwXvuU1Ql2gQfPwmjvUhqn9v3hYjQjrBNUcYHyI9kPMDRYDzkBPuwpRmYB33SCeSc2Vl0QDcp6IA8UYjQk6Ihuye9hxjrkdV6XYKsVxGFfpgGuGpE0TOivtnvl0pP9qSXzxH7xAy4ZgQrbqkSOTpmKnu6YFmb25qPKhNZdeI9iK4MdOMqlYfDQN4FFiqXtLfDcw66zOujH0POQbfZ8OR2n5CnMFhjTd7hc3YWzP4nv62XzHGMNnOw5HBd2D0WEAcTndNGPPMFcipZ4oQsZSY1CLqPw50xboqiU1VRsbA3",
+      "aliexpressUrl": "https://s.click.aliexpress.com/s/fwx308cRD9Eny963e3KDdYxyIpNj8TXVr7saiF9Um5rMUg1kZtJALLnfa2LNXtiVgnxdD8Og6MmvwBoxhnSYQGM6r0c08U4TfX8DFGo7vviCuu3q62Q60OAhRZcqm3G8PtwM69xY7TOEWRrvulP5ukZQ4uQbBBtaVsdr6EffAqVmp3O5GyUANU2DoA3dJufNhDfh7KOlLgKIvRVhDxRESHLmea6fTE26gLUqKEUuuizJiLENrCbax94DZHDu8WhaXM9vQ86gzlqceNPO5w3vwXm4VrBF3x2lAMEl06wgNdTSMiT7cNG4HIdW0Jxvvhnj6JUwl6sUKviNDOc1WDftFlf0EUWxrRiac5kw5LkPP9D42CyjsXR32gudhhIhT6f8Wtx2UZP4raPlY8z8VgtwTmlz0B4cGAJCC2ZTER8WY6VdEQrnVHVEo9nhhWhTE8FPiDYUGPfaWw3aqa3NJPG5B8YgU4z5xOZNFqd8p8177VlnNXAIgpxAlnVkTMRYeV07mwhRmWZS85Kw7VjpSWiJJscWru0BHrZtAQTaKQaxRU8K2lV6M03uaGKzvl4XsoF45kQ73J0k5LL23AcO1C9jYuMKkAZQLFtOuACpCh992bY1LJklYg56hMLt3ZvkEFWH5nRSpqZ54hadwqRllcGOLlxzc3pZ4QN95U4PDXJa5BwXvuU1Ql2gQfPwmjvUhqn9v3hYjQjrBNUcYHyI9kPMDRYDzkBPuwpRmYB33SCeSc2Vl0QDcp6IA8UYjQk6Ihuye9hxjrkdV6XYKsVxGFfpgGuGpE0TOivtnvl0pP9qSXzxH7xAy4ZgQrbqkSOTpmKnu6YFmb25qPKhNZdeI9iK4MdOMqlYfDQN4FFiqXtLfDcw66zOujH0POQbfZ8OR2n5CnMFhjTd7hc3YWzP4nv62XzHGMNnOw5HBd2D0WEAcTndNGPPMFcipZ4oQsZSY1CLqPw50xboqiU1VRsbA3",
+      "estimatedCost": 5
+    },
+    {
+      "id": "global_shutter_camera",
+      "name": "Global Shutter Camera",
+      "pins": [
+        "CSI",
+        "I2C",
+        "Power"
+      ],
+      "type": "sensor",
+      "partId": "16caee33-3198-4ec8-951a-461b9bb25ef6",
+      "ebayUrl": "https://www.ebay.com/sch/i.html?_nkw=Arducam+IMX296+1.6MP+Global+Shutter+Camera+Module&_sacat=0&_from=R40&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339153059&customid=blueprint&toolid=10001&mkevt=1",
+      "category": "electrical",
+      "imageUrl": "https://cdn-shop.adafruit.com/640x480/5702-00.jpg",
+      "quantity": 1,
+      "research": {
+        "sourcing": [
+          {
+            "url": "https://www.aliexpress.com/w/wholesale-arducam-imx296-global-shutter-camera-for-raspberry-pi.html",
+            "vendor": "AliExpress"
+          },
+          {
+            "url": "https://www.amazon.com/dp/B0C3VGMTRH?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+            "price": "$64.99",
+            "vendor": "Amazon"
+          },
+          {
+            "url": "https://www.adafruit.com/product/5702",
+            "price": "$50",
+            "vendor": "Adafruit"
+          }
+        ],
+        "documentationUrls": [
+          {
+            "url": "https://www.adafruit.com/product/5702",
+            "title": "Product Page (Adafruit)"
+          }
+        ]
+      },
+      "amazonUrl": "https://www.amazon.com/dp/B0C3VGMTRH?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "dimensions": "25x24x10mm",
+      "productName": "Arducam IMX296 1.6MP Global Shutter Camera Module",
+      "purchaseUrl": "https://www.arducam.com/product/arducam-1-6mp-imx296-global-shutter-color-camera-module-for-raspberry-pi/",
+      "aliexpressUrl": "https://s.click.aliexpress.com/e/_c3Di2zfr",
+      "estimatedCost": 80
+    },
+    {
+      "id": "acoustic_speaker",
+      "name": "Mini Acoustic Speaker",
+      "pins": [
+        "Audio_L",
+        "Audio_R"
+      ],
+      "type": "actuator",
+      "partId": "c8414e94-2f0a-4aec-8a0b-f80aa0ad44a4",
+      "ebayUrl": "https://www.ebay.com/sch/i.html?_nkw=8+Ohm+0.5W+Mini+Speaker&_sacat=0&_from=R40&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339153059&customid=blueprint&toolid=10001&mkevt=1",
+      "category": "electrical",
+      "imageUrl": "https://cdn-shop.adafruit.com/640x480/1890-06.jpg",
+      "quantity": 1,
+      "research": {
+        "sourcing": [
+          {
+            "url": "https://www.amazon.com/dp/B00N41FXC2?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+            "price": "$5.22",
+            "vendor": "Amazon"
+          },
+          {
+            "url": "https://www.aliexpress.com/item/1005006344913948.html?pdp_npi=6%40dis%21USD%219.20%214.51%21%21%2162.23%2130.49%21%402140d36217794179588378708e0fa7%2112000036834242712%21affd%21%21%21%211%210%21",
+            "price": "$4.51",
+            "vendor": "AliExpress"
+          },
+          {
+            "url": "https://www.adafruit.com/product/1890",
+            "price": "$1.95",
+            "vendor": "Adafruit"
+          }
+        ],
+        "documentationUrls": [
+          {
+            "url": "https://www.adafruit.com/product/1890",
+            "title": "Product Page (Adafruit)"
+          }
+        ]
+      },
+      "amazonUrl": "https://www.amazon.com/dp/B00N41FXC2?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "dimensions": "20x3.5mm",
+      "description": "Small speaker for audible start/stop signals and voice feedback.",
+      "productName": "8 Ohm 0.5W Mini Speaker",
+      "purchaseUrl": "https://www.adafruit.com/product/1892",
+      "aliexpressUrl": "https://s.click.aliexpress.com/s/fwx308cRD9Eny963e3KDdYxyIpNj8TXVr7saiF9Um5rMUg1kZtJALLnfa2LNXtiVgnxdD8Og6MmvwBoxhnSYQGM6r0c08U4TfX8DFGo7vviCuu3q62Q60OAhRZcqm3G8PtwM69xY7TOEWRrvulP5ukZQ4uQbBBtaVsdr6EffAqVmp3O5GyUANU2DoA3dJufNhDfh7KOlLgKIvRVhDxRESHLmea6fTE26gLUqKEUuuizJiLENrCbax94DZHDu8WhaXM9vQ86gzlqceNPO5w3vwXm4VrBF3x2lAMEl06wgNdTSMiT7cNG4HIdW0Jxg9lPLrkS903IMmeifbgmxVWwlplqh0vYprGlNFI647LbWgCQW7cBTQJ3F4i1zWpF7qKHKi4vXnGYdJ5EDwY78nnjW6AhXIsb0xQk1ggqlTiHqoSRNFKBzauVXbBLCFV6LoXheaVS72fDT9Tax4WfexCmGrKhWwASB3u0KqVPNSnUpzigVQSmARd8z2xIgbETkzF33Age46I3sJGfFfO0KJ10yeDZE4Q9U2LMHATKePesq9QN9s8ofW3VSXNn15UFN2f4Ju1wHiWJtOUYtgOeJWdwLrFmoA9ETavGUJLly7ELiZdC2TQp2LZ2FRiLkdDpEsUyLHa9h7OqVquJslalabx8r1l7MPv9nFWFHwXTENs3xlp7pWp8ISaPZGALMoFIDJAm4RnAgwaan4oSZz1xTDhnRrNuC23C1yhMLrHLhGkA2VbEBg2mnA9Tx3BTEQRkRhi18HXopG0IGIe3VnAHyEagRsVebWsbvREoHuQ75Akev4dzbOrLoPDB5sgxMzZ1b686sWskFTjP5vUDHdS0YcWDhjnN6uZ93kTCYg5SDBEtuo33qOprLbi30xMNHH4xIXlJDm4PzCOHtvjwoOQbNgQd02mJwRZAvK3XUJPOs50gOmhiV35o7i25cOp0ZeNeHXXUE4s0WjsNQKCKzeZWV7H",
+      "estimatedCost": 2
+    },
+    {
+      "id": "audio_amplifier",
+      "name": "Audio Amplifier for Speaker",
+      "pins": [
+        "VCC",
+        "GND",
+        "Audio_IN_L",
+        "Audio_IN_R",
+        "Speaker_OUT_L",
+        "Speaker_OUT_R"
+      ],
+      "type": "module",
+      "partId": "7b787d34-b517-45fb-b69b-a0ff0f41b0ba",
+      "ebayUrl": "https://www.ebay.com/sch/i.html?_nkw=PAM8403+Mini+5V+Audio+Amplifier&_sacat=0&_from=R40&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339153059&customid=blueprint&toolid=10001&mkevt=1",
+      "category": "electrical",
+      "imageUrl": "https://m.media-amazon.com/images/I/51goQSb+kmL._SL500_.jpg",
+      "quantity": 1,
+      "research": {
+        "sourcing": [
+          {
+            "url": "https://www.amazon.com/dp/B00LODGV64?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+            "price": "$5.69",
+            "vendor": "Amazon"
+          },
+          {
+            "url": "https://www.aliexpress.com/item/1005008660394200.html?pdp_npi=6%40dis%21USD%215.41%212.54%21%21%2136.56%2117.18%21%40210152bd17793446734033711e105c%2112000057745753349%21affd%21%21%21%211%210%21",
+            "price": "$2.54",
+            "vendor": "AliExpress"
+          }
+        ]
+      },
+      "amazonUrl": "https://www.amazon.com/dp/B00LODGV64?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "dimensions": "21x19x3mm",
+      "description": "Amplifies audio signal from ESP32 for the speaker.",
+      "productName": "PAM8403 Mini 5V Audio Amplifier",
+      "purchaseUrl": "https://s.click.aliexpress.com/s/fwx308cRD9Eny963e3KDdYxyIpNj8TXVr7saiF9Um5rMUg1kZtJALLnfa2LNXtiVgnxdD8Og6MmvwBoxhnSYQGM6r0c08U4TfX8DFGo7vviCuu3q62Q60OAhRZcqm3G8PtwM69xY7TOEWRrvulP5ukZQ4uQbBBtaVsdr6EffAqVmp3O5GyUANU2DoA3dJufNhDfh7KOlLgKIvRVhDxRESHLmea6fTE26gLUqKEUuuizJiLENrCbax94DZHDu8WhaXM9vQ86gzlqceNPO5w3vwXm4VrBF3x2lAMEl06wgNdTSMiT7cNG4HIdW0JxQJC6zOOIfRLmo0Si8Z6DbOnzRJ5tAJH58zrRV8Jz7RKAm6onXOFrQM7DMa3ZV02AYKSdEADUGNayYHX5kMCr7peUN7VeZpfIyX1ui090bxSCoBIHZneEerElkmrq3XW6nN3bVTucqTSc1hU5TrLZxtyfInyPxIjBW2fblLPgBQ9VrOK4decJQotQ8SMkgl2xSs6dcpCUDntEz0hzZw3T6IYdBqhkvOgptqhfebIGSqnlXzldF8pijCOwfZGMAvpVEXJZx0NlnyXyUQZlRL49N1I8vVeQyt7xCu8XlzyrMONPNxGyGmLJk1KgtD7P1025GGG0KCvUEWy2pda7wKHHCB9CYwrfC7Ra4yqhoswpq1mmyRZLerZtBjSfkZDvvMFx1Qip1Y4bhJa3W35pSapSt7XVFBi5f2xCCVyOb0Q0YWL7sMbAsAC3HFTEp8HGNEE3JApWmBhgwF8IcKOv1ZjlkXDEaMMZoIuhpeCbpdTTEUA15606qKZWhiYw8gvjM2QWnVUnJZIoUPnyIW7iNzh2ji1vESfgM9miFIi1T7ZlZfKORIUXFarS7pjgc9dVYUv3YVCo5rPowBdejEXfUv6MF6rhf3XwIGf56I9WlGNIbh8nVfneetmnDdQzW9unkStq1c5gMlTnWLzjn4ucnrvaInv",
+      "aliexpressUrl": "https://s.click.aliexpress.com/s/fwx308cRD9Eny963e3KDdYxyIpNj8TXVr7saiF9Um5rMUg1kZtJALLnfa2LNXtiVgnxdD8Og6MmvwBoxhnSYQGM6r0c08U4TfX8DFGo7vviCuu3q62Q60OAhRZcqm3G8PtwM69xY7TOEWRrvulP5ukZQ4uQbBBtaVsdr6EffAqVmp3O5GyUANU2DoA3dJufNhDfh7KOlLgKIvRVhDxRESHLmea6fTE26gLUqKEUuuizJiLENrCbax94DZHDu8WhaXM9vQ86gzlqceNPO5w3vwXm4VrBF3x2lAMEl06wgNdTSMiT7cNG4HIdW0JxQJC6zOOIfRLmo0Si8Z6DbOnzRJ5tAJH58zrRV8Jz7RKAm6onXOFrQM7DMa3ZV02AYKSdEADUGNayYHX5kMCr7peUN7VeZpfIyX1ui090bxSCoBIHZneEerElkmrq3XW6nN3bVTucqTSc1hU5TrLZxtyfInyPxIjBW2fblLPgBQ9VrOK4decJQotQ8SMkgl2xSs6dcpCUDntEz0hzZw3T6IYdBqhkvOgptqhfebIGSqnlXzldF8pijCOwfZGMAvpVEXJZx0NlnyXyUQZlRL49N1I8vVeQyt7xCu8XlzyrMONPNxGyGmLJk1KgtD7P1025GGG0KCvUEWy2pda7wKHHCB9CYwrfC7Ra4yqhoswpq1mmyRZLerZtBjSfkZDvvMFx1Qip1Y4bhJa3W35pSapSt7XVFBi5f2xCCVyOb0Q0YWL7sMbAsAC3HFTEp8HGNEE3JApWmBhgwF8IcKOv1ZjlkXDEaMMZoIuhpeCbpdTTEUA15606qKZWhiYw8gvjM2QWnVUnJZIoUPnyIW7iNzh2ji1vESfgM9miFIi1T7ZlZfKORIUXFarS7pjgc9dVYUv3YVCo5rPowBdejEXfUv6MF6rhf3XwIGf56I9WlGNIbh8nVfneetmnDdQzW9unkStq1c5gMlTnWLzjn4ucnrvaInv",
+      "estimatedCost": 3
+    },
+    {
+      "id": "nanovna_gpr",
+      "name": "SFCW GPR NanoVNA",
+      "pins": [
+        "USB-C",
+        "SMA_Port1",
+        "SMA_Port2"
+      ],
+      "type": "module",
+      "partId": "5e35d47f-be0a-4713-8acd-76ff1d207a46",
+      "ebayUrl": "https://www.ebay.com/sch/i.html?_nkw=NanoVNA-V2+Plus4&_sacat=0&_from=R40&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339153059&customid=blueprint&toolid=10001&mkevt=1",
+      "category": "electrical",
+      "imageUrl": "https://m.media-amazon.com/images/I/51n9oPXZaQL._SL500_.jpg",
+      "quantity": 1,
+      "research": {
+        "sourcing": [
+          {
+            "url": "https://www.amazon.com/dp/B0825PZNJJ?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+            "price": "$125.9",
+            "vendor": "Amazon"
+          }
+        ]
+      },
+      "amazonUrl": "https://www.amazon.com/dp/B0825PZNJJ?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "dimensions": "115x75x20mm",
+      "description": "Primary measurement instrument for characterizing the sensor's S-parameters in response to magnetic fields.",
+      "productName": "NanoVNA-V2 Plus4",
+      "purchaseUrl": "https://www.tindie.com/products/hcxqs/nanovna-v2-plus4/",
+      "aliexpressUrl": "https://s.click.aliexpress.com/s/NdpwztbAIgDMmxGbP8fFks7yUFfsHjzlImSYmA68h7xlMRgzueFsRgokQ9f9hcpVKttxtQE2VzIoqkXJXrpOr6uR3zv7mP4CDO9CddoFf4t0QE5DXPy8Pgjhz4irfQSEjEGUmy5yF3A5gJ9h3NYjLMgqIMqa3zcpq5E2BC3W5EbV40Dm9buQxWpZzw1lbX8Zm2kZtNIa4KyDieNjsH7IU6Yv8StELKVvT9r4eFAaXPGhwHsgaDqdNcmY116r3GC2YvsOopeiiZPhJrV0cwgOQDSkW93v7gVKDqPkXyZF1oSWa6wSAOeznMFVlVYQwc2VaV8nL3JppGPgAxk49qjmvNfZV37PhElYJWxayevVzakCnmnc3Ce4VNEbsB4GRmqTlofHSn2KZXQFDkE4ym6EltZu46YWRgaBF8W7a1HYdjNWsbISUKcTkaRN6QJVgpyqmbuSVceYww9qysIFAeXHWkTRDVlX2wRB4Nr67076BENKLv2vWmmEr9zj4fDmAoFsRjWPdNqcbQaKSet5pQcpCBMDYEr0nikyvKyonGvLDUmDVEZpu8eBhsHT6JtER5mPGn9xgtJZHvnDYLtPI4eLNDv5wRqsnzxv7qhkteto4EZeuG11QdG4DNNIZKrxkxRUgmtG3iyGWea9pr3ldhs6Wn4LJAPiPSjKV0n6hiQv6fXSW1lBQn30m7Pux0BaiXpkNIGxOKIogOH7AuyiLDfS1y1WlaB4Xkl4Qn5366Tqb3Dm1Idk1zbvlDcLHHe0Nx34jPLaTC1NctvIu7XlwoCJEDqUcdE0QfdosZhjdU5HyrcGWb5VSKwAkQRYWKQZmGefLZim6PYLikCRUAlMbWMricQZ0JdiYxbeCFTcHMgBvnqIrbGpOorgDPn16vUjh1a5wRNRkX87NvqyvJoMXGrjFNnKwHc0gxoTav1Pcsu7XOUH0DiGQYtcbtsxd2hKDLbtdNk3qORQzGLg6BYD3YDiKx29BoKgHXT1QEzIhTvZx37gn",
+      "estimatedCost": 150
+    },
+    {
+      "id": "power_supply_module",
+      "name": "5V Step-Down Power Supply",
+      "pins": [
+        "VIN+",
+        "VIN-",
+        "VOUT+",
+        "VOUT-"
+      ],
+      "type": "power",
+      "partId": "44aa018e-da6c-4bee-a41d-27a3d701be93",
+      "ebayUrl": "https://www.ebay.com/sch/i.html?_nkw=LM2596+DC-DC+Buck+Converter+Module&_sacat=0&_from=R40&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339153059&customid=blueprint&toolid=10001&mkevt=1",
+      "category": "electrical",
+      "imageUrl": "https://m.media-amazon.com/images/I/51BMWf4VE0L._SL500_.jpg",
+      "quantity": 1,
+      "research": {
+        "specs": [
+          {
+            "label": "pins",
+            "value": "VIN+,VIN-,VOUT+,VOUT-"
+          },
+          {
+            "label": "regulation",
+            "value": "Excellent line and load regulation"
+          },
+          {
+            "label": "input_voltage",
+            "value": "DC 3V-40V (max 40V, recommended ≤40V)"
+          },
+          {
+            "label": "rectification",
+            "value": "Non-synchronous"
+          },
+          {
+            "label": "output_current",
+            "value": "3A (max)"
+          },
+          {
+            "label": "output_voltage",
+            "value": "DC 1.25V-37V (adjustable via multi-turn trimpot)"
+          },
+          {
+            "label": "module_property",
+            "value": "Non-isolated buck module"
+          },
+          {
+            "label": "switching_frequency",
+            "value": "65KHz"
+          },
+          {
+            "label": "conversion_efficiency",
+            "value": "Up to 92%"
+          }
+        ],
+        "examples": [
+          {
+            "url": "https://www.instructables.com/How-to-Use-DC-to-DC-Buck-Converter-LM2596/",
+            "title": "How to Use DC to DC Buck Converter LM2596",
+            "description": "This tutorial shows how to use the LM2596 Buck Converter to power devices requiring different voltages, including battery considerations and multiple outputs."
+          },
+          {
+            "url": "https://forums.adafruit.com/viewtopic.php?t=151449",
+            "title": "24V-5V Step-down Converter to Run ESP8266 & Motor Controller",
+            "description": "An Adafruit forum discussion providing guidance on using step-down converters like the LM2596 for specific microcontroller and motor driver applications."
+          },
+          {
+            "url": "https://kitsguru.com/products/lm2596-dc-dc-step-down-adjustable-cc-cv-power-supply-module-converter-led-driver",
+            "title": "LM2596 DC-DC Buck Converter for LED Drivers & DIY Electronics",
+            "description": "This product page also highlights its use in LED drivers and general DIY electronics projects due to its adjustable voltage and current capabilities."
+          }
+        ],
+        "sourcing": [
+          {
+            "url": "https://www.addicore.com/products/lm2596-step-down-adjustable-dc-dc-switching-buck-converter",
+            "vendor": "Addicore"
+          },
+          {
+            "url": "https://www.aliexpress.com/item/1005007171095432.html?pdp_npi=6%40dis%21USD%219.15%214.30%21%21%2162.04%2129.16%21%40214114e317793288361692996e0eba%2112000039691568366%21affd%21%21%21%211%210%21",
+            "price": "$4.3",
+            "vendor": "AliExpress"
+          },
+          {
+            "url": "https://www.amazon.com/dp/B0DBVYP91F?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+            "price": "$7.99",
+            "vendor": "Amazon"
+          },
+          {
+            "url": "https://www.digikey.com/en/products/result?keywords=LM2596%20DC-DC%20Buck%20Converter%20Module",
+            "vendor": "DigiKey"
+          },
+          {
+            "url": "https://www.amazon.com/LM2596-Converter-3-0-40V-1-5-35V-Supply/dp/B08NV3JCBC",
+            "vendor": "Amazon"
+          },
+          {
+            "url": "https://www.aliexpress.com/w/wholesale-lm2596-module.html",
+            "vendor": "AliExpress"
+          },
+          {
+            "url": "https://store.rokland.com/products/lm2596-buck-converter-4-40v-to-1-25-37v-dc-dc-power-supply-module",
+            "vendor": "Rokland"
+          }
+        ],
+        "cadFileUrls": [
+          {
+            "url": "https://marathon-os.com/library/lm2596-dcdc-buck-converter-module-3d-6811d70143b4d50b11a59159",
+            "label": "STEP (.step, .stp)"
+          },
+          {
+            "url": "https://grabcad.com/library/lm2596-dc-dc-buck-converter-module-1",
+            "label": "3D Model (GrabCAD)"
+          }
+        ],
+        "alternatives": [
+          {
+            "name": "MP1584EN DC-DC Buck Converter",
+            "reason": "Smaller footprint, often cheaper, but typically lower maximum current output (around 2A)."
+          },
+          {
+            "name": "XL6009 Boost/Buck Converter",
+            "reason": "Offers both step-up (boost) and step-down (buck) capabilities, providing more flexibility for various voltage requirements."
+          },
+          {
+            "name": "Linear Voltage Regulator (e.g., LM7805)",
+            "reason": "Simpler to use and less noisy, but much less efficient for large voltage differences, dissipating excess energy as heat, and lower current output."
+          }
+        ],
+        "datasheetUrl": "https://www.ti.com/lit/ds/symlink/lm2596.pdf",
+        "documentationUrls": [
+          {
+            "url": "https://manuals.plus/asin/B008BHBEE0",
+            "title": "LM2596 DC-DC Buck Converter Step Down Module User Manual"
+          },
+          {
+            "url": "https://www.ti.com/lit/ds/symlink/lm2596.pdf",
+            "title": "LM2596 SIMPLE SWITCHER® Power Converter Datasheet"
+          },
+          {
+            "url": "https://www.addicore.com/products/lm2596-step-down-adjustable-dc-dc-switching-buck-converter",
+            "title": "Addicore LM2596 Adjustable DC-DC Switching Buck Converter Product Page"
+          }
+        ]
+      },
+      "amazonUrl": "https://www.amazon.com/dp/B0DBVYP91F?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "dimensions": "43x21x14mm",
+      "description": "Step-down voltage regulator to convert 12V to 5V for the microcontroller and sensors.",
+      "productName": "LM2596 DC-DC Buck Converter Module",
+      "purchaseUrl": "https://s.click.aliexpress.com/s/fwx308cRD9Eny963e3KDdYxyIpNj8TXVr7saiF9Um5rMUg1kZtJALLnfa2LNXtiVgnxdD8Og6MmvwBoxhnSYQGM6r0c08U4TfX8DFGo7vviCuu3q62Q60OAhRZcqm3G8PtwM69xY7TOEWRrvulP5ukZQ4uQbBBtaVsdr6EffAqVmp3O5GyUANU2DoA3dJufNhDfh7KOlLgKIvRVhDxRESHLmea6fTE26gLUqKEUuuizJiLENrCbax94DZHDu8WhaXM9vQ86gzlqceNPO5w3vwXm4VrBF3x2lAMEl06wgNdTSMiT7cNG4HIdW0JxfxyvZuXFg7GymQIiWhjuNtVTPqj3Lo4XOZwXfyPinxUunYhcnzsECmhQXvQMwBZFO7y8k7xoMt4iHjuv8bTZiSwN9PdOaJjeEstgI5aHcGyrbRTjMrq76aa3rCOGKKow9ilh4RN26OW5032Q8A2ovdeUBL8On7LAmb3PpqilGVbgAqyzJUf4vUSlpGbWyNwnHJQC59F7HfkNmMAbPGABOWfsLqrZyZnZpqGsAlYm4qo9o0CbR4CekVi511lmJV8Db7lnVqPdeSTULq9VwHuUzF26qVb4pJCOMLfP7CIucHT9JWns8gVz4mtI0hRZhC8Jq2LuwiNZWltkCBtPSqDc0aZfVDWEOwgYoz6Hr748Ujnb5MOghxGRrBLUcy1LNcH5ZyAsLAXTvKAUcghaQSTKKvZUmZhR8K2ZGkHHmSldb5Yt0GmRQtYidPrxgtubvF2SnZnKozGziLBfNzSYLU3rFNe3hBX2PFWrC37l3APka3ZBboyS8GLDuvJm4fmdzPqpKq6kueHSuP60R9uG5WESQJX0Ge2eV4AEkfIx0X0PoUJiNlx46vSzJoLOLXhwWDSJEtQxuumz5cjZlkCCKXHEzPDNmz0Lj1VEy7wFMfoLK9HLd7EPxb3AerDlrYOFhG642RU4SSptpu2AL1rESpj2ryf",
+      "aliexpressUrl": "https://s.click.aliexpress.com/s/fwx308cRD9Eny963e3KDdYxyIpNj8TXVr7saiF9Um5rMUg1kZtJALLnfa2LNXtiVgnxdD8Og6MmvwBoxhnSYQGM6r0c08U4TfX8DFGo7vviCuu3q62Q60OAhRZcqm3G8PtwM69xY7TOEWRrvulP5ukZQ4uQbBBtaVsdr6EffAqVmp3O5GyUANU2DoA3dJufNhDfh7KOlLgKIvRVhDxRESHLmea6fTE26gLUqKEUuuizJiLENrCbax94DZHDu8WhaXM9vQ86gzlqceNPO5w3vwXm4VrBF3x2lAMEl06wgNdTSMiT7cNG4HIdW0JxfxyvZuXFg7GymQIiWhjuNtVTPqj3Lo4XOZwXfyPinxUunYhcnzsECmhQXvQMwBZFO7y8k7xoMt4iHjuv8bTZiSwN9PdOaJjeEstgI5aHcGyrbRTjMrq76aa3rCOGKKow9ilh4RN26OW5032Q8A2ovdeUBL8On7LAmb3PpqilGVbgAqyzJUf4vUSlpGbWyNwnHJQC59F7HfkNmMAbPGABOWfsLqrZyZnZpqGsAlYm4qo9o0CbR4CekVi511lmJV8Db7lnVqPdeSTULq9VwHuUzF26qVb4pJCOMLfP7CIucHT9JWns8gVz4mtI0hRZhC8Jq2LuwiNZWltkCBtPSqDc0aZfVDWEOwgYoz6Hr748Ujnb5MOghxGRrBLUcy1LNcH5ZyAsLAXTvKAUcghaQSTKKvZUmZhR8K2ZGkHHmSldb5Yt0GmRQtYidPrxgtubvF2SnZnKozGziLBfNzSYLU3rFNe3hBX2PFWrC37l3APka3ZBboyS8GLDuvJm4fmdzPqpKq6kueHSuP60R9uG5WESQJX0Ge2eV4AEkfIx0X0PoUJiNlx46vSzJoLOLXhwWDSJEtQxuumz5cjZlkCCKXHEzPDNmz0Lj1VEy7wFMfoLK9HLd7EPxb3AerDlrYOFhG642RU4SSptpu2AL1rESpj2ryf",
+      "estimatedCost": 4
+    },
+    {
+      "id": "main_sensor_plate",
+      "name": "Main Sensor Plate",
+      "type": "structural",
+      "partId": "7bb561e0-0824-4242-bb81-41e0b3d71f5d",
+      "ebayUrl": "https://www.ebay.com/sch/i.html?_nkw=Main+Sensor+Plate&_sacat=0&_from=R40&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339153059&customid=blueprint&toolid=10001&mkevt=1",
+      "category": "mechanical",
+      "material": "PLA",
+      "quantity": 1,
+      "amazonUrl": null,
+      "dimensions": "150x150x5mm",
+      "description": "Primary 3D-printed mounting platform for all sensors and electronics, optimized for weight and compatibility with a 450mm quadcopter frame.",
+      "purchaseUrl": "https://www.amazon.com/s?k=PLA+filament",
+      "aliexpressUrl": "https://s.click.aliexpress.com/s/fwx308cRD9Eny963e3KDdYxyIpNj8TXVr7saiF9Um5rMUg1kZtJALLnfa2LNXtiVgnxdD8Og6MmvwBoxhnSYQGM6r0c08U4TfX8DFGo7vviCuu3q62Q60OAhRZcqm3G8PtwM69xY7TOEWRrvulP5ukZQ4uQbBBtaVsdr6EffAqVmp3O5GyUANU2DoA3dJufNhDfh7KOlLgKIvRVhDxRESHLmea6fTE26gLUqKEUuuizJiLENrCbax94DZHDu8WhaXM9vQ86gzlqceNPO5w3vwXm4VrBF3x2lAMEl06wgNdTSMiT7cNG4HIdW0JxR1tJUWWoqm30UpNCUEx9cFSB7SLn8whQ1eQgjTfwxf9ULoj31lJYDc54DJv1FzsRllSZ6IVjSEsvNq1ZDJkMe7ef8j6HyEhVEVaoFR93PCxNsBYm2vnZj8dJRL9pSxTqp8S7JFvWtaOImi1QEEnm15VOstb9EuXXFfcOaBfFMw0CbnScsXx6ycZmD6m0WTeakS7zsrUPlvWczk2ag9z12d88OVKPCJHU3HdsSHCzrJBTXCQkn0nJxpVWGAVPOQKAmLjzPDmgDjSABb2c58ELKKeUdJc2ywWICJ15pLj2IcONpPxYFeq8h2tdLGJo9CUi5NSqxTysKzQrFJEs68jw3H8go8Gh5cHHPK2RzHeewkppjKqkfGy2c166fWUp4HHMBwpy8aWAxoXXsM8WdcQgJU7fXpsna1xBtOFTYzZjMdxU4ScTh0BobfxHFKXlazUSBfd8xTY0kTdS5KVYjANLX3sCoLtIF3e38Xz5dXHg1ND4Gs81b8kPivW9whlspPd52kN01DaueQFAkU6envOzjXBIOKt75c8zY1KN7Q9Zb4X1YPSIu8PsLRlKlq0VXYXMDpWaU487qfYaD8Vb4nAm4suDnI7wBs3VZvjYSxeLZHGE7TZkmUvl0mjvY2BXyJGwq3R4KSf0up7AzC3anlV3ZTN",
+      "estimatedCost": 5,
+      "printSettings": "20% infill, 0.2mm layer"
+    },
+    {
+      "id": "vibration_isolator_front_left",
+      "name": "Vibration Isolator Front Left",
+      "type": "misc",
+      "partId": "fd2ecc82-01d0-4a3a-90e2-43402ec237ba",
+      "ebayUrl": "https://www.ebay.com/sch/i.html?_nkw=M3+Rubber+Standoff+Vibration+Damper&_sacat=0&_from=R40&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339153059&customid=blueprint&toolid=10001&mkevt=1",
+      "category": "mechanical",
+      "imageUrl": "https://m.media-amazon.com/images/I/31c4U8fGgpL._SL500_.jpg",
+      "quantity": 1,
+      "research": {
+        "sourcing": [
+          {
+            "url": "https://www.amazon.com/dp/B0DCTNB7PQ?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+            "price": "$7.39",
+            "vendor": "Amazon"
+          },
+          {
+            "url": "https://www.aliexpress.com/w/wholesale-m3-rubber-shock-absorber.html",
+            "vendor": "AliExpress"
+          }
+        ]
+      },
+      "amazonUrl": "https://www.amazon.com/dp/B0DCTNB7PQ?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "dimensions": "15x15x15mm",
+      "description": "Rubber standoff to absorb vibrations from the drone frame to the main sensor plate.",
+      "productName": "M3 Rubber Standoff Vibration Damper",
+      "purchaseUrl": "https://www.amazon.com/dp/B0DCTNB7PQ?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "aliexpressUrl": "https://s.click.aliexpress.com/e/_c4V57TzR",
+      "estimatedCost": 0.75
+    },
+    {
+      "id": "vibration_isolator_front_right",
+      "name": "Vibration Isolator Front Right",
+      "type": "misc",
+      "partId": "fd2ecc82-01d0-4a3a-90e2-43402ec237ba",
+      "ebayUrl": "https://www.ebay.com/sch/i.html?_nkw=M3+Rubber+Standoff+Vibration+Damper&_sacat=0&_from=R40&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339153059&customid=blueprint&toolid=10001&mkevt=1",
+      "category": "mechanical",
+      "imageUrl": "https://m.media-amazon.com/images/I/31c4U8fGgpL._SL500_.jpg",
+      "quantity": 1,
+      "research": {
+        "sourcing": [
+          {
+            "url": "https://www.amazon.com/dp/B0DCTNB7PQ?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+            "price": "$7.39",
+            "vendor": "Amazon"
+          },
+          {
+            "url": "https://www.aliexpress.com/w/wholesale-m3-rubber-shock-absorber.html",
+            "vendor": "AliExpress"
+          }
+        ]
+      },
+      "amazonUrl": "https://www.amazon.com/dp/B0DCTNB7PQ?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "dimensions": "15x15x15mm",
+      "description": "Rubber standoff to absorb vibrations from the drone frame to the main sensor plate.",
+      "productName": "M3 Rubber Standoff Vibration Damper",
+      "purchaseUrl": "https://www.amazon.com/dp/B0DCTNB7PQ?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "aliexpressUrl": "https://s.click.aliexpress.com/e/_c4V57TzR",
+      "estimatedCost": 0.75
+    },
+    {
+      "id": "vibration_isolator_rear_left",
+      "name": "Vibration Isolator Rear Left",
+      "type": "misc",
+      "partId": "fd2ecc82-01d0-4a3a-90e2-43402ec237ba",
+      "ebayUrl": "https://www.ebay.com/sch/i.html?_nkw=M3+Rubber+Standoff+Vibration+Damper&_sacat=0&_from=R40&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339153059&customid=blueprint&toolid=10001&mkevt=1",
+      "category": "mechanical",
+      "imageUrl": "https://m.media-amazon.com/images/I/31c4U8fGgpL._SL500_.jpg",
+      "quantity": 1,
+      "research": {
+        "sourcing": [
+          {
+            "url": "https://www.amazon.com/dp/B0DCTNB7PQ?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+            "price": "$7.39",
+            "vendor": "Amazon"
+          },
+          {
+            "url": "https://www.aliexpress.com/w/wholesale-m3-rubber-shock-absorber.html",
+            "vendor": "AliExpress"
+          }
+        ]
+      },
+      "amazonUrl": "https://www.amazon.com/dp/B0DCTNB7PQ?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "dimensions": "15x15x15mm",
+      "description": "Rubber standoff to absorb vibrations from the drone frame to the main sensor plate.",
+      "productName": "M3 Rubber Standoff Vibration Damper",
+      "purchaseUrl": "https://www.amazon.com/dp/B0DCTNB7PQ?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "aliexpressUrl": "https://s.click.aliexpress.com/e/_c4V57TzR",
+      "estimatedCost": 0.75
+    },
+    {
+      "id": "vibration_isolator_rear_right",
+      "name": "Vibration Isolator Rear Right",
+      "type": "misc",
+      "partId": "fd2ecc82-01d0-4a3a-90e2-43402ec237ba",
+      "ebayUrl": "https://www.ebay.com/sch/i.html?_nkw=M3+Rubber+Standoff+Vibration+Damper&_sacat=0&_from=R40&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339153059&customid=blueprint&toolid=10001&mkevt=1",
+      "category": "mechanical",
+      "imageUrl": "https://m.media-amazon.com/images/I/31c4U8fGgpL._SL500_.jpg",
+      "quantity": 1,
+      "research": {
+        "sourcing": [
+          {
+            "url": "https://www.amazon.com/dp/B0DCTNB7PQ?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+            "price": "$7.39",
+            "vendor": "Amazon"
+          },
+          {
+            "url": "https://www.aliexpress.com/w/wholesale-m3-rubber-shock-absorber.html",
+            "vendor": "AliExpress"
+          }
+        ]
+      },
+      "amazonUrl": "https://www.amazon.com/dp/B0DCTNB7PQ?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "dimensions": "15x15x15mm",
+      "description": "Rubber standoff to absorb vibrations from the drone frame to the main sensor plate.",
+      "productName": "M3 Rubber Standoff Vibration Damper",
+      "purchaseUrl": "https://www.amazon.com/dp/B0DCTNB7PQ?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "aliexpressUrl": "https://s.click.aliexpress.com/e/_c4V57TzR",
+      "estimatedCost": 0.75
+    },
+    {
+      "id": "fluxgate_boom_mount",
+      "name": "Fluxgate Boom Mount",
+      "type": "3d_printed",
+      "category": "mechanical",
+      "material": "PLA",
+      "quantity": 1,
+      "mountsFor": "fluxgate_magnetometer",
+      "dimensions": "40x30x25mm",
+      "description": "Custom 3D-printed mount for the retractable fluxgate magnetometer boom, allowing for deployment and retraction.",
+      "purchaseUrl": "https://www.amazon.com/s?k=PLA+filament",
+      "estimatedCost": 1,
+      "printSettings": "30% infill, 0.2mm layer"
+    },
+    {
+      "id": "thermal_camera_mount",
+      "name": "Thermal Camera Mount",
+      "type": "3d_printed",
+      "category": "mechanical",
+      "material": "PLA",
+      "quantity": 1,
+      "mountsFor": "thermal_camera",
+      "dimensions": "35x30x25mm",
+      "description": "Custom 3D-printed housing and mount for the FLIR Lepton Thermal Camera, ensuring clear FOV.",
+      "purchaseUrl": "https://www.amazon.com/s?k=PLA+filament",
+      "estimatedCost": 0.5,
+      "printSettings": "20% infill, 0.2mm layer"
+    },
+    {
+      "id": "thermal_camera_breakout_mount",
+      "name": "Thermal Camera Breakout Mount",
+      "type": "3d_printed",
+      "category": "mechanical",
+      "material": "PLA",
+      "quantity": 1,
+      "mountsFor": "thermal_camera_breakout",
+      "dimensions": "40x30x10mm",
+      "description": "Custom 3D-printed mount for the FLIR Lepton Breakout Board, integrated with the camera mount.",
+      "purchaseUrl": "https://www.amazon.com/s?k=PLA+filament",
+      "estimatedCost": 0.3,
+      "printSettings": "20% infill, 0.2mm layer"
+    },
+    {
+      "id": "laser_line_module_mount",
+      "name": "Laser Line Module Mount",
+      "type": "3d_printed",
+      "category": "mechanical",
+      "material": "PLA",
+      "quantity": 1,
+      "mountsFor": "laser_line_module",
+      "dimensions": "20x20x25mm",
+      "description": "Custom 3D-printed mount for the laser line module, ensuring precise alignment for vibrometry.",
+      "purchaseUrl": "https://www.amazon.com/s?k=PLA+filament",
+      "estimatedCost": 0.2,
+      "printSettings": "20% infill, 0.2mm layer"
+    },
+    {
+      "id": "global_shutter_camera_mount",
+      "name": "Global Shutter Camera Mount",
+      "type": "3d_printed",
+      "category": "mechanical",
+      "material": "PLA",
+      "quantity": 1,
+      "mountsFor": "global_shutter_camera",
+      "dimensions": "40x40x30mm",
+      "description": "Custom 3D-printed housing and mount for the global shutter camera, ensuring clear FOV for vibrometry.",
+      "purchaseUrl": "https://www.amazon.com/s?k=PLA+filament",
+      "estimatedCost": 0.7,
+      "printSettings": "20% infill, 0.2mm layer"
+    },
+    {
+      "id": "acoustic_speaker_mount",
+      "name": "Acoustic Speaker Mount",
+      "type": "3d_printed",
+      "category": "mechanical",
+      "material": "PLA",
+      "quantity": 1,
+      "mountsFor": "acoustic_speaker",
+      "dimensions": "30x30x20mm",
+      "description": "Custom 3D-printed enclosure and mount for the mini acoustic speaker, directing sound for vibrometry.",
+      "purchaseUrl": "https://www.amazon.com/s?k=PLA+filament",
+      "estimatedCost": 0.3,
+      "printSettings": "20% infill, 0.2mm layer"
+    },
+    {
+      "id": "audio_amplifier_mount",
+      "name": "Audio Amplifier Mount",
+      "type": "3d_printed",
+      "category": "mechanical",
+      "material": "PLA",
+      "quantity": 1,
+      "mountsFor": "audio_amplifier",
+      "dimensions": "25x20x10mm",
+      "description": "Custom 3D-printed mount for the audio amplifier board.",
+      "purchaseUrl": "https://www.amazon.com/s?k=PLA+filament",
+      "estimatedCost": 0.2,
+      "printSettings": "20% infill, 0.2mm layer"
+    },
+    {
+      "id": "nanovna_gpr_housing",
+      "name": "NanoVNA GPR Housing",
+      "type": "enclosure",
+      "partId": "4936b063-a6b8-4215-b42d-377034a973f9",
+      "ebayUrl": "https://www.ebay.com/sch/i.html?_nkw=NanoVNA+GPR+Housing&_sacat=0&_from=R40&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339153059&customid=blueprint&toolid=10001&mkevt=1",
+      "category": "mechanical",
+      "material": "PLA",
+      "quantity": 1,
+      "amazonUrl": null,
+      "mountsFor": "nanovna_gpr",
+      "dimensions": "90x60x15mm",
+      "description": "Custom 3D-printed protective housing for the NanoVNA-V2, part of the SFCW GPR payload.",
+      "purchaseUrl": "https://www.amazon.com/s?k=PLA+filament",
+      "aliexpressUrl": "https://s.click.aliexpress.com/e/_c4XD87aD",
+      "estimatedCost": 1.2,
+      "printSettings": "20% infill, 0.2mm layer"
+    },
+    {
+      "id": "vivaldi_antenna_front",
+      "name": "Vivaldi Antenna Front Mount",
+      "type": "3d_printed",
+      "category": "mechanical",
+      "material": "PLA",
+      "quantity": 1,
+      "dimensions": "60x40x20mm",
+      "description": "Custom 3D-printed mount for the front Vivaldi antenna, fixed at a downward angle.",
+      "purchaseUrl": "https://www.amazon.com/s?k=PLA+filament",
+      "estimatedCost": 0.8,
+      "printSettings": "20% infill, 0.2mm layer"
+    },
+    {
+      "id": "vivaldi_antenna_rear",
+      "name": "Vivaldi Antenna Rear Mount",
+      "type": "3d_printed",
+      "category": "mechanical",
+      "material": "PLA",
+      "quantity": 1,
+      "dimensions": "60x40x20mm",
+      "description": "Custom 3D-printed mount for the rear Vivaldi antenna, fixed at a downward angle.",
+      "purchaseUrl": "https://www.amazon.com/s?k=PLA+filament",
+      "estimatedCost": 0.8,
+      "printSettings": "20% infill, 0.2mm layer"
+    },
+    {
+      "id": "raspberry_pi_housing",
+      "name": "Raspberry Pi 4 Housing",
+      "type": "enclosure",
+      "partId": "2b664749-46be-4506-9f51-88c979b90db4",
+      "ebayUrl": "https://www.ebay.com/sch/i.html?_nkw=Raspberry+Pi+4+Housing&_sacat=0&_from=R40&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339153059&customid=blueprint&toolid=10001&mkevt=1",
+      "category": "mechanical",
+      "imageUrl": "https://imgs.search.brave.com/Mv4WHc6yUapN1NzfGNAp8tOBSEPC6xNl_zEIsnj1fMA/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9tLm1l/ZGlhLWFtYXpvbi5j/b20vaW1hZ2VzL0kv/NjFVUmdUTmpJVEwu/anBn",
+      "material": "PLA",
+      "quantity": 1,
+      "amazonUrl": "https://www.amazon.com/dp/B07D3S4KBK?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "mountsFor": "main_mcu",
+      "dimensions": "95x65x30mm",
+      "description": "Custom 3D-printed protective enclosure for the Raspberry Pi 4, with ventilation.",
+      "productName": "Raspberry Pi 4 Housing",
+      "purchaseUrl": "https://www.amazon.com/s?k=PLA+filament",
+      "estimatedCost": 1.5,
+      "printSettings": "20% infill, 0.2mm layer"
+    },
+    {
+      "id": "gps_rtk_module_mount",
+      "name": "GPS/RTK Module Mount",
+      "type": "3d_printed",
+      "category": "mechanical",
+      "material": "PLA",
+      "quantity": 1,
+      "mountsFor": "gps_rtk_module",
+      "dimensions": "50x50x15mm",
+      "description": "Custom 3D-printed mount for the u-blox ZED-F9P GPS/RTK module, ensuring clear sky view.",
+      "purchaseUrl": "https://www.amazon.com/s?k=PLA+filament",
+      "estimatedCost": 0.4,
+      "printSettings": "20% infill, 0.2mm layer"
+    },
+    {
+      "id": "power_supply_module_mount",
+      "name": "Power Supply Module Mount",
+      "type": "3d_printed",
+      "category": "mechanical",
+      "material": "PLA",
+      "quantity": 1,
+      "mountsFor": "power_supply_module",
+      "dimensions": "40x30x10mm",
+      "description": "Custom 3D-printed mount for the 5V Step-Down Power Supply module.",
+      "purchaseUrl": "https://www.amazon.com/s?k=PLA+filament",
+      "estimatedCost": 0.2,
+      "printSettings": "20% infill, 0.2mm layer"
+    },
+    {
+      "id": "m3x10mm_screws",
+      "name": "M3x10mm Mounting Screws",
+      "type": "misc",
+      "partId": "997e71cd-eb30-4d62-be4e-11d8bf03f813",
+      "ebayUrl": "https://www.ebay.com/sch/i.html?_nkw=M3x10mm+Phillips+Head+Screws&_sacat=0&_from=R40&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339153059&customid=blueprint&toolid=10001&mkevt=1",
+      "category": "mechanical",
+      "imageUrl": "https://m.media-amazon.com/images/I/313i8J8nZxL._SL500_.jpg",
+      "quantity": 20,
+      "research": {
+        "specs": [
+          {
+            "label": "material",
+            "value": "Steel"
+          },
+          {
+            "label": "head_type",
+            "value": "Round"
+          },
+          {
+            "label": "length_mm",
+            "value": "10"
+          },
+          {
+            "label": "drive_type",
+            "value": "Phillips"
+          },
+          {
+            "label": "thread_size",
+            "value": "M3"
+          }
+        ],
+        "sourcing": [
+          {
+            "url": "https://protosupplies.com/product/m3x10mm-phillips-pan-head-machine-screw-ss-50-pack/",
+            "vendor": "ProtoSupplies"
+          },
+          {
+            "url": "https://andymark.com/products/m3-0-5-x-10-mm-flat-head-phillips-screw",
+            "vendor": "AndyMark"
+          },
+          {
+            "url": "https://www.amazon.com/FixtureDisplays-Socket-M3x10mm-Screws-15170-20PK-NF/dp/B0872LJQPJ",
+            "vendor": "Amazon"
+          },
+          {
+            "url": "https://www.harfington.com/products/p-1641341",
+            "vendor": "Harfington"
+          },
+          {
+            "url": "https://www.amazon.com/dp/B0GC3CD86G?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+            "price": "$5.99",
+            "vendor": "Amazon"
+          },
+          {
+            "url": "https://www.aliexpress.com/w/wholesale-m3x10mm-phillips-head-screws.html",
+            "vendor": "AliExpress"
+          }
+        ]
+      },
+      "amazonUrl": "https://www.amazon.com/dp/B0GC3CD86G?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "dimensions": "M3x10mm",
+      "description": "General purpose screws for mounting various components to the 3D-printed parts.",
+      "productName": "M3x10mm Phillips Head Screws",
+      "purchaseUrl": "https://www.amazon.com/dp/B0GC3CD86G?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "aliexpressUrl": "https://s.click.aliexpress.com/e/_c4LnG0Jj",
+      "estimatedCost": 0.05
+    },
+    {
+      "id": "m3_nuts",
+      "name": "M3 Nuts",
+      "type": "misc",
+      "partId": "c3dca189-2353-43a1-b760-66b6cefe0032",
+      "ebayUrl": "https://www.ebay.com/sch/i.html?_nkw=M3+Hex+Nuts&_sacat=0&_from=R40&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339153059&customid=blueprint&toolid=10001&mkevt=1",
+      "category": "mechanical",
+      "imageUrl": "https://m.media-amazon.com/images/I/31bFY16mChL._SL500_.jpg",
+      "quantity": 20,
+      "research": {
+        "specs": [
+          {
+            "label": "Material",
+            "value": "18-8 Stainless Steel"
+          },
+          {
+            "label": "Standard",
+            "value": "DIN 934"
+          },
+          {
+            "label": "Thread Size",
+            "value": "M3"
+          },
+          {
+            "label": "Thickness_mm",
+            "value": "2.4"
+          },
+          {
+            "label": "mcmaster_url",
+            "value": "https://www.mcmaster.com/90591A121"
+          },
+          {
+            "label": "Thread Pitch_mm",
+            "value": "0.5"
+          },
+          {
+            "label": "mcmaster_part_number",
+            "value": "90591A121"
+          },
+          {
+            "label": "Width Across Flats_mm",
+            "value": "5.5"
+          }
+        ],
+        "sourcing": [
+          {
+            "url": "https://www.amazon.com/dp/B0F9FC4563?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+            "price": "$5.99",
+            "vendor": "Amazon"
+          },
+          {
+            "url": "https://www.amazon.com/binifiMux-M1-6-Stainless-Steel-200pcs/dp/B08N68W9SP",
+            "vendor": "Amazon"
+          },
+          {
+            "url": "https://www.aliexpress.com/item/1005007278965396.html?pdp_npi=6%40dis%21USD%216.21%216.08%21%21%2142.11%2141.23%21%40210152bd17793266883568522e1214%2112000040076085093%21affd%21%21%21%211%210%21",
+            "price": "$6.08",
+            "vendor": "AliExpress"
+          },
+          {
+            "url": "https://accu-components.com/us/hexagon-nuts/7888-HPN-M3-A2",
+            "vendor": "Accu"
+          },
+          {
+            "url": "",
+            "vendor": "Amazon"
+          },
+          {
+            "url": "https://www.mcmaster.com/90591A121",
+            "vendor": "McMaster-Carr"
+          }
+        ],
+        "alternatives": [
+          {
+            "name": "MonsterBolts M3 Hex Nuts (A4/316 Stainless Steel)",
+            "reason": "Uses A4 (316) marine-grade stainless steel, which offers higher corrosion resistance than 18-8 (304) stainless steel, but is not the specified material."
+          }
+        ]
+      },
+      "amazonUrl": "https://www.amazon.com/dp/B0F9FC4563?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "dimensions": "M3",
+      "description": "General purpose nuts for M3 screws.",
+      "productName": "M3 Hex Nuts",
+      "purchaseUrl": "https://www.amazon.com/dp/B0F9FC4563?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "aliexpressUrl": "https://s.click.aliexpress.com/s/fwx308cRD9Eny963e3KDdYxyIpNj8TXVr7saiF9Um5rMUg1kZtJALLnfa2LNXtiVgnxdD8Og6MmvwBoxhnSYQGM6r0c08U4TfX8DFGo7vviCuu3q62Q60OAhRZcqm3G8PtwM69xY7TOEWRrvulP5ukZQ4uQbBBtaVsdr6EffAqVmp3O5GyUANU2DoA3dJufNhDfh7KOlLgKIvRVhDxRESHLmea6fTE26gLUqKEUuuizJiLENrCbax94DZHDu8WhaXM9vQ86gzlqceNPO5w3vwXm4VrBF3x2lAMEl06wgNdTSMiT7cNG4HIdW0JxheLVocLOesSj3YW9HVKSsjAuk0dhY8YT34rvUc5SPCcgI4QR7M5m7vL2CF1qaBN4YJaX2QCpde3asIqUTPZ7VH9jKyimAosVWo9rG6TlCDaJUGpnvxlaPEscouM2pHiy6Zxvpv1xT7pzOx6Fyo1keQHGdNb57GbSrrLl71Nratjl21Ld7kva7BOr6PkrmoRWaWh55AYomtd8Z3yTq04PvrqlY5YBlai14Zqqm1nwp3TV2K5uxs0EGrCrPfu4GYI7jNaPISs01eXJf41jhf0QpknTJxW8qBL9GcWbb9hfTnLyftpwrbKqPnF8dvx4RHQkb8ZP8BSR81V5Fu45b5wJbrDhRnyjz0RXWL5BXkBaEs3ZSp7WOwJEtZ1t3tvABpapsuJRrQbLqHwt6h8T28IiiGvsb55OJKTAhaiBPwnBWGJ74IpYm6mf32wB3kuuhALc6jRTSWG3Df4XHqSsoXkfwwzvcYwbVm6PDdgzJw7MEBaWEkQwFos1EuzSOsU3IDiG7r2kJf7eV9aInWlTwQ977gk6Q27AfFEY984k1lgT40XJlTIWPlMvK7GlvY7giUmMRlsr4ETykxB2EQ9k6wlIDNTUesgVotiHHythHgqnxfbJyf5h6w0WqBMIGaF0R88Tm1iWPDGAkRtRFuY5ke41QIn",
+      "estimatedCost": 0.03
+    }
+  ],
+  "notes": [
+    "universal mounting plate",
+    "rigid attachment",
+    "under 150g",
+    "laser-cut carbon fiber",
+    "3D-printed PLA",
+    "vibration-dampened hardpoints",
+    "450mm quadcopter frame",
+    "clear FOV",
+    "no mutual EMI",
+    "low-cost fabrication",
+    "open-source fabrication"
+  ],
+  "projectName": "Drone Sensor Plate",
+  "originalPrompt": "Design a universal sensor fusion mounting plate for a multi-sensor environmental survey drone. The plate must rigidly attach and align four sensor payloads: a fluxgate magnetometer on a retractable boom, a FLIR Lepton thermal camera, a laser speckle vibrometry payload (laser line module + global shutter camera + acoustic speaker), and an SFCW GPR payload (NanoVNA-V2 + Vivaldi antennas). The plate must be lightweight, under 150g, made of laser-cut carbon fiber or 3D-printed PLA, with vibration-dampened hardpoints and a center mount compatible with a standard 450mm quadcopter frame. All sensors must be positioned with clear FOV and no mutual electromagnetic interference. Include a housing for a Raspberry Pi 4 and a GPS/RTK module (u-blox ZED-F9P). Provide BOM (CSV), mechanical connections (JSON), an assembly guide (MD) showing sensor positions, and a visual rendering (PNG). The plate must be optimized for low-cost, open-source fabrication. Application area: multi-modal environmental surveying and subsurface mapping.",
+  "instructionSteps": [
+    {
+      "id": "fabricate",
+      "subSteps": [
+        {
+          "id": "fabricate_1",
+          "title": "3D print the Main Sensor Plate (PLA, 20% infill, 0.2mm layer)",
+          "partIds": [
+            "main_sensor_plate"
+          ]
+        },
+        {
+          "id": "fabricate_2",
+          "title": "3D print all component mounts and housings (PLA, 20-30% infill, 0.2mm layer)",
+          "partIds": [
+            "fluxgate_boom_mount",
+            "thermal_camera_mount",
+            "thermal_camera_breakout_mount",
+            "laser_line_module_mount",
+            "global_shutter_camera_mount",
+            "acoustic_speaker_mount",
+            "audio_amplifier_mount",
+            "nanovna_gpr_housing",
+            "vivaldi_antenna_front",
+            "vivaldi_antenna_rear",
+            "raspberry_pi_housing",
+            "gps_rtk_module_mount",
+            "power_supply_module_mount"
+          ]
+        },
+        {
+          "id": "fabricate_3",
+          "title": "Clean, deburr, and inspect all 3D printed parts for defects",
+          "partIds": [
+            "main_sensor_plate",
+            "fluxgate_boom_mount",
+            "thermal_camera_mount",
+            "thermal_camera_breakout_mount",
+            "laser_line_module_mount",
+            "global_shutter_camera_mount",
+            "acoustic_speaker_mount",
+            "audio_amplifier_mount",
+            "nanovna_gpr_housing",
+            "vivaldi_antenna_front",
+            "vivaldi_antenna_rear",
+            "raspberry_pi_housing",
+            "gps_rtk_module_mount",
+            "power_supply_module_mount"
+          ]
+        },
+        {
+          "id": "fabricate_4",
+          "title": "Test fit M3 screws and nuts into all mounting holes on printed parts",
+          "partIds": [
+            "m3x10mm_screws",
+            "m3_nuts",
+            "main_sensor_plate",
+            "fluxgate_boom_mount",
+            "thermal_camera_mount",
+            "thermal_camera_breakout_mount",
+            "laser_line_module_mount",
+            "global_shutter_camera_mount",
+            "acoustic_speaker_mount",
+            "audio_amplifier_mount",
+            "nanovna_gpr_housing",
+            "vivaldi_antenna_front",
+            "vivaldi_antenna_rear",
+            "raspberry_pi_housing",
+            "gps_rtk_module_mount",
+            "power_supply_module_mount"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wire",
+      "subSteps": [
+        {
+          "id": "wire_1",
+          "title": "Prepare and tin all necessary power and data wires for electrical connections",
+          "partIds": []
+        },
+        {
+          "id": "wire_2",
+          "title": "Solder VIN/VOUT power lines to the 5V Step-Down Power Supply module",
+          "partIds": [
+            "power_supply_module"
+          ]
+        },
+        {
+          "id": "wire_3",
+          "title": "Solder power (5V) and UART data lines from the main MCU to the GPS/RTK Module",
+          "partIds": [
+            "main_mcu",
+            "gps_rtk_module",
+            "power_supply_module"
+          ]
+        },
+        {
+          "id": "wire_4",
+          "title": "Solder power (5V) and I2C data lines from the main MCU to the Fluxgate Magnetometer",
+          "partIds": [
+            "main_mcu",
+            "fluxgate_magnetometer",
+            "power_supply_module"
+          ]
+        },
+        {
+          "id": "wire_5",
+          "title": "Connect the FLIR Lepton Thermal Camera to its Breakout Board, then solder power (5V) and connect USB data line to main MCU",
+          "partIds": [
+            "thermal_camera",
+            "thermal_camera_breakout",
+            "main_mcu",
+            "power_supply_module"
+          ]
+        },
+        {
+          "id": "wire_6",
+          "title": "Solder power (5V) and GPIO control lines from the main MCU to the Laser Line Module",
+          "partIds": [
+            "main_mcu",
+            "laser_line_module",
+            "power_supply_module"
+          ]
+        },
+        {
+          "id": "wire_7",
+          "title": "Solder power (5V) and connect CSI/I2C data lines from the main MCU to the Global Shutter Camera",
+          "partIds": [
+            "main_mcu",
+            "global_shutter_camera",
+            "power_supply_module"
+          ]
+        },
+        {
+          "id": "wire_8",
+          "title": "Solder power (5V) and PWM audio input lines from the main MCU to the Audio Amplifier, then solder speaker output to Mini Acoustic Speaker",
+          "partIds": [
+            "main_mcu",
+            "audio_amplifier",
+            "acoustic_speaker",
+            "power_supply_module"
+          ]
+        },
+        {
+          "id": "wire_9",
+          "title": "Solder power (5V) and connect USB data line from the main MCU to the SFCW GPR NanoVNA",
+          "partIds": [
+            "main_mcu",
+            "nanovna_gpr",
+            "power_supply_module"
+          ]
+        },
+        {
+          "id": "wire_10",
+          "title": "Perform continuity checks on all soldered power and data lines",
+          "partIds": []
+        }
+      ]
+    },
+    {
+      "id": "bringup",
+      "subSteps": [
+        {
+          "id": "bringup_1",
+          "title": "Verify 5V output from power_supply_module using a multimeter",
+          "partIds": [
+            "power_supply_module"
+          ]
+        },
+        {
+          "id": "bringup_2",
+          "title": "Power on main_mcu and confirm boot-up and basic functionality",
+          "partIds": [
+            "main_mcu"
+          ]
+        },
+        {
+          "id": "bringup_3",
+          "title": "Connect GPS/RTK Module to main_mcu and verify UART communication and GPS lock",
+          "partIds": [
+            "main_mcu",
+            "gps_rtk_module"
+          ]
+        },
+        {
+          "id": "bringup_4",
+          "title": "Connect Fluxgate Magnetometer to main_mcu and verify I2C communication and sensor readings",
+          "partIds": [
+            "main_mcu",
+            "fluxgate_magnetometer"
+          ]
+        },
+        {
+          "id": "bringup_5",
+          "title": "Connect Thermal Camera (via breakout) to main_mcu and verify USB camera detection",
+          "partIds": [
+            "main_mcu",
+            "thermal_camera",
+            "thermal_camera_breakout"
+          ]
+        },
+        {
+          "id": "bringup_6",
+          "title": "Connect Global Shutter Camera to main_mcu and verify CSI camera detection and image capture",
+          "partIds": [
+            "main_mcu",
+            "global_shutter_camera"
+          ]
+        },
+        {
+          "id": "bringup_7",
+          "title": "Test Laser Line Module activation via main_mcu GPIO control",
+          "partIds": [
+            "main_mcu",
+            "laser_line_module"
+          ]
+        },
+        {
+          "id": "bringup_8",
+          "title": "Test Acoustic Speaker output by sending audio from main_mcu through Audio Amplifier",
+          "partIds": [
+            "main_mcu",
+            "audio_amplifier",
+            "acoustic_speaker"
+          ]
+        },
+        {
+          "id": "bringup_9",
+          "title": "Connect NanoVNA GPR to main_mcu and verify USB communication and basic operation",
+          "partIds": [
+            "main_mcu",
+            "nanovna_gpr"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "assemble",
+      "subSteps": [
+        {
+          "id": "assemble_1",
+          "title": "Mount vibration isolators to the Main Sensor Plate using M3 screws and nuts",
+          "partIds": [
+            "vibration_isolator_front_left",
+            "vibration_isolator_front_right",
+            "vibration_isolator_rear_left",
+            "vibration_isolator_rear_right",
+            "main_sensor_plate",
+            "m3x10mm_screws",
+            "m3_nuts"
+          ]
+        },
+        {
+          "id": "assemble_2",
+          "title": "Secure main_mcu into the Raspberry Pi 4 Housing, then mount housing to the Main Sensor Plate",
+          "partIds": [
+            "main_mcu",
+            "raspberry_pi_housing",
+            "main_sensor_plate",
+            "m3x10mm_screws",
+            "m3_nuts"
+          ]
+        },
+        {
+          "id": "assemble_3",
+          "title": "Mount the power_supply_module into its mount, then attach to the Main Sensor Plate",
+          "partIds": [
+            "power_supply_module",
+            "power_supply_module_mount",
+            "main_sensor_plate",
+            "m3x10mm_screws",
+            "m3_nuts"
+          ]
+        },
+        {
+          "id": "assemble_4",
+          "title": "Mount GPS/RTK Module into its mount, then attach to the Main Sensor Plate",
+          "partIds": [
+            "gps_rtk_module",
+            "gps_rtk_module_mount",
+            "main_sensor_plate",
+            "m3x10mm_screws",
+            "m3_nuts"
+          ]
+        },
+        {
+          "id": "assemble_5",
+          "title": "Mount Fluxgate Magnetometer into its boom mount, then attach to the Main Sensor Plate",
+          "partIds": [
+            "fluxgate_magnetometer",
+            "fluxgate_boom_mount",
+            "main_sensor_plate",
+            "m3x10mm_screws",
+            "m3_nuts"
+          ]
+        },
+        {
+          "id": "assemble_6",
+          "title": "Mount Thermal Camera into its mount and its breakout into its mount, then attach both to Main Sensor Plate",
+          "partIds": [
+            "thermal_camera",
+            "thermal_camera_mount",
+            "thermal_camera_breakout",
+            "thermal_camera_breakout_mount",
+            "main_sensor_plate",
+            "m3x10mm_screws",
+            "m3_nuts"
+          ]
+        },
+        {
+          "id": "assemble_7",
+          "title": "Mount Laser Line Module into its mount, then attach to the Main Sensor Plate",
+          "partIds": [
+            "laser_line_module",
+            "laser_line_module_mount",
+            "main_sensor_plate",
+            "m3x10mm_screws",
+            "m3_nuts"
+          ]
+        },
+        {
+          "id": "assemble_8",
+          "title": "Mount Global Shutter Camera into its mount, then attach to the Main Sensor Plate",
+          "partIds": [
+            "global_shutter_camera",
+            "global_shutter_camera_mount",
+            "main_sensor_plate",
+            "m3x10mm_screws",
+            "m3_nuts"
+          ]
+        },
+        {
+          "id": "assemble_9",
+          "title": "Mount Acoustic Speaker into its mount and Audio Amplifier into its mount, then attach both to Main Sensor Plate",
+          "partIds": [
+            "acoustic_speaker",
+            "acoustic_speaker_mount",
+            "audio_amplifier",
+            "audio_amplifier_mount",
+            "main_sensor_plate",
+            "m3x10mm_screws",
+            "m3_nuts"
+          ]
+        },
+        {
+          "id": "assemble_10",
+          "title": "Mount NanoVNA GPR into its housing, then attach housing to Main Sensor Plate along with Vivaldi antenna mounts",
+          "partIds": [
+            "nanovna_gpr",
+            "nanovna_gpr_housing",
+            "vivaldi_antenna_front",
+            "vivaldi_antenna_rear",
+            "main_sensor_plate",
+            "m3x10mm_screws",
+            "m3_nuts"
+          ]
+        },
+        {
+          "id": "assemble_11",
+          "title": "Route all electrical cables, ensuring proper strain relief and avoiding mutual EMI",
+          "partIds": []
+        },
+        {
+          "id": "assemble_12",
+          "title": "Perform final system test of all integrated components",
+          "partIds": [
+            "main_mcu",
+            "gps_rtk_module",
+            "fluxgate_magnetometer",
+            "thermal_camera",
+            "thermal_camera_breakout",
+            "laser_line_module",
+            "global_shutter_camera",
+            "acoustic_speaker",
+            "audio_amplifier",
+            "nanovna_gpr",
+            "power_supply_module"
+          ]
+        }
+      ]
+    }
+  ],
+  "projectDescription": "A universal, lightweight (under 150g) mounting plate for a 450mm drone integrates a fluxgate magnetometer, FLIR Lepton, laser speckle vibrometry, and SFCW GPR (NanoVNA-V2/Vivaldi antennas). It houses a Raspberry Pi 4 and GPS/RTK module, designed for EMI mitigation and vibration dampening for environmental surveying.",
+  "imagePromptSnapshot": {
+    "tags": [
+      "universal mounting plate",
+      "rigid attachment",
+      "under 150g",
+      "laser-cut carbon fiber",
+      "3D-printed PLA",
+      "vibration-dampened hardpoints",
+      "450mm quadcopter frame",
+      "clear FOV",
+      "no mutual EMI",
+      "low-cost fabrication",
+      "open-source fabrication"
+    ],
+    "description": "Project idea: Design a universal sensor fusion mounting plate for a multi-sensor environmental survey drone. The plate must rigidly attach and align four sensor payloads: a fluxgate magnetometer on a retractable boom, a FLIR Lepton thermal camera, a laser speckle vibrometry payload (laser line module + global shutter camera + acoustic speaker), and an SFCW GPR payload (NanoVNA-V2 + Vivaldi antennas). The plate must be lightweight, under 150g, made of laser-cut carbon fiber or 3D-printed PLA, with vibration-dampened hardpoints and a center mount compatible with a standard 450mm quadcopter frame. All sensors must be positioned with clear FOV and no mutual electromagnetic interference. Include a housing for a Raspberry Pi 4 and a GPS/RTK module (u-blox ZED-F9P). Provide BOM (CSV), mechanical connections (JSON), an assembly guide (MD) showing sensor positions, and a visual rendering (PNG). The plate must be optimized for low-cost, open-source fabrication. Application area: multi-modal environmental surveying and subsurface mapping.\n\nDesign notes: universal mounting plate, rigid attachment, under 150g, laser-cut carbon fiber, 3D-printed PLA, vibration-dampened hardpoints, 450mm quadcopter frame, clear FOV, no mutual EMI, low-cost fabrication, open-source fabrication\n\nElectrical components (current): Main Payload Controller (mcu, 85x56x17mm); 4x module: GPS/RTK Module, FLIR Lepton Breakout Board, Audio Amplifier for Speaker, SFCW GPR NanoVNA; 3x sensor: Fluxgate Magnetometer, FLIR Lepton Thermal Camera, Global Shutter Camera; 2x actuator: Laser Line Module, Mini Acoustic Speaker; 5V Step-Down Power Supply (power, 43x21x14mm)\n\nMechanical/structural parts (current): Main Sensor Plate (structural, 150x150x5mm); 6x misc: Vibration Isolator Front Left, Vibration Isolator Front Right, Vibration Isolator Rear Left, Vibration Isolator Rear Right +2 more; 11x 3d_printed: Fluxgate Boom Mount, Thermal Camera Mount, Thermal Camera Breakout Mount, Laser Line Module Mount +7 more; 2x enclosure: NanoVNA GPR Housing, Raspberry Pi 4 Housing\n\nAssembly: Vibration Isolator Front Left → Main Sensor Plate (M3x10mm_screws & M3_nuts); Vibration Isolator Front Right → Main Sensor Plate (M3x10mm_screws & M3_nuts); Vibration Isolator Rear Left → Main Sensor Plate (M3x10mm_screws & M3_nuts); Vibration Isolator Rear Right → Main Sensor Plate (M3x10mm_screws & M3_nuts); Fluxgate Boom Mount → Main Sensor Plate (M3x10mm_screws & M3_nuts); Thermal Camera Mount → Main Sensor Plate (M3x10mm_screws & M3_nuts); Thermal Camera Breakout Mount → Main Sensor Plate (M3x10mm_screws & M3_nuts); Laser Line Module Mount → Main Sensor Plate (M3x10mm_screws & M3_nuts); Global Shutter Camera Mount → Main Sensor Plate (M3x10mm_screws & M3_nuts); Acoustic Speaker Mount → Main Sensor Plate (M3x10mm_screws & M3_nuts); Audio Amplifier Mount → Main Sensor Plate (M3x10mm_screws & M3_nuts); NanoVNA GPR Housing → Main Sensor Plate (M3x10mm_screws & M3_nuts); Vivaldi Antenna Front Mount → Main Sensor Plate (M3x10mm_screws & M3_nuts); Vivaldi Antenna Rear Mount → Main Sensor Plate (M3x10mm_screws & M3_nuts); Raspberry Pi 4 Housing → Main Sensor Plate (M3x10mm_screws & M3_nuts) (+13 more connections)"
+  },
+  "instructionPreamble": {
+    "tools": [
+      "3D printer (PLA capable)",
+      "M3 hex key",
+      "Wire strippers",
+      "Soldering iron with fine tip",
+      "Multimeter",
+      "Heat gun (for heat shrink)",
+      "Precision knife / Deburring tool",
+      "Small Phillips screwdriver"
+    ],
+    "assumptions": [
+      "Basic 3D printing knowledge",
+      "Basic soldering experience",
+      "Familiarity with companion computer development environments (e.g., Linux, Python, C++)",
+      "Access to common electronics consumables (solder, wires, heat shrink, zip ties)"
+    ]
+  },
+  "electricalConnections": [
+    {
+      "type": "power",
+      "label": "Main MCU Power",
+      "source": "power_supply_module",
+      "target": "main_mcu",
+      "current": "3A",
+      "voltage": "5V"
+    },
+    {
+      "type": "power",
+      "label": "GPS/RTK Power",
+      "source": "power_supply_module",
+      "target": "gps_rtk_module",
+      "current": "500mA",
+      "voltage": "5V"
+    },
+    {
+      "type": "power",
+      "label": "Magnetometer Power",
+      "source": "power_supply_module",
+      "target": "fluxgate_magnetometer",
+      "current": "100mA",
+      "voltage": "5V"
+    },
+    {
+      "type": "power",
+      "label": "Thermal Cam Breakout Power",
+      "source": "power_supply_module",
+      "target": "thermal_camera_breakout",
+      "current": "1A",
+      "voltage": "5V"
+    },
+    {
+      "type": "power",
+      "label": "Laser Power",
+      "source": "power_supply_module",
+      "target": "laser_line_module",
+      "current": "200mA",
+      "voltage": "5V"
+    },
+    {
+      "type": "power",
+      "label": "Global Shutter Cam Power",
+      "source": "power_supply_module",
+      "target": "global_shutter_camera",
+      "current": "500mA",
+      "voltage": "5V"
+    },
+    {
+      "type": "power",
+      "label": "Audio Amplifier Power",
+      "source": "power_supply_module",
+      "target": "audio_amplifier",
+      "current": "1A",
+      "voltage": "5V"
+    },
+    {
+      "type": "power",
+      "label": "NanoVNA Power (USB-C)",
+      "source": "power_supply_module",
+      "target": "nanovna_gpr",
+      "current": "1A",
+      "voltage": "5V"
+    },
+    {
+      "type": "data",
+      "label": "GPS/RTK Data",
+      "source": "main_mcu",
+      "target": "gps_rtk_module",
+      "protocol": "uart",
+      "sourcePin": "UART",
+      "targetPin": "UART"
+    },
+    {
+      "type": "data",
+      "label": "Magnetometer Data",
+      "source": "main_mcu",
+      "target": "fluxgate_magnetometer",
+      "protocol": "i2c",
+      "sourcePin": "I2C",
+      "targetPin": "I2C"
+    },
+    {
+      "type": "data",
+      "label": "Thermal Cam Data",
+      "source": "main_mcu",
+      "target": "thermal_camera_breakout",
+      "protocol": "usb",
+      "sourcePin": "USB",
+      "targetPin": "USB-C"
+    },
+    {
+      "type": "data",
+      "label": "Global Shutter Cam Data",
+      "source": "main_mcu",
+      "target": "global_shutter_camera",
+      "protocol": "csi",
+      "sourcePin": "CSI",
+      "targetPin": "CSI"
+    },
+    {
+      "type": "data",
+      "label": "Laser Enable",
+      "source": "main_mcu",
+      "target": "laser_line_module",
+      "protocol": "gpio",
+      "sourcePin": "GPIO",
+      "targetPin": "VCC"
+    },
+    {
+      "type": "data",
+      "label": "Speaker Audio L",
+      "source": "main_mcu",
+      "target": "audio_amplifier",
+      "protocol": "pwm",
+      "sourcePin": "GPIO",
+      "targetPin": "Audio_IN_L"
+    },
+    {
+      "type": "data",
+      "label": "Speaker Audio R",
+      "source": "main_mcu",
+      "target": "audio_amplifier",
+      "protocol": "pwm",
+      "sourcePin": "GPIO",
+      "targetPin": "Audio_IN_R"
+    },
+    {
+      "type": "data",
+      "label": "Speaker Output L",
+      "source": "audio_amplifier",
+      "target": "acoustic_speaker",
+      "protocol": "analog",
+      "sourcePin": "Speaker_OUT_L",
+      "targetPin": "Audio_L"
+    },
+    {
+      "type": "data",
+      "label": "Speaker Output R",
+      "source": "audio_amplifier",
+      "target": "acoustic_speaker",
+      "protocol": "analog",
+      "sourcePin": "Speaker_OUT_R",
+      "targetPin": "Audio_R"
+    },
+    {
+      "type": "data",
+      "label": "NanoVNA Data",
+      "source": "main_mcu",
+      "target": "nanovna_gpr",
+      "protocol": "usb",
+      "sourcePin": "USB",
+      "targetPin": "USB-C"
+    }
+  ],
+  "mechanicalConnections": [
+    {
+      "label": "M3x10mm_screws & M3_nuts",
+      "source": "vibration_isolator_front_left",
+      "target": "main_sensor_plate"
+    },
+    {
+      "label": "M3x10mm_screws & M3_nuts",
+      "source": "vibration_isolator_front_right",
+      "target": "main_sensor_plate"
+    },
+    {
+      "label": "M3x10mm_screws & M3_nuts",
+      "source": "vibration_isolator_rear_left",
+      "target": "main_sensor_plate"
+    },
+    {
+      "label": "M3x10mm_screws & M3_nuts",
+      "source": "vibration_isolator_rear_right",
+      "target": "main_sensor_plate"
+    },
+    {
+      "label": "M3x10mm_screws & M3_nuts",
+      "source": "fluxgate_boom_mount",
+      "target": "main_sensor_plate"
+    },
+    {
+      "label": "M3x10mm_screws & M3_nuts",
+      "source": "thermal_camera_mount",
+      "target": "main_sensor_plate"
+    },
+    {
+      "label": "M3x10mm_screws & M3_nuts",
+      "source": "thermal_camera_breakout_mount",
+      "target": "main_sensor_plate"
+    },
+    {
+      "label": "M3x10mm_screws & M3_nuts",
+      "source": "laser_line_module_mount",
+      "target": "main_sensor_plate"
+    },
+    {
+      "label": "M3x10mm_screws & M3_nuts",
+      "source": "global_shutter_camera_mount",
+      "target": "main_sensor_plate"
+    },
+    {
+      "label": "M3x10mm_screws & M3_nuts",
+      "source": "acoustic_speaker_mount",
+      "target": "main_sensor_plate"
+    },
+    {
+      "label": "M3x10mm_screws & M3_nuts",
+      "source": "audio_amplifier_mount",
+      "target": "main_sensor_plate"
+    },
+    {
+      "label": "M3x10mm_screws & M3_nuts",
+      "source": "nanovna_gpr_housing",
+      "target": "main_sensor_plate"
+    },
+    {
+      "label": "M3x10mm_screws & M3_nuts",
+      "source": "vivaldi_antenna_front",
+      "target": "main_sensor_plate"
+    },
+    {
+      "label": "M3x10mm_screws & M3_nuts",
+      "source": "vivaldi_antenna_rear",
+      "target": "main_sensor_plate"
+    },
+    {
+      "label": "M3x10mm_screws & M3_nuts",
+      "source": "raspberry_pi_housing",
+      "target": "main_sensor_plate"
+    },
+    {
+      "label": "M3x10mm_screws & M3_nuts",
+      "source": "gps_rtk_module_mount",
+      "target": "main_sensor_plate"
+    },
+    {
+      "label": "M3x10mm_screws & M3_nuts",
+      "source": "power_supply_module_mount",
+      "target": "main_sensor_plate"
+    },
+    {
+      "label": "mount",
+      "source": "fluxgate_boom_mount",
+      "target": "fluxgate_magnetometer"
+    },
+    {
+      "label": "mount",
+      "source": "thermal_camera_mount",
+      "target": "thermal_camera"
+    },
+    {
+      "label": "mount",
+      "source": "thermal_camera_breakout_mount",
+      "target": "thermal_camera_breakout"
+    },
+    {
+      "label": "mount",
+      "source": "laser_line_module_mount",
+      "target": "laser_line_module"
+    },
+    {
+      "label": "mount",
+      "source": "global_shutter_camera_mount",
+      "target": "global_shutter_camera"
+    },
+    {
+      "label": "mount",
+      "source": "acoustic_speaker_mount",
+      "target": "acoustic_speaker"
+    },
+    {
+      "label": "mount",
+      "source": "audio_amplifier_mount",
+      "target": "audio_amplifier"
+    },
+    {
+      "label": "mount",
+      "source": "nanovna_gpr_housing",
+      "target": "nanovna_gpr"
+    },
+    {
+      "label": "mount",
+      "source": "raspberry_pi_housing",
+      "target": "main_mcu"
+    },
+    {
+      "label": "mount",
+      "source": "gps_rtk_module_mount",
+      "target": "gps_rtk_module"
+    },
+    {
+      "label": "mount",
+      "source": "power_supply_module_mount",
+      "target": "power_supply_module"
+    }
+  ],
+  "projectId": "77f4f464-1ff0-4baa-a200-d226bd7632b6"
+}

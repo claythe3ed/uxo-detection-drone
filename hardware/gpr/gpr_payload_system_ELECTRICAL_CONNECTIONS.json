@@ -1,0 +1,79 @@
+[
+  {
+    "type": "power",
+    "label": "Main Power to Pi LDO",
+    "source": "dc_dc_stepdown",
+    "target": "ldo_pi",
+    "current": "3A",
+    "voltage": "9V"
+  },
+  {
+    "type": "power",
+    "label": "Main Power to NanoVNA LDO",
+    "source": "dc_dc_stepdown",
+    "target": "ldo_nanovna",
+    "current": "1A",
+    "voltage": "9V"
+  },
+  {
+    "type": "power",
+    "label": "Regulated 5V for Pi",
+    "source": "ldo_pi",
+    "target": "raspberry_pi_controller",
+    "current": "3A",
+    "voltage": "5V"
+  },
+  {
+    "type": "power",
+    "label": "Regulated 5V for NanoVNA",
+    "source": "ldo_nanovna",
+    "target": "nanovna_gpr",
+    "current": "500mA",
+    "voltage": "5V"
+  },
+  {
+    "type": "data",
+    "label": "Pi to NanoVNA Data",
+    "source": "raspberry_pi_controller",
+    "target": "nanovna_gpr",
+    "protocol": "usb",
+    "sourcePin": "USB3_0",
+    "targetPin": "USB-C"
+  },
+  {
+    "type": "data",
+    "label": "NanoVNA Port 1 to Cable",
+    "source": "nanovna_gpr",
+    "target": "sma_cable_1",
+    "protocol": "analog",
+    "sourcePin": "SMA_Port1",
+    "targetPin": "SMA_M"
+  },
+  {
+    "type": "data",
+    "label": "Cable 1 to TX Antenna",
+    "source": "sma_cable_1",
+    "target": "antenna_tx",
+    "protocol": "analog",
+    "sourcePin": "SMA_M",
+    "targetPin": "SMA_Connector"
+  },
+  {
+    "type": "data",
+    "label": "NanoVNA Port 2 to Cable",
+    "source": "nanovna_gpr",
+    "target": "sma_cable_2",
+    "protocol": "analog",
+    "sourcePin": "SMA_Port2",
+    "targetPin": "SMA_M"
+  },
+  {
+    "type": "data",
+    "label": "Cable 2 to RX Antenna",
+    "source": "sma_cable_2",
+    "target": "antenna_rx",
+    "protocol": "analog",
+    "sourcePin": "SMA_M",
+    "targetPin": "SMA_Connector"
+  }
+]

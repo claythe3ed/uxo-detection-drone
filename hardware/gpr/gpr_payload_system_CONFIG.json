@@ -1,0 +1,1308 @@
+{
+  "plan": "- Electrical: NanoVNA-V2 Plus4 as core GPR, Raspberry Pi 4 for processing, two custom etched FR4 Vivaldi antennas.\n- Mechanical: Lightweight 3D-printed bracket for antennas, angled 30 degrees outward for ground coupling.\n- Custom 3D Printed: Enclosure for NanoVNA and Raspberry Pi, mounting hardware for drone integration.\n- Software: Raspberry Pi software for NanoVNA control, data acquisition, and signal processing.\n- Power: Drone's main power supply will power the payload, likely with a 5V step-down for Pi/NanoVNA.\n- Connections: USB for NanoVNA to Pi, coaxial cables for NanoVNA to antennas.",
+  "nodes": [
+    {
+      "id": "nanovna_gpr",
+      "name": "GPR Core NanoVNA",
+      "pins": [
+        "USB-C",
+        "SMA_Port1",
+        "SMA_Port2"
+      ],
+      "type": "module",
+      "partId": "5e35d47f-be0a-4713-8acd-76ff1d207a46",
+      "ebayUrl": "https://www.ebay.com/sch/i.html?_nkw=NanoVNA-V2+Plus4&_sacat=0&_from=R40&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339153059&customid=blueprint&toolid=10001&mkevt=1",
+      "category": "electrical",
+      "imageUrl": "https://imgs.search.brave.com/o2p4c2AlmkCYnu3wprDsXZo9k4ggeghJYLWBvjQGYew/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly93d3cu/YXVyc2luYy5jb20v/Y2RuL3Nob3AvZmls/ZXMvQVVSU0lOQ19O/YW5vVk5BX1YyX1BM/VVM0X1ZlY3Rvcl9O/ZXR3b3JrX0FuYWx5/emVyLmpwZz92PTE3/NjQyMzUxNDUmd2lk/dGg9MTQ0NQ",
+      "quantity": 1,
+      "dimensions": "120x75x24mm",
+      "description": "Primary measurement instrument for characterizing the sensor's S-parameters in response to magnetic fields.",
+      "productName": "NanoVNA-V2 Plus4",
+      "purchaseUrl": "https://www.amazon.com/s?k=nanovna+v2+plus4",
+      "aliexpressUrl": "https://s.click.aliexpress.com/s/NdpwztbAIgDMmxGbP8fFks7yUFfsHjzlImSYmA68h7xlMRgzueFsRgokQ9f9hcpVKttxtQE2VzIoqkXJXrpOr6uR3zv7mP4CDO9CddoFf4t0QE5DXPy8Pgjhz4irfQSEjEGUmy5yF3A5gJ9h3NYjLMgqIMqa3zcpq5E2BC3W5EbV40Dm9buQxWpZzw1lbX8Zm2kZtNIa4KyDieNjsH7IU6Yv8StELKVvT9r4eFAaXPGhwHsgaDqdNcmY116r3GC2YvsOopeiiZPhJrV0cwgOQDSkW93v7gVKDqPkXyZF1oSWa6wSAOeznMFVlVYQwc2VaV8nL3JppGPgAxk49qjmvNfZV37PhElYJWxayevVzakCnmnc3Ce4VNEbsB4GRmqTlofHSn2KZXQFDkE4ym6EltZu46YWRgaBF8W7a1HYdjNWsbISUKcTkaRN6QJVgpyqmbuSVceYww9qysIFAeXHWkTRDVlX2wRB4Nr67076BENKLv2vWmmEr9zj4fDmAoFsRjWOuGQAwNxjvzFPJOzUGkfqQI1iXDNV0le0gJsGkegeQZGbQuRSMTCGwSqvmzZekd8AoYUVs0zcf5JWp1CZwiVl5SnEJbX7r055doppxrOWgSRIkpK7TLFJWqKrNyI2ilT86srNbyIiJ4RwRbMn1l1kmVbmen7JOPqMCs5WEjbAVGrCQ1sPNzl2LqOgsRdFvjI56N4x1MNHH23X4bzn8g0ya7X8vt27QUzz6Qyh74ncDM0L7nKCAJXj1g3lbGCHcTIFT7VPBWX3m1QZXPpzTMwUqth4ogv10LeKgXqt6zq1aQpkZyOviuvOgaojGS1UO67EcqyWr8Nc3XGh5x1TA2IrBgN6n3mQpjWl2CFToDZc5EhOoxxkgtdW4ymiyKDDevxRUcY7wxjtYe24r4ZF9JtNE6mLddpR0VKCQ4nrcjj8gCQrfiX3gsi72jgxqIjIeAAHkrjh5IqucwT1Q2DFqlYInX366XsckiG5Yll9zRvDD",
+      "estimatedCost": 180
+    },
+    {
+      "id": "raspberry_pi_controller",
+      "name": "Payload Controller",
+      "pins": [
+        "USB3_0",
+        "USB2_0",
+        "GPIO",
+        "HDMI",
+        "USB-C_Power"
+      ],
+      "type": "mcu",
+      "partId": "0eadbfad-70e2-4907-948c-e4dae67aae5d",
+      "ebayUrl": "https://www.ebay.com/sch/i.html?_nkw=Raspberry+Pi+4+Model+B+%284GB%29&_sacat=0&_from=R40&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339153059&customid=blueprint&toolid=10001&mkevt=1",
+      "category": "electrical",
+      "imageUrl": "https://m.media-amazon.com/images/I/415S0PcseXL._SL500_.jpg",
+      "quantity": 1,
+      "research": {
+        "specs": [
+          {
+            "label": "USB",
+            "value": "USB 2.0 (2), USB 3.0 (2)"
+          },
+          {
+            "label": "pins",
+            "value": "5V,3.3V,GND,GPIO2,GPIO3,GPIO4,GPIO5,GPIO6,GPIO7,GPIO8,GPIO9,GPIO10,GPIO11,GPIO12,GPIO13,GPIO14,GPIO15,GPIO16,GPIO17,GPIO18,GPIO19,GPIO20,GPIO21,GPIO22,GPIO23,GPIO24,GPIO25,GPIO26,GPIO27"
+          },
+          {
+            "label": "Speed",
+            "value": "1.5GHz"
+          },
+          {
+            "label": "Contents",
+            "value": "-"
+          },
+          {
+            "label": "Ethernet",
+            "value": "GbE"
+          },
+          {
+            "label": "Form Factor",
+            "value": "-"
+          },
+          {
+            "label": "Cooling Type",
+            "value": "-"
+          },
+          {
+            "label": "Power (Watts)",
+            "value": "-"
+          },
+          {
+            "label": "Video Outputs",
+            "value": "CSI, DSI, HDMI"
+          },
+          {
+            "label": "Core Processor",
+            "value": "Broadcom BCM2711 ARM Cortex-A72"
+          },
+          {
+            "label": "Watchdog Timer",
+            "value": "-"
+          },
+          {
+            "label": "Number of Cores",
+            "value": "4"
+          },
+          {
+            "label": "Size / Dimension",
+            "value": "3.346\" x 2.205\" (85.00mm x 56.00mm)"
+          },
+          {
+            "label": "Digital I/O Lines",
+            "value": "40"
+          },
+          {
+            "label": "Storage Interface",
+            "value": "MicroSD"
+          },
+          {
+            "label": "Expansion Site/Bus",
+            "value": "-"
+          },
+          {
+            "label": "Analog Input:Output",
+            "value": "-"
+          },
+          {
+            "label": "Operating Temperature",
+            "value": "0°C ~ 50°C"
+          },
+          {
+            "label": "RAM Capacity/Installed",
+            "value": "4GB/4GB"
+          }
+        ],
+        "sourcing": [
+          {
+            "url": "https://www.adafruit.com/product/4027",
+            "price": "$25",
+            "vendor": "Adafruit"
+          },
+          {
+            "url": "https://www.digikey.com/en/products/detail/raspberry-pi/SC0194-9/10258781",
+            "price": "$100",
+            "vendor": "DigiKey"
+          },
+          {
+            "url": "https://www.amazon.com/dp/B07V5JTMV9?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+            "price": "$149.98",
+            "vendor": "Amazon"
+          },
+          {
+            "url": "https://www.aliexpress.com/item/1005002668353357.html?pdp_npi=6%40dis%21USD%21106.82%21106.82%21%21%21724.22%21724.22%21%402140d36217793302416023829e1132%2112000033660204498%21affd%21%21%21%211%210%21",
+            "price": "$106.82",
+            "vendor": "AliExpress"
+          },
+          {
+            "url": "https://www.amazon.com/dp/B07TC2BK1X?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+            "price": "$124.21",
+            "vendor": "Amazon"
+          }
+        ],
+        "datasheetUrl": "//mm.digikey.com/Volume0/opasdata/d220001/medias/docus/7844/SC0192%289%29.pdf"
+      },
+      "amazonUrl": "https://www.amazon.com/dp/B07V5JTMV9?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "dimensions": "85x56x17mm",
+      "description": "SBC 1.5GHZ 4 CORE 4GB PI 4 MOD B",
+      "productName": "Raspberry Pi 4 Model B (4GB)",
+      "purchaseUrl": "https://www.adafruit.com/product/4296",
+      "aliexpressUrl": "https://s.click.aliexpress.com/s/fwx308cRD9Eny963e3KDdYxyIpNj8TXVr7saiF9Um5rMUg1kZtJALLnfa2LNXtiVgnxdD8Og6MmvwBoxhnSYQGM6r0c08U4TfX8DFGo7vviCuu3q62Q60OAhRZcqm3G8PtwM69xY7TOEWRrvulP5ukZQ4uQbBBtaVsdr6EffAqVmp3O5GyUANU2DoA3dJufNhDfh7KOlLgKIvRVhDxRESHLmea6fTE26gLUqKEUuuizJiLENrCbax94DZHDu8WhaXM9vQ86gzlqceNPO5w3vwXm4VrBF3x2lAMEl06wgNdTSMiT7cNG4HIdW0Jxwo4zRYEy8cgdMy9eZbTv6Y0CbEBtu2Pd1pSrxS4PpGfQcAvWie09RqrJOsTPRzQ5kwFw5O70L5cfLplHxdQdGGHGbBsoITjIqRC6MvOxaziElkpAffXnIIS5hgbZz64WIazid05uESyzEb1kYziz5G4AmhSJ55qegmlNdBoMcU93CoCPMIMw8r5vaVlcxguXbSc6J1i6L5fb9A6Hn0AVHfzC78p1rmuqURAQm4dAXqXxz9af6TRcHF68FIMOyrWi01Ylx6Up2ej6QxZLywHfUS7Ue5hjpwM3JKmBM4skVfw4orJY6XrHkbe31kpboeVzqVMYNrSERCUFZgAIHM4TOP7dtoI4RiTV59XCGtxAxU5KmbQOM0wBiauCqo0R5hWEbb3WqrEDVCt4yBQVh5IvNLIO8aqoMtxL3GSaGbexoKoKR9d9HBadXNdLchfSoN02FvUgNEK8AyPn4NWg5M6HVF4hU9L9bvvGIXGbtou4AYx7OLG3dGy5EJq9XKfVGqwPMTNoffY9PMr2p8tqzkxsiv9RuRQ0xU3146TIPxQXjtmI9Xl2SZZYuMa4zfiC003ijbDO2eXWvN9VwMkgrNkEPaFAbpuYjGPKHiq3xQGPLnHwRg7AmfvHIGe6sacFhZZHy6sS2TLPn7yv71PqC0PxNxz",
+      "estimatedCost": 55
+    },
+    {
+      "id": "antenna_tx",
+      "name": "Vivaldi Antenna (Transmit)",
+      "pins": [
+        "SMA_Connector"
+      ],
+      "type": "module",
+      "partId": "7f5f735f-4ea1-4667-b031-7f75326a7ef9",
+      "ebayUrl": "https://www.ebay.com/sch/i.html?_nkw=Custom+FR4+Vivaldi+Antenna&_sacat=0&_from=R40&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339153059&customid=blueprint&toolid=10001&mkevt=1",
+      "category": "electrical",
+      "imageUrl": "https://imgs.search.brave.com/0OE4CA-mKqkNLcc3g1ijqE2hSErcPE45H_eEWw-p8ZQ/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9zLmFs/aWNkbi5jb20vQHNj/MDQva2YvSDY3OWE1/MzA2MTBkOTQ1OWM5/ZjVlMDY1OGYyOWE3/OWM5cS5qcGdfMzAw/eDMwMC5qcGc",
+      "quantity": 1,
+      "dimensions": "100x80x1.6mm",
+      "productName": "Custom FR4 Vivaldi Antenna",
+      "purchaseUrl": "https://www.oshpark.com/pricing",
+      "aliexpressUrl": "https://s.click.aliexpress.com/e/_c3aw89VJ",
+      "estimatedCost": 10
+    },
+    {
+      "id": "antenna_rx",
+      "name": "Vivaldi Antenna (Receive)",
+      "pins": [
+        "SMA_Connector"
+      ],
+      "type": "module",
+      "partId": "7f5f735f-4ea1-4667-b031-7f75326a7ef9",
+      "ebayUrl": "https://www.ebay.com/sch/i.html?_nkw=Custom+FR4+Vivaldi+Antenna&_sacat=0&_from=R40&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339153059&customid=blueprint&toolid=10001&mkevt=1",
+      "category": "electrical",
+      "imageUrl": "https://imgs.search.brave.com/0OE4CA-mKqkNLcc3g1ijqE2hSErcPE45H_eEWw-p8ZQ/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9zLmFs/aWNkbi5jb20vQHNj/MDQva2YvSDY3OWE1/MzA2MTBkOTQ1OWM5/ZjVlMDY1OGYyOWE3/OWM5cS5qcGdfMzAw/eDMwMC5qcGc",
+      "quantity": 1,
+      "dimensions": "100x80x1.6mm",
+      "productName": "Custom FR4 Vivaldi Antenna",
+      "purchaseUrl": "https://www.oshpark.com/pricing",
+      "aliexpressUrl": "https://s.click.aliexpress.com/e/_c3aw89VJ",
+      "estimatedCost": 10
+    },
+    {
+      "id": "dc_dc_stepdown",
+      "name": "Payload Main Power Regulator",
+      "pins": [
+        "VIN+",
+        "VIN-",
+        "VOUT+",
+        "VOUT-"
+      ],
+      "type": "power",
+      "partId": "439512e5-5a67-4720-b8f3-dc3a05faa8c5",
+      "ebayUrl": "https://www.ebay.com/sch/i.html?_nkw=Buck+Converter+12V%2F24V+to+5V+3A&_sacat=0&_from=R40&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339153059&customid=blueprint&toolid=10001&mkevt=1",
+      "category": "electrical",
+      "imageUrl": "https://m.media-amazon.com/images/I/51RkklXx8AL._SL500_.jpg",
+      "quantity": 1,
+      "research": {
+        "sourcing": [
+          {
+            "url": "https://www.aliexpress.com/item/1005008928142771.html?pdp_npi=6%40dis%21USD%213.85%213.85%21%21%2125.98%2125.98%21%402151fce817797792412976833e101f%2112000047237513062%21affd%21%21%21%211%210%21",
+            "price": "$3.85",
+            "vendor": "AliExpress"
+          },
+          {
+            "url": "https://www.amazon.com/dp/B0C2KKJ8B1?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+            "price": "$8.77",
+            "vendor": "Amazon"
+          }
+        ]
+      },
+      "dimensions": "26x15x7mm",
+      "description": "Provides regulated 5V power for the microcontroller and low-power sensors from the tractor's 12V/24V supply.",
+      "productName": "Buck Converter 12V/24V to 5V 3A",
+      "purchaseUrl": "https://s.click.aliexpress.com/s/fwx308cRD9Eny963e3KDdYxyIpNj8TXVr7saiF9Um5rMUg1kZtJALLnfa2LNXtiVgnxdD8Og6MmvwBoxhnSYQGM6r0c08U4TfX8DFGo7vviCuu3q62Q60OAhRZcqm3G8PtwM69xY7TOEWRrvulP5ukZQ4uQbBBtaVsdr6EffAqVmp3O5GyUANU2DoA3dJufNhDfh7KOlLgKIvRVhDxRESHLmea6fTE26gLUqKEUuuizJiLENrCbax94DZHDu8WhaXM9vQ86gzlqceNPO5w3vwXm4VrBF3x2lAMEl06wgNdTSMiT7cNG4HIdW0JxHN1nnIbKiKwjnwn3vBw0IDl8DnNH4o5T5cFIxsE4WzM3dFc6TRvHW2XseLDR1dbdVkRY8jwOsg2AB25iA7PY1bJVkBxWutb79SoooOofvzMUM9YS20kDY2gMYPBdncnmRkzkpPwywIzmF6Cc6oQwIpmUhJaPSbOCLKI7bR8W1KSisQslfQSyA6oY2VRc2rEnYRDrnbPVPfrrjPRX7MiLqATpdP20VotuMgxi2V8R37sAwoqQky51vzkqTKQSdzKzuLF2V7pfXG6wg5gHQnuuyATRqEqXI22AdFXegXb1La5zc76LzAFaAi60iXc5LtZUMtZueTMDMGpy9yCnyS7bEIocujXZjJJwYYrddcfnoulDJl0l1kU8Q1UOh8514GmVSrwI5IpX5kJwpQC2Xur41F5kUXjIwYB9uD1UzL9hkEQupXxQ10SIp9bgeegnApAuU6v4eajs6JpPOTcXBqTipgMYuLVHh5JnIF4X1cUi4DGpgEC7pEusaVj1Te1y04wtB8KDgOGrzrMW2aKGNFRbH20PDkDe6uvfpz2kASPVIpEykNdJXxSShdjZ8uwjAvtXsPZxi2kU7FLMF0FXtwBeMNWLmtwbIrOVeV5xhKH43yubwsOQ0COw7cQSBbaHnVIDwMJZR4E1mqhmVt0pl00kdrl",
+      "aliexpressUrl": "https://s.click.aliexpress.com/s/fwx308cRD9Eny963e3KDdYxyIpNj8TXVr7saiF9Um5rMUg1kZtJALLnfa2LNXtiVgnxdD8Og6MmvwBoxhnSYQGM6r0c08U4TfX8DFGo7vviCuu3q62Q60OAhRZcqm3G8PtwM69xY7TOEWRrvulP5ukZQ4uQbBBtaVsdr6EffAqVmp3O5GyUANU2DoA3dJufNhDfh7KOlLgKIvRVhDxRESHLmea6fTE26gLUqKEUuuizJiLENrCbax94DZHDu8WhaXM9vQ86gzlqceNPO5w3vwXm4VrBF3x2lAMEl06wgNdTSMiT7cNG4HIdW0JxHN1nnIbKiKwjnwn3vBw0IDl8DnNH4o5T5cFIxsE4WzM3dFc6TRvHW2XseLDR1dbdVkRY8jwOsg2AB25iA7PY1bJVkBxWutb79SoooOofvzMUM9YS20kDY2gMYPBdncnmRkzkpPwywIzmF6Cc6oQwIpmUhJaPSbOCLKI7bR8W1KSisQslfQSyA6oY2VRc2rEnYRDrnbPVPfrrjPRX7MiLqATpdP20VotuMgxi2V8R37sAwoqQky51vzkqTKQSdzKzuLF2V7pfXG6wg5gHQnuuyATRqEqXI22AdFXegXb1La5zc76LzAFaAi60iXc5LtZUMtZueTMDMGpy9yCnyS7bEIocujXZjJJwYYrddcfnoulDJl0l1kU8Q1UOh8514GmVSrwI5IpX5kJwpQC2Xur41F5kUXjIwYB9uD1UzL9hkEQupXxQ10SIp9bgeegnApAuU6v4eajs6JpPOTcXBqTipgMYuLVHh5JnIF4X1cUi4DGpgEC7pEusaVj1Te1y04wtB8KDgOGrzrMW2aKGNFRbH20PDkDe6uvfpz2kASPVIpEykNdJXxSShdjZ8uwjAvtXsPZxi2kU7FLMF0FXtwBeMNWLmtwbIrOVeV5xhKH43yubwsOQ0COw7cQSBbaHnVIDwMJZR4E1mqhmVt0pl00kdrl",
+      "estimatedCost": 5,
+      "amazonUrl": "https://www.amazon.com/dp/B0C2KKJ8B1?tag=blueprintam-20&linkCode=osi&th=1&psc=1"
+    },
+    {
+      "id": "ldo_pi",
+      "name": "Raspberry Pi LDO Regulator",
+      "pins": [
+        "VIN",
+        "VOUT",
+        "GND",
+        "EN"
+      ],
+      "type": "power",
+      "partId": "7961af7f-32b3-42e2-95cc-d96edbfe8a44",
+      "ebayUrl": "https://www.ebay.com/sch/i.html?_nkw=LP2985-50DBVR+%285V+LDO%29&_sacat=0&_from=R40&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339153059&customid=blueprint&toolid=10001&mkevt=1",
+      "category": "electrical",
+      "imageUrl": "https://m.media-amazon.com/images/I/41-LNy1i20S._SL500_.jpg",
+      "quantity": 1,
+      "research": {
+        "sourcing": [
+          {
+            "url": "https://www.aliexpress.com/w/wholesale-lp2985-33dbvr-3-3v-ldo.html",
+            "vendor": "AliExpress"
+          },
+          {
+            "url": "https://www.amazon.com/dp/B097NKRRTQ?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+            "price": "$6.45",
+            "vendor": "Amazon"
+          }
+        ]
+      },
+      "dimensions": "2.9x1.6x1mm",
+      "productName": "LP2985-50DBVR (5V LDO)",
+      "purchaseUrl": "https://www.digikey.com/en/products/detail/texas-instruments/LP2985-50DBVR/251322",
+      "aliexpressUrl": "https://s.click.aliexpress.com/e/_c4bZOGiN",
+      "estimatedCost": 1.5,
+      "amazonUrl": "https://www.amazon.com/dp/B097NKRRTQ?tag=blueprintam-20&linkCode=osi&th=1&psc=1"
+    },
+    {
+      "id": "ldo_nanovna",
+      "name": "NanoVNA LDO Regulator",
+      "pins": [
+        "VIN",
+        "VOUT",
+        "GND",
+        "EN"
+      ],
+      "type": "power",
+      "partId": "7961af7f-32b3-42e2-95cc-d96edbfe8a44",
+      "ebayUrl": "https://www.ebay.com/sch/i.html?_nkw=LP2985-50DBVR+%285V+LDO%29&_sacat=0&_from=R40&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339153059&customid=blueprint&toolid=10001&mkevt=1",
+      "category": "electrical",
+      "imageUrl": "https://m.media-amazon.com/images/I/41-LNy1i20S._SL500_.jpg",
+      "quantity": 1,
+      "research": {
+        "sourcing": [
+          {
+            "url": "https://www.aliexpress.com/w/wholesale-lp2985-33dbvr-3-3v-ldo.html",
+            "vendor": "AliExpress"
+          },
+          {
+            "url": "https://www.amazon.com/dp/B097NKRRTQ?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+            "price": "$6.45",
+            "vendor": "Amazon"
+          }
+        ]
+      },
+      "dimensions": "2.9x1.6x1mm",
+      "productName": "LP2985-50DBVR (5V LDO)",
+      "purchaseUrl": "https://www.digikey.com/en/products/detail/texas-instruments/LP2985-50DBVR/251322",
+      "aliexpressUrl": "https://s.click.aliexpress.com/e/_c4bZOGiN",
+      "estimatedCost": 1.5,
+      "amazonUrl": "https://www.amazon.com/dp/B097NKRRTQ?tag=blueprintam-20&linkCode=osi&th=1&psc=1"
+    },
+    {
+      "id": "sma_cable_1",
+      "name": "SMA Coaxial Cable (Port 1)",
+      "pins": [
+        "SMA_M",
+        "SMA_M"
+      ],
+      "type": "module",
+      "partId": "e7e2a25f-a289-40f2-93ab-58e5ff9027b0",
+      "ebayUrl": "https://www.ebay.com/sch/i.html?_nkw=SMA+Male+to+Male+RG316+Coaxial+Cable+%2810cm%29&_sacat=0&_from=R40&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339153059&customid=blueprint&toolid=10001&mkevt=1",
+      "category": "electrical",
+      "imageUrl": "https://m.media-amazon.com/images/I/41a4QuK58aL._SL500_.jpg",
+      "quantity": 1,
+      "research": {
+        "sourcing": [
+          {
+            "url": "https://www.aliexpress.com/w/wholesale-rg316-coaxial-cable-sma-male-to-sma-male-0-5m.html",
+            "vendor": "AliExpress"
+          },
+          {
+            "url": "https://www.amazon.com/dp/B0CNYW6FGF?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+            "price": "$6.99",
+            "vendor": "Amazon"
+          }
+        ]
+      },
+      "amazonUrl": "https://www.amazon.com/dp/B0CNYW6FGF?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "dimensions": "100x2x2mm",
+      "productName": "SMA Male to Male RG316 Coaxial Cable (10cm)",
+      "purchaseUrl": "https://www.amazon.com/dp/B0CNYW6FGF?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "aliexpressUrl": "https://s.click.aliexpress.com/e/_c4TRv4Xf",
+      "estimatedCost": 3
+    },
+    {
+      "id": "sma_cable_2",
+      "name": "SMA Coaxial Cable (Port 2)",
+      "pins": [
+        "SMA_M",
+        "SMA_M"
+      ],
+      "type": "module",
+      "partId": "e7e2a25f-a289-40f2-93ab-58e5ff9027b0",
+      "ebayUrl": "https://www.ebay.com/sch/i.html?_nkw=SMA+Male+to+Male+RG316+Coaxial+Cable+%2810cm%29&_sacat=0&_from=R40&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339153059&customid=blueprint&toolid=10001&mkevt=1",
+      "category": "electrical",
+      "imageUrl": "https://m.media-amazon.com/images/I/41a4QuK58aL._SL500_.jpg",
+      "quantity": 1,
+      "research": {
+        "sourcing": [
+          {
+            "url": "https://www.aliexpress.com/w/wholesale-rg316-coaxial-cable-sma-male-to-sma-male-0-5m.html",
+            "vendor": "AliExpress"
+          },
+          {
+            "url": "https://www.amazon.com/dp/B0CNYW6FGF?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+            "price": "$6.99",
+            "vendor": "Amazon"
+          }
+        ]
+      },
+      "amazonUrl": "https://www.amazon.com/dp/B0CNYW6FGF?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "dimensions": "100x2x2mm",
+      "productName": "SMA Male to Male RG316 Coaxial Cable (10cm)",
+      "purchaseUrl": "https://www.amazon.com/dp/B0CNYW6FGF?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "aliexpressUrl": "https://s.click.aliexpress.com/e/_c4TRv4Xf",
+      "estimatedCost": 3
+    },
+    {
+      "id": "main_chassis",
+      "name": "Main Chassis Frame",
+      "type": "structural",
+      "partId": "335183a9-2a52-417a-ac98-e3bc3672e623",
+      "ebayUrl": "https://www.ebay.com/sch/i.html?_nkw=Main+Chassis+Frame&_sacat=0&_from=R40&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339153059&customid=blueprint&toolid=10001&mkevt=1",
+      "category": "mechanical",
+      "imageUrl": "https://m.media-amazon.com/images/I/316SZ227GtL._SL500_.jpg",
+      "material": "PETG",
+      "quantity": 1,
+      "research": {
+        "sourcing": [
+          {
+            "url": "https://www.amazon.com/dp/B0CRV5XP4M?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+            "price": "$59.99",
+            "vendor": "Amazon"
+          },
+          {
+            "url": "https://www.aliexpress.com/w/wholesale-main-chassis-frame.html",
+            "vendor": "AliExpress"
+          }
+        ]
+      },
+      "amazonUrl": "https://www.amazon.com/dp/B0CRV5XP4M?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "dimensions": "180x120x15mm",
+      "description": "Main structural frame for mounting all components and providing rigidity. Designed for low weight.",
+      "productName": "Main Chassis Frame",
+      "purchaseUrl": "https://www.amazon.com/dp/B0CRV5XP4M?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "aliexpressUrl": "https://s.click.aliexpress.com/e/_c4OC2jXn",
+      "estimatedCost": 3.5,
+      "printSettings": "20% infill, 0.2mm layer"
+    },
+    {
+      "id": "left_antenna_mount",
+      "name": "Left Antenna Mount",
+      "type": "3d_printed",
+      "category": "mechanical",
+      "material": "PETG",
+      "quantity": 1,
+      "mountsFor": "antenna_tx",
+      "dimensions": "50x40x30mm",
+      "description": "3D-printed bracket for mounting the transmit Vivaldi antenna at a 30-degree outward angle.",
+      "purchaseUrl": "https://www.amazon.com/s?k=PETG+filament",
+      "estimatedCost": 1.2,
+      "printSettings": "30% infill, 0.2mm layer"
+    },
+    {
+      "id": "right_antenna_mount",
+      "name": "Right Antenna Mount",
+      "type": "3d_printed",
+      "category": "mechanical",
+      "material": "PETG",
+      "quantity": 1,
+      "mountsFor": "antenna_rx",
+      "dimensions": "50x40x30mm",
+      "description": "3D-printed bracket for mounting the receive Vivaldi antenna at a 30-degree outward angle.",
+      "purchaseUrl": "https://www.amazon.com/s?k=PETG+filament",
+      "estimatedCost": 1.2,
+      "printSettings": "30% infill, 0.2mm layer"
+    },
+    {
+      "id": "electronics_enclosure_base",
+      "name": "Electronics Enclosure Base",
+      "type": "enclosure",
+      "ebayUrl": "https://www.ebay.com/sch/i.html?_nkw=Electronics+Enclosure+Base&_sacat=0&_from=R40&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339153059&customid=blueprint&toolid=10001&mkevt=1",
+      "category": "mechanical",
+      "material": "PETG",
+      "quantity": 1,
+      "dimensions": "100x75x40mm",
+      "description": "Base housing for the NanoVNA and Raspberry Pi, providing protection and integrated mounting points.",
+      "purchaseUrl": "https://www.amazon.com/s?k=PETG+filament",
+      "estimatedCost": 2.5,
+      "printSettings": "25% infill, 0.2mm layer"
+    },
+    {
+      "id": "electronics_enclosure_lid",
+      "name": "Electronics Enclosure Lid",
+      "type": "enclosure",
+      "partId": "1a2a98d4-cd66-4b84-bd39-3e27446dda6d",
+      "ebayUrl": "https://www.ebay.com/sch/i.html?_nkw=Crown+Rear+Enclosure+Lid&_sacat=0&_from=R40&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339153059&customid=blueprint&toolid=10001&mkevt=1",
+      "category": "mechanical",
+      "material": "PETG",
+      "quantity": 1,
+      "dimensions": "100x75x5mm",
+      "description": "Cover for the electronics enclosure, designed to secure with small screws.",
+      "productName": "Crown Rear Enclosure Lid",
+      "purchaseUrl": "https://www.amazon.com/s?k=PETG+filament",
+      "aliexpressUrl": "https://s.click.aliexpress.com/e/_c4KwJ1HP",
+      "estimatedCost": 0.8,
+      "printSettings": "20% infill, 0.2mm layer"
+    },
+    {
+      "id": "nanovna_mount_integrated",
+      "name": "NanoVNA Mount (Integrated)",
+      "type": "3d_printed",
+      "category": "mechanical",
+      "material": "PETG",
+      "quantity": 1,
+      "mountsFor": "nanovna_gpr",
+      "dimensions": "70x130x5mm",
+      "description": "Integrated standoffs within the electronics enclosure base to secure the NanoVNA.",
+      "purchaseUrl": "https://www.amazon.com/s?k=PETG+filament",
+      "estimatedCost": 0.5,
+      "printSettings": "25% infill, 0.2mm layer"
+    },
+    {
+      "id": "pi_mount_integrated",
+      "name": "Raspberry Pi Mount (Integrated)",
+      "type": "3d_printed",
+      "category": "mechanical",
+      "material": "PETG",
+      "quantity": 1,
+      "mountsFor": "raspberry_pi_controller",
+      "dimensions": "65x56x5mm",
+      "description": "Integrated standoffs within the electronics enclosure base to secure the Raspberry Pi 4.",
+      "purchaseUrl": "https://www.amazon.com/s?k=PETG+filament",
+      "estimatedCost": 0.4,
+      "printSettings": "25% infill, 0.2mm layer"
+    },
+    {
+      "id": "power_module_mount",
+      "name": "Power Module Mount",
+      "type": "3d_printed",
+      "category": "mechanical",
+      "material": "PETG",
+      "quantity": 1,
+      "mountsFor": "dc_dc_stepdown",
+      "dimensions": "40x30x10mm",
+      "description": "Small 3D-printed bracket to secure the DC-DC step-down and LDO modules within the enclosure.",
+      "purchaseUrl": "https://www.amazon.com/s?k=PETG+filament",
+      "estimatedCost": 0.3,
+      "printSettings": "20% infill, 0.2mm layer"
+    },
+    {
+      "id": "drone_quick_release_adapter",
+      "name": "Drone Quick-Release Adapter",
+      "type": "3d_printed",
+      "category": "mechanical",
+      "material": "PETG",
+      "quantity": 1,
+      "dimensions": "80x60x10mm",
+      "description": "Adapter plate for connecting the payload to a generic drone quick-release mounting system.",
+      "purchaseUrl": "https://www.amazon.com/s?k=PETG+filament",
+      "estimatedCost": 1.5,
+      "printSettings": "40% infill, 0.2mm layer"
+    },
+    {
+      "id": "m2_5_screws_short",
+      "name": "M2.5x6mm Screws (NanoVNA/Pi)",
+      "type": "misc",
+      "partId": "474e6f5d-a679-4d0c-bdd6-5565b200e622",
+      "ebayUrl": "https://www.ebay.com/sch/i.html?_nkw=M2.5x6mm+Phillips+Head+Screws&_sacat=0&_from=R40&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339153059&customid=blueprint&toolid=10001&mkevt=1",
+      "category": "mechanical",
+      "imageUrl": "https://m.media-amazon.com/images/I/41XZe8SqOKL._SL500_.jpg",
+      "material": "Stainless Steel",
+      "quantity": 8,
+      "research": {
+        "sourcing": [
+          {
+            "url": "https://www.amazon.com/dp/B01LK6XXCE?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+            "price": "$7.09",
+            "vendor": "Amazon"
+          },
+          {
+            "url": "https://www.aliexpress.com/w/wholesale-m2-5x6mm-phillips-head-screws.html",
+            "vendor": "AliExpress"
+          }
+        ]
+      },
+      "amazonUrl": "https://www.amazon.com/dp/B01LK6XXCE?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "dimensions": "M2.5x6mm",
+      "description": "Screws for mounting the NanoVNA and Raspberry Pi to their respective standoffs.",
+      "productName": "M2.5x6mm Phillips Head Screws",
+      "purchaseUrl": "https://www.amazon.com/dp/B01LK6XXCE?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "aliexpressUrl": "https://s.click.aliexpress.com/e/_c2x7pBjn",
+      "estimatedCost": 0.05
+    },
+    {
+      "id": "m3_screws_medium",
+      "name": "M3x10mm Screws (Enclosure/Frame)",
+      "type": "misc",
+      "partId": "997e71cd-eb30-4d62-be4e-11d8bf03f813",
+      "ebayUrl": "https://www.ebay.com/sch/i.html?_nkw=M3x10mm+Phillips+Head+Screws&_sacat=0&_from=R40&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339153059&customid=blueprint&toolid=10001&mkevt=1",
+      "category": "mechanical",
+      "imageUrl": "https://m.media-amazon.com/images/I/313i8J8nZxL._SL500_.jpg",
+      "quantity": 6,
+      "research": {
+        "specs": [
+          {
+            "label": "material",
+            "value": "Steel"
+          },
+          {
+            "label": "head_type",
+            "value": "Round"
+          },
+          {
+            "label": "length_mm",
+            "value": "10"
+          },
+          {
+            "label": "drive_type",
+            "value": "Phillips"
+          },
+          {
+            "label": "thread_size",
+            "value": "M3"
+          }
+        ],
+        "sourcing": [
+          {
+            "url": "https://protosupplies.com/product/m3x10mm-phillips-pan-head-machine-screw-ss-50-pack/",
+            "vendor": "ProtoSupplies"
+          },
+          {
+            "url": "https://andymark.com/products/m3-0-5-x-10-mm-flat-head-phillips-screw",
+            "vendor": "AndyMark"
+          },
+          {
+            "url": "https://www.amazon.com/FixtureDisplays-Socket-M3x10mm-Screws-15170-20PK-NF/dp/B0872LJQPJ",
+            "vendor": "Amazon"
+          },
+          {
+            "url": "https://www.harfington.com/products/p-1641341",
+            "vendor": "Harfington"
+          },
+          {
+            "url": "https://www.amazon.com/dp/B0GC3CD86G?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+            "price": "$5.99",
+            "vendor": "Amazon"
+          },
+          {
+            "url": "https://www.aliexpress.com/w/wholesale-m3x10mm-phillips-head-screws.html",
+            "vendor": "AliExpress"
+          }
+        ]
+      },
+      "amazonUrl": "https://www.amazon.com/dp/B0GC3CD86G?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "dimensions": "M3x10mm",
+      "description": "Screws for securing the enclosure lid and various structural components.",
+      "productName": "M3x10mm Phillips Head Screws",
+      "purchaseUrl": "https://www.amazon.com/dp/B0GC3CD86G?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "aliexpressUrl": "https://s.click.aliexpress.com/e/_c4LnG0Jj",
+      "estimatedCost": 0.06
+    },
+    {
+      "id": "m3_nuts",
+      "name": "M3 Nuts",
+      "type": "misc",
+      "partId": "c3dca189-2353-43a1-b760-66b6cefe0032",
+      "ebayUrl": "https://www.ebay.com/sch/i.html?_nkw=M3+Hex+Nuts&_sacat=0&_from=R40&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339153059&customid=blueprint&toolid=10001&mkevt=1",
+      "category": "mechanical",
+      "imageUrl": "https://m.media-amazon.com/images/I/31bFY16mChL._SL500_.jpg",
+      "quantity": 6,
+      "research": {
+        "specs": [
+          {
+            "label": "Material",
+            "value": "18-8 Stainless Steel"
+          },
+          {
+            "label": "Standard",
+            "value": "DIN 934"
+          },
+          {
+            "label": "Thread Size",
+            "value": "M3"
+          },
+          {
+            "label": "Thickness_mm",
+            "value": "2.4"
+          },
+          {
+            "label": "mcmaster_url",
+            "value": "https://www.mcmaster.com/90591A121"
+          },
+          {
+            "label": "Thread Pitch_mm",
+            "value": "0.5"
+          },
+          {
+            "label": "mcmaster_part_number",
+            "value": "90591A121"
+          },
+          {
+            "label": "Width Across Flats_mm",
+            "value": "5.5"
+          }
+        ],
+        "sourcing": [
+          {
+            "url": "https://www.amazon.com/dp/B0F9FC4563?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+            "price": "$5.99",
+            "vendor": "Amazon"
+          },
+          {
+            "url": "https://www.amazon.com/binifiMux-M1-6-Stainless-Steel-200pcs/dp/B08N68W9SP",
+            "vendor": "Amazon"
+          },
+          {
+            "url": "https://www.aliexpress.com/item/1005007278965396.html?pdp_npi=6%40dis%21USD%216.21%216.08%21%21%2142.11%2141.23%21%40210152bd17793266883568522e1214%2112000040076085093%21affd%21%21%21%211%210%21",
+            "price": "$6.08",
+            "vendor": "AliExpress"
+          },
+          {
+            "url": "https://accu-components.com/us/hexagon-nuts/7888-HPN-M3-A2",
+            "vendor": "Accu"
+          },
+          {
+            "url": "",
+            "vendor": "Amazon"
+          },
+          {
+            "url": "https://www.mcmaster.com/90591A121",
+            "vendor": "McMaster-Carr"
+          }
+        ],
+        "alternatives": [
+          {
+            "name": "MonsterBolts M3 Hex Nuts (A4/316 Stainless Steel)",
+            "reason": "Uses A4 (316) marine-grade stainless steel, which offers higher corrosion resistance than 18-8 (304) stainless steel, but is not the specified material."
+          }
+        ]
+      },
+      "amazonUrl": "https://www.amazon.com/dp/B0F9FC4563?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "dimensions": "M3",
+      "description": "Hex nuts for M3 screws where through-holes are used for assembly.",
+      "productName": "M3 Hex Nuts",
+      "purchaseUrl": "https://www.amazon.com/dp/B0F9FC4563?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "aliexpressUrl": "https://s.click.aliexpress.com/s/fwx308cRD9Eny963e3KDdYxyIpNj8TXVr7saiF9Um5rMUg1kZtJALLnfa2LNXtiVgnxdD8Og6MmvwBoxhnSYQGM6r0c08U4TfX8DFGo7vviCuu3q62Q60OAhRZcqm3G8PtwM69xY7TOEWRrvulP5ukZQ4uQbBBtaVsdr6EffAqVmp3O5GyUANU2DoA3dJufNhDfh7KOlLgKIvRVhDxRESHLmea6fTE26gLUqKEUuuizJiLENrCbax94DZHDu8WhaXM9vQ86gzlqceNPO5w3vwXm4VrBF3x2lAMEl06wgNdTSMiT7cNG4HIdW0JxheLVocLOesSj3YW9HVKSsjAuk0dhY8YT34rvUc5SPCcgI4QR7M5m7vL2CF1qaBN4YJaX2QCpde3asIqUTPZ7VH9jKyimAosVWo9rG6TlCDaJUGpnvxlaPEscouM2pHiy6Zxvpv1xT7pzOx6Fyo1keQHGdNb57GbSrrLl71Nratjl21Ld7kva7BOr6PkrmoRWaWh55AYomtd8Z3yTq04PvrqlY5YBlai14Zqqm1nwp3TV2K5uxs0EGrCrPfu4GYI7jNaPISs01eXJf41jhf0QpknTJxW8qBL9GcWbb9hfTnLyftpwrbKqPnF8dvx4RHQkb8ZP8BSR81V5Fu45b5wJbrDhRnyjz0RXWL5BXkBaEs3ZSp7WOwJEtZ1t3tvABpapsuJRrQbLqHwt6h8T28IiiGvsb55OJKTAhaiBPwnBWGJ74IpYm6mf32wB3kuuhALc6jRTSWG3Df4XHqSsoXkfwwzvcYwbVm6PDdgzJw7MEBaWEkQwFos1EuzSOsU3IDiG7r2kJf7eV9aInWlTwQ977gk6Q27AfFEY984k1lgT40XJlTIWPlMvK7GlvY7giUmMRlsr4ETykxB2EQ9k6wlIDNTUesgVotiHHythHgqnxfbJyf5h6w0WqBMIGaF0R88Tm1iWPDGAkRtRFuY5ke41QIn",
+      "estimatedCost": 0.03
+    },
+    {
+      "id": "heat_set_inserts_m3",
+      "name": "M3 Heat Set Inserts",
+      "type": "misc",
+      "partId": "a218c217-5ff2-453c-bf9b-0cb77fe40758",
+      "ebayUrl": "https://www.ebay.com/sch/i.html?_nkw=M3+Brass+Heat+Set+Inserts&_sacat=0&_from=R40&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339153059&customid=blueprint&toolid=10001&mkevt=1",
+      "category": "mechanical",
+      "imageUrl": "https://m.media-amazon.com/images/I/51Le5SVH7JL._SL500_.jpg",
+      "quantity": 12,
+      "research": {
+        "specs": [
+          {
+            "label": "material",
+            "value": "Brass"
+          },
+          {
+            "label": "length_mm",
+            "value": "6.4"
+          },
+          {
+            "label": "application",
+            "value": "Plastic"
+          },
+          {
+            "label": "insert_type",
+            "value": "Heat-Set"
+          },
+          {
+            "label": "thread_size",
+            "value": "M3"
+          },
+          {
+            "label": "mcmaster_url",
+            "value": "https://www.mcmaster.com/94180A333"
+          },
+          {
+            "label": "thread_pitch",
+            "value": "0.5"
+          },
+          {
+            "label": "mcmaster_part_number",
+            "value": "94180A333"
+          }
+        ],
+        "sourcing": [
+          {
+            "url": "https://www.mcmaster.com/94180A333",
+            "vendor": "McMaster-Carr"
+          },
+          {
+            "url": "https://www.adafruit.com/product/4255",
+            "price": "$5.95",
+            "vendor": "Adafruit"
+          },
+          {
+            "url": "https://www.amazon.com/dp/B0CS6VZYL8?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+            "price": "$8.99",
+            "vendor": "Amazon"
+          },
+          {
+            "url": "https://www.aliexpress.com/item/1005006351445007.html?pdp_npi=6%40dis%21USD%2112.01%216.25%21%21%2181.43%2142.41%21%402141149b17793251850437285e1158%2112000036858180035%21affd%21%21%21%211%210%21",
+            "price": "$6.25",
+            "vendor": "AliExpress"
+          }
+        ],
+        "alternatives": [
+          {
+            "name": "McMaster-Carr M3 Brass Heat-Set Insert, 3.8mm Length",
+            "reason": "A shorter M3 brass heat-set insert option from McMaster-Carr, part number 94180A331 (M3-.5 Internal Thread, 3.8mm Length)."
+          }
+        ]
+      },
+      "amazonUrl": "https://www.amazon.com/dp/B0CS6VZYL8?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "dimensions": "M3x5mm",
+      "description": "Brass threaded inserts for robust screw connections into 3D-printed parts.",
+      "productName": "M3 Brass Heat Set Inserts",
+      "purchaseUrl": "https://www.adafruit.com/product/4255",
+      "aliexpressUrl": "https://s.click.aliexpress.com/s/fwx308cRD9Eny963e3KDdYxyIpNj8TXVr7saiF9Um5rMUg1kZtJALLnfa2LNXtiVgnxdD8Og6MmvwBoxhnSYQGM6r0c08U4TfX8DFGo7vviCuu3q62Q60OAhRZcqm3G8PtwM69xY7TOEWRrvulP5ukZQ4uQbBBtaVsdr6EffAqVmp3O5GyUANU2DoA3dJufNhDfh7KOlLgKIvRVhDxRESHLmea6fTE26gLUqKEUuuizJiLENrCbax94DZHDu8WhaXM9vQ86gzlqceNPO5w3vwXm4VrBF3x2lAMEl06wgNdTSMiT7cNG4HIdW0JxRpTpv62RXR9sVfC98GmMLkJmXC4qpbJhcQvkbxptOmgDfhTbS0PHwVgmr0VhydRzMgIoquzg3yg5D05i1x7FPxzxIl3P5mtn3X76qprXJgmg8InDgseeFkYRIIwB95RGJoFep43tAYGEBIRAZZ6LvWcRuoiSpUrlsk0dOnD41f9DJE08hfuSws15ysCxPxduPqEdOBJqzG04NUdFJ3bWrfijdWCN43CSC9mYDkrFhwwBbQVz82VhOIzQnJDGqhjn3119Vw7ZBsbw5zNsuKCnHfhCbxRPNLdII35nubRaiPuAYxgMIty1KMm8HZY6F24WzUNGNr5Ay28BHTyNjrjgt37wwssKrFvlAkOc5eRVIfTsSPf00gPtpAnzrYCtO6pa4kt7Oim5FLl2fo9qzTlncqIyd0FnXRaj8FR9jadMKDscIUwEZtfGnXX3P4fbw1kDhD2QSSJMAn5RvUfmbQoftnN7hwclCo2YteNbSFQAlUTLnDvyAuTFcIVw4tUUdoYhbRuWVI1mNuQLwgrpJQ8M1sDLKul4ZypKQqK0WzxjP33EG9LwNWvX48ub96mvj0CpIbLhMAbjsoKwt5GdKy2tzmAgkWEcWjNuBrzPdW6qbqkvKztM8k9TpouDclbRaxH4aTLDpxLZe7KN7MOAMFYQW5H",
+      "estimatedCost": 0.1
+    },
+    {
+      "id": "sma_cable_1_mount",
+      "name": "SMA Coaxial Cable (Port 1) Mount",
+      "type": "3d_printed",
+      "category": "mechanical",
+      "material": "PETG",
+      "quantity": 1,
+      "mountsFor": "sma_cable_1",
+      "dimensions": "50x40x12mm",
+      "description": "Adapter plate for the SMA Coaxial Cable (Port 1) that bolts to the main chassis with M3 hardware. Includes wire-routing channels.",
+      "purchaseUrl": "",
+      "estimatedCost": 2,
+      "printSettings": "30% infill, 0.2mm layer, 4 perimeters"
+    },
+    {
+      "id": "sma_cable_2_mount",
+      "name": "SMA Coaxial Cable (Port 2) Mount",
+      "type": "3d_printed",
+      "category": "mechanical",
+      "material": "PETG",
+      "quantity": 1,
+      "mountsFor": "sma_cable_2",
+      "dimensions": "50x40x12mm",
+      "description": "Adapter plate for the SMA Coaxial Cable (Port 2) that bolts to the main chassis with M3 hardware. Includes wire-routing channels.",
+      "purchaseUrl": "",
+      "estimatedCost": 2,
+      "printSettings": "30% infill, 0.2mm layer, 4 perimeters"
+    }
+  ],
+  "notes": [
+    "low-cost",
+    "under 400g",
+    "under $400",
+    "DIY Vivaldi antennas",
+    "30-degree antenna angle",
+    "Open-source",
+    "COTS parts",
+    "subsurface anomaly detection"
+  ],
+  "projectName": "GPR Payload System",
+  "originalPrompt": "Design a stepped-frequency continuous-wave ground penetrating radar payload for subsurface anomaly detection and soil dielectric profiling. The core component is a NanoVNA-V2 Plus4 (50kHz-4.4GHz) connected to two DIY wideband Vivaldi antennas etched on FR4 boards. The payload must detect buried objects and soil inhomogeneities at depths of up to 30cm. The antennas must be mounted on a lightweight 3D-printed bracket angled 30 degrees outward for optimal ground coupling. The payload interfaces with a Raspberry Pi 4 over USB for processing. Total weight must be under 400g, and the total cost (including NanoVNA) must not exceed $400. Provide a complete BOM (CSV), electrical connections (JSON), mechanical connections (JSON), an assembly guide (MD) including antenna etching instructions, and a visual rendering (PNG). Open-source and COTS parts only. Application area: soil surveying, buried object location, non-destructive testing.",
+  "instructionSteps": [
+    {
+      "id": "fabricate",
+      "subSteps": [
+        {
+          "id": "fabricate_1",
+          "title": "3D print all mechanical components according to specified materials and infills.",
+          "partIds": [
+            "main_chassis",
+            "left_antenna_mount",
+            "right_antenna_mount",
+            "electronics_enclosure_base",
+            "electronics_enclosure_lid",
+            "nanovna_mount_integrated",
+            "pi_mount_integrated",
+            "power_module_mount",
+            "drone_quick_release_adapter",
+            "sma_cable_1_mount",
+            "sma_cable_2_mount"
+          ]
+        },
+        {
+          "id": "fabricate_2",
+          "title": "Deburr and clean all 3D printed parts.",
+          "partIds": [
+            "main_chassis",
+            "left_antenna_mount",
+            "right_antenna_mount",
+            "electronics_enclosure_base",
+            "electronics_enclosure_lid",
+            "nanovna_mount_integrated",
+            "pi_mount_integrated",
+            "power_module_mount",
+            "drone_quick_release_adapter",
+            "sma_cable_1_mount",
+            "sma_cable_2_mount"
+          ]
+        },
+        {
+          "id": "fabricate_3",
+          "title": "Insert M3 heat set inserts into the main chassis and electronics enclosure base.",
+          "partIds": [
+            "heat_set_inserts_m3",
+            "main_chassis",
+            "electronics_enclosure_base"
+          ]
+        },
+        {
+          "id": "fabricate_4",
+          "title": "Test fit the NanoVNA and Raspberry Pi into their integrated mounts on the enclosure base.",
+          "partIds": [
+            "nanovna_gpr",
+            "raspberry_pi_controller",
+            "nanovna_mount_integrated",
+            "pi_mount_integrated",
+            "electronics_enclosure_base"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wire",
+      "subSteps": [
+        {
+          "id": "wire_1",
+          "title": "Solder input and output wires to the DC-DC Step-down module.",
+          "partIds": [
+            "dc_dc_stepdown"
+          ]
+        },
+        {
+          "id": "wire_2",
+          "title": "Solder power input wires from the DC-DC Step-down to both LDO regulators (VIN+ to VIN, VIN- to GND).",
+          "partIds": [
+            "dc_dc_stepdown",
+            "ldo_pi",
+            "ldo_nanovna"
+          ]
+        },
+        {
+          "id": "wire_3",
+          "title": "Solder output wires from the Raspberry Pi LDO regulator to the Raspberry Pi's 5V power input.",
+          "partIds": [
+            "ldo_pi",
+            "raspberry_pi_controller"
+          ]
+        },
+        {
+          "id": "wire_4",
+          "title": "Solder output wires from the NanoVNA LDO regulator to the NanoVNA's 5V power input.",
+          "partIds": [
+            "ldo_nanovna",
+            "nanovna_gpr"
+          ]
+        },
+        {
+          "id": "wire_5",
+          "title": "Connect the Raspberry Pi to the NanoVNA via a USB3.0 to USB-C cable.",
+          "partIds": [
+            "raspberry_pi_controller",
+            "nanovna_gpr"
+          ]
+        },
+        {
+          "id": "wire_6",
+          "title": "Connect SMA Coaxial Cable (Port 1) to NanoVNA Port 1 and the Transmit Antenna.",
+          "partIds": [
+            "nanovna_gpr",
+            "sma_cable_1",
+            "antenna_tx"
+          ]
+        },
+        {
+          "id": "wire_7",
+          "title": "Connect SMA Coaxial Cable (Port 2) to NanoVNA Port 2 and the Receive Antenna.",
+          "partIds": [
+            "nanovna_gpr",
+            "sma_cable_2",
+            "antenna_rx"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bringup",
+      "subSteps": [
+        {
+          "id": "bringup_1",
+          "title": "Verify LDO output voltages (5V) with a multimeter before connecting to sensitive electronics.",
+          "partIds": [
+            "ldo_pi",
+            "ldo_nanovna",
+            "dc_dc_stepdown"
+          ]
+        },
+        {
+          "id": "bringup_2",
+          "title": "Apply input power to the DC-DC step-down and confirm correct voltage outputs.",
+          "partIds": [
+            "dc_dc_stepdown",
+            "ldo_pi",
+            "ldo_nanovna"
+          ]
+        },
+        {
+          "id": "bringup_3",
+          "title": "Power up the Raspberry Pi and install the necessary operating system and GPR software.",
+          "partIds": [
+            "raspberry_pi_controller"
+          ]
+        },
+        {
+          "id": "bringup_4",
+          "title": "Power up the NanoVNA and confirm it functions independently.",
+          "partIds": [
+            "nanovna_gpr"
+          ]
+        },
+        {
+          "id": "bringup_5",
+          "title": "Connect the Raspberry Pi to the NanoVNA and verify communication/device recognition.",
+          "partIds": [
+            "raspberry_pi_controller",
+            "nanovna_gpr"
+          ]
+        },
+        {
+          "id": "bringup_6",
+          "title": "Perform initial GPR system test without antennas connected to confirm software integration.",
+          "partIds": [
+            "nanovna_gpr",
+            "raspberry_pi_controller"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "assemble",
+      "subSteps": [
+        {
+          "id": "assemble_1",
+          "title": "Mount the Raspberry Pi controller into its integrated mount on the electronics enclosure base using M2.5 screws.",
+          "partIds": [
+            "raspberry_pi_controller",
+            "pi_mount_integrated",
+            "electronics_enclosure_base",
+            "m2_5_screws_short"
+          ]
+        },
+        {
+          "id": "assemble_2",
+          "title": "Mount the NanoVNA GPR module into its integrated mount on the electronics enclosure base using M2.5 screws.",
+          "partIds": [
+            "nanovna_gpr",
+            "nanovna_mount_integrated",
+            "electronics_enclosure_base",
+            "m2_5_screws_short"
+          ]
+        },
+        {
+          "id": "assemble_3",
+          "title": "Mount the DC-DC Step-down module onto the power module mount using appropriate M2.5 screws.",
+          "partIds": [
+            "dc_dc_stepdown",
+            "power_module_mount",
+            "m2_5_screws_short"
+          ]
+        },
+        {
+          "id": "assemble_4",
+          "title": "Mount the power module mount onto the electronics enclosure base.",
+          "partIds": [
+            "power_module_mount",
+            "electronics_enclosure_base"
+          ]
+        },
+        {
+          "id": "assemble_5",
+          "title": "Secure the SMA Coaxial Cable mounts to the electronics enclosure base.",
+          "partIds": [
+            "sma_cable_1_mount",
+            "sma_cable_2_mount",
+            "electronics_enclosure_base",
+            "sma_cable_1",
+            "sma_cable_2"
+          ]
+        },
+        {
+          "id": "assemble_6",
+          "title": "Attach the Transmit and Receive Vivaldi Antennas to their respective left and right antenna mounts.",
+          "partIds": [
+            "antenna_tx",
+            "antenna_rx",
+            "left_antenna_mount",
+            "right_antenna_mount"
+          ]
+        },
+        {
+          "id": "assemble_7",
+          "title": "Mount the left and right antenna mounts to the main chassis using M3 screws and nuts.",
+          "partIds": [
+            "main_chassis",
+            "left_antenna_mount",
+            "right_antenna_mount",
+            "m3_screws_medium",
+            "m3_nuts"
+          ]
+        },
+        {
+          "id": "assemble_8",
+          "title": "Secure the electronics enclosure base (with all internal components) to the main chassis using M3 screws into the heat set inserts.",
+          "partIds": [
+            "main_chassis",
+            "electronics_enclosure_base",
+            "m3_screws_medium"
+          ]
+        },
+        {
+          "id": "assemble_9",
+          "title": "Attach the drone quick-release adapter to the main chassis using M3 screws and nuts.",
+          "partIds": [
+            "main_chassis",
+            "drone_quick_release_adapter",
+            "m3_screws_medium",
+            "m3_nuts"
+          ]
+        },
+        {
+          "id": "assemble_10",
+          "title": "Close the electronics enclosure by securing the electronics enclosure lid to the base with M3 screws.",
+          "partIds": [
+            "electronics_enclosure_base",
+            "electronics_enclosure_lid",
+            "m3_screws_medium"
+          ]
+        },
+        {
+          "id": "assemble_11",
+          "title": "Perform a final system power-up and functional check with antennas attached.",
+          "partIds": [
+            "nanovna_gpr",
+            "raspberry_pi_controller",
+            "antenna_tx",
+            "antenna_rx"
+          ]
+        }
+      ]
+    }
+  ],
+  "projectDescription": "An open-source GPR system leverages a NanoVNA-V2 Plus4 and Raspberry Pi 4 with angled DIY Vivaldi antennas. This sub-400g payload performs subsurface anomaly detection and soil dielectric profiling for non-destructive testing.",
+  "imagePromptSnapshot": {
+    "tags": [
+      "low-cost",
+      "under 400g",
+      "under $400",
+      "DIY Vivaldi antennas",
+      "30-degree antenna angle",
+      "Open-source",
+      "COTS parts",
+      "subsurface anomaly detection"
+    ],
+    "description": "Project idea: Design a stepped-frequency continuous-wave ground penetrating radar payload for subsurface anomaly detection and soil dielectric profiling. The core component is a NanoVNA-V2 Plus4 (50kHz-4.4GHz) connected to two DIY wideband Vivaldi antennas etched on FR4 boards. The payload must detect buried objects and soil inhomogeneities at depths of up to 30cm. The antennas must be mounted on a lightweight 3D-printed bracket angled 30 degrees outward for optimal ground coupling. The payload interfaces with a Raspberry Pi 4 over USB for processing. Total weight must be under 400g, and the total cost (including NanoVNA) must not exceed $400. Provide a complete BOM (CSV), electrical connections (JSON), mechanical connections (JSON), an assembly guide (MD) including antenna etching instructions, and a visual rendering (PNG). Open-source and COTS parts only. Application area: soil surveying, buried object location, non-destructive testing.\n\nDesign notes: low-cost, under 400g, under $400, DIY Vivaldi antennas, 30-degree antenna angle, Open-source, COTS parts, subsurface anomaly detection\n\nElectrical components (current): 5x module: GPR Core NanoVNA, Vivaldi Antenna (Transmit), Vivaldi Antenna (Receive), SMA Coaxial Cable (Port 1) +1 more; Payload Controller (mcu, 85x56x17mm); 3x power: Payload Main Power Regulator, Raspberry Pi LDO Regulator, NanoVNA LDO Regulator\n\nMechanical/structural parts (current): Main Chassis Frame (structural, 180x120x15mm); 8x 3d_printed: Left Antenna Mount, Right Antenna Mount, NanoVNA Mount (Integrated), Raspberry Pi Mount (Integrated) +4 more; 2x enclosure: Electronics Enclosure Base, Electronics Enclosure Lid; 4x misc: M2.5x6mm Screws (NanoVNA/Pi), M3x10mm Screws (Enclosure/Frame), M3 Nuts, M3 Heat Set Inserts\n\nAssembly: Main Chassis Frame → Left Antenna Mount (M3 bolts); Main Chassis Frame → Right Antenna Mount (M3 bolts); Main Chassis Frame → Electronics Enclosure Base (M3 bolts with M3 heat set inserts); Main Chassis Frame → Drone Quick-Release Adapter (M3 bolts); Electronics Enclosure Base → Electronics Enclosure Lid (M3 screws with M3 heat set inserts); Electronics Enclosure Base → NanoVNA Mount (Integrated) (integrated); Electronics Enclosure Base → Raspberry Pi Mount (Integrated) (integrated); Electronics Enclosure Base → Power Module Mount (M2.5 screws); Electronics Enclosure Base → SMA Coaxial Cable (Port 1) Mount (integrated); Electronics Enclosure Base → SMA Coaxial Cable (Port 2) Mount (integrated); Left Antenna Mount → Vivaldi Antenna (Transmit) (mount); Right Antenna Mount → Vivaldi Antenna (Receive) (mount); NanoVNA Mount (Integrated) → GPR Core NanoVNA (mount); Raspberry Pi Mount (Integrated) → Payload Controller (mount); Power Module Mount → Payload Main Power Regulator (mount) (+2 more connections)"
+  },
+  "instructionPreamble": {
+    "tools": [
+      "3D printer (PETG capable)",
+      "Soldering iron with fine tip",
+      "Wire strippers",
+      "Multimeter",
+      "M2.5 hex key",
+      "M3 hex key",
+      "Small Phillips screwdriver (optional, for general electronics)",
+      "Hot air gun or specific tip for heat-set inserts (optional, but recommended)"
+    ],
+    "assumptions": [
+      "Basic 3D printing experience and printer calibration knowledge.",
+      "Basic soldering experience for small components and power connections.",
+      "Familiarity with Raspberry Pi OS setup and basic command line operations.",
+      "Access to a 5V USB power source for initial Raspberry Pi testing.",
+      "General understanding of electrical safety and polarity."
+    ]
+  },
+  "electricalConnections": [
+    {
+      "type": "power",
+      "label": "Main Power to Pi LDO",
+      "source": "dc_dc_stepdown",
+      "target": "ldo_pi",
+      "current": "3A",
+      "voltage": "9V"
+    },
+    {
+      "type": "power",
+      "label": "Main Power to NanoVNA LDO",
+      "source": "dc_dc_stepdown",
+      "target": "ldo_nanovna",
+      "current": "1A",
+      "voltage": "9V"
+    },
+    {
+      "type": "power",
+      "label": "Regulated 5V for Pi",
+      "source": "ldo_pi",
+      "target": "raspberry_pi_controller",
+      "current": "3A",
+      "voltage": "5V"
+    },
+    {
+      "type": "power",
+      "label": "Regulated 5V for NanoVNA",
+      "source": "ldo_nanovna",
+      "target": "nanovna_gpr",
+      "current": "500mA",
+      "voltage": "5V"
+    },
+    {
+      "type": "data",
+      "label": "Pi to NanoVNA Data",
+      "source": "raspberry_pi_controller",
+      "target": "nanovna_gpr",
+      "protocol": "usb",
+      "sourcePin": "USB3_0",
+      "targetPin": "USB-C"
+    },
+    {
+      "type": "data",
+      "label": "NanoVNA Port 1 to Cable",
+      "source": "nanovna_gpr",
+      "target": "sma_cable_1",
+      "protocol": "analog",
+      "sourcePin": "SMA_Port1",
+      "targetPin": "SMA_M"
+    },
+    {
+      "type": "data",
+      "label": "Cable 1 to TX Antenna",
+      "source": "sma_cable_1",
+      "target": "antenna_tx",
+      "protocol": "analog",
+      "sourcePin": "SMA_M",
+      "targetPin": "SMA_Connector"
+    },
+    {
+      "type": "data",
+      "label": "NanoVNA Port 2 to Cable",
+      "source": "nanovna_gpr",
+      "target": "sma_cable_2",
+      "protocol": "analog",
+      "sourcePin": "SMA_Port2",
+      "targetPin": "SMA_M"
+    },
+    {
+      "type": "data",
+      "label": "Cable 2 to RX Antenna",
+      "source": "sma_cable_2",
+      "target": "antenna_rx",
+      "protocol": "analog",
+      "sourcePin": "SMA_M",
+      "targetPin": "SMA_Connector"
+    }
+  ],
+  "mechanicalConnections": [
+    {
+      "label": "M3 bolts",
+      "source": "main_chassis",
+      "target": "left_antenna_mount"
+    },
+    {
+      "label": "M3 bolts",
+      "source": "main_chassis",
+      "target": "right_antenna_mount"
+    },
+    {
+      "label": "M3 bolts with M3 heat set inserts",
+      "source": "main_chassis",
+      "target": "electronics_enclosure_base"
+    },
+    {
+      "label": "M3 bolts",
+      "source": "main_chassis",
+      "target": "drone_quick_release_adapter"
+    },
+    {
+      "label": "M3 screws with M3 heat set inserts",
+      "source": "electronics_enclosure_base",
+      "target": "electronics_enclosure_lid"
+    },
+    {
+      "label": "integrated",
+      "source": "electronics_enclosure_base",
+      "target": "nanovna_mount_integrated"
+    },
+    {
+      "label": "integrated",
+      "source": "electronics_enclosure_base",
+      "target": "pi_mount_integrated"
+    },
+    {
+      "label": "M2.5 screws",
+      "source": "electronics_enclosure_base",
+      "target": "power_module_mount"
+    },
+    {
+      "label": "integrated",
+      "source": "electronics_enclosure_base",
+      "target": "sma_cable_1_mount"
+    },
+    {
+      "label": "integrated",
+      "source": "electronics_enclosure_base",
+      "target": "sma_cable_2_mount"
+    },
+    {
+      "label": "mount",
+      "source": "left_antenna_mount",
+      "target": "antenna_tx"
+    },
+    {
+      "label": "mount",
+      "source": "right_antenna_mount",
+      "target": "antenna_rx"
+    },
+    {
+      "label": "mount",
+      "source": "nanovna_mount_integrated",
+      "target": "nanovna_gpr"
+    },
+    {
+      "label": "mount",
+      "source": "pi_mount_integrated",
+      "target": "raspberry_pi_controller"
+    },
+    {
+      "label": "mount",
+      "source": "power_module_mount",
+      "target": "dc_dc_stepdown"
+    },
+    {
+      "label": "mount",
+      "source": "sma_cable_1_mount",
+      "target": "sma_cable_1"
+    },
+    {
+      "label": "mount",
+      "source": "sma_cable_2_mount",
+      "target": "sma_cable_2"
+    }
+  ],
+  "projectId": "c6527bee-9b84-4c96-89a3-632f45f0bbd3"
+}

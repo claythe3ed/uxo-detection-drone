@@ -1,0 +1,67 @@
+[
+  {
+    "label": "M3x8mm screws into M3 heat-set inserts",
+    "source": "gimbal_mounting_plate",
+    "target": "main_payload_housing"
+  },
+  {
+    "label": "M2.5x6mm screws into M3 heat-set inserts",
+    "source": "camera_mount_bracket",
+    "target": "main_payload_housing"
+  },
+  {
+    "label": "M2.5x6mm screws into M3 heat-set inserts",
+    "source": "laser_mount_clamp",
+    "target": "main_payload_housing"
+  },
+  {
+    "label": "M2.5x6mm screws into M3 heat-set inserts",
+    "source": "speaker_bezel_mount",
+    "target": "main_payload_housing"
+  },
+  {
+    "label": "M2.5x6mm screws into M3 heat-set inserts",
+    "source": "pi_mounting_tray",
+    "target": "main_payload_housing"
+  },
+  {
+    "label": "M2.5x6mm screws into M3 heat-set inserts",
+    "source": "amp_buck_converter_tray",
+    "target": "main_payload_housing"
+  },
+  {
+    "label": "M2x5mm screws",
+    "source": "mount_buck_converter_5v",
+    "target": "amp_buck_converter_tray"
+  },
+  {
+    "label": "mount",
+    "source": "camera_mount_bracket",
+    "target": "arducam_ov9281_camera"
+  },
+  {
+    "label": "mount",
+    "source": "laser_mount_clamp",
+    "target": "laser_line_module"
+  },
+  {
+    "label": "mount",
+    "source": "speaker_bezel_mount",
+    "target": "mini_speaker"
+  },
+  {
+    "label": "mount",
+    "source": "pi_mounting_tray",
+    "target": "raspberry_pi_4"
+  },
+  {
+    "label": "mount",
+    "source": "amp_buck_converter_tray",
+    "target": "audio_amp_module"
+  },
+  {
+    "label": "mount",
+    "source": "mount_buck_converter_5v",
+    "target": "buck_converter_5v"
+  }
+]

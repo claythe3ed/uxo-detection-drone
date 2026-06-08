@@ -1,0 +1,1087 @@
+{
+  "plan": "- Electrical System: Raspberry Pi 4, 650nm 5mW line laser, Arducam OV9281 global-shutter camera, 3-inch 5W speaker.\n- Mechanical Structure: Lightweight, rigid custom housing for laser, camera, and speaker, designed for optimal alignment.\n- Drone Integration: Vibration-dampened gimbal interface for isolation from drone noise, ensuring stable operation.\n- Control & Data: Raspberry Pi 4 handles camera data acquisition, laser control, speaker audio output, and vibrometry processing.\n- Power Management: Efficient power distribution system for all payload components, sourced from the drone or dedicated battery.",
+  "nodes": [
+    {
+      "id": "raspberry_pi_4",
+      "name": "Main Controller",
+      "pins": [
+        "GPIO",
+        "CSI",
+        "DSI",
+        "USB",
+        "HDMI",
+        "Power"
+      ],
+      "type": "mcu",
+      "partId": "89901909-c0d6-4faa-b2c0-8df3dd72bcda",
+      "ebayUrl": "https://www.ebay.com/sch/i.html?_nkw=Raspberry+Pi+4+Model+B&_sacat=0&_from=R40&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339153059&customid=blueprint&toolid=10001&mkevt=1",
+      "category": "electrical",
+      "imageUrl": "https://m.media-amazon.com/images/I/51Isn2FhhjL._SL500_.jpg",
+      "quantity": 1,
+      "research": {
+        "specs": [
+          {
+            "label": "USB",
+            "value": "USB (4)"
+          },
+          {
+            "label": "pins",
+            "value": "GPIO2,GPIO3,GPIO14,GPIO15,GPIO17,GPIO18,GPIO22,GPIO23,GPIO24,GPIO25,GPIO27,PWM0,PWM1,SPI_MOSI,SPI_MISO,SPI_SCLK,USB3_0_0,USB3_0_1,5V,3V3,GND"
+          },
+          {
+            "label": "Speed",
+            "value": "1.2GHz"
+          },
+          {
+            "label": "Contents",
+            "value": "-"
+          },
+          {
+            "label": "Ethernet",
+            "value": "100 Mbps"
+          },
+          {
+            "label": "Cooling Type",
+            "value": "-"
+          },
+          {
+            "label": "Power (Watts)",
+            "value": "-"
+          },
+          {
+            "label": "Video Outputs",
+            "value": "CSI, DSI, HDMI"
+          },
+          {
+            "label": "Core Processor",
+            "value": "Broadcom BCM2837 ARM Cortex-A53"
+          },
+          {
+            "label": "Watchdog Timer",
+            "value": "-"
+          },
+          {
+            "label": "Number of Cores",
+            "value": "4"
+          },
+          {
+            "label": "Size / Dimension",
+            "value": "3.370\" x 2.224\" (85.60mm x 56.50mm)"
+          },
+          {
+            "label": "Digital I/O Lines",
+            "value": "40"
+          },
+          {
+            "label": "Storage Interface",
+            "value": "MicroSD"
+          },
+          {
+            "label": "Expansion Site/Bus",
+            "value": "Wi-Fi"
+          },
+          {
+            "label": "Analog Input:Output",
+            "value": "-"
+          },
+          {
+            "label": "Operating Temperature",
+            "value": "-"
+          },
+          {
+            "label": "RAM Capacity/Installed",
+            "value": "1GB/1GB"
+          }
+        ],
+        "sourcing": [
+          {
+            "url": "https://www.adafruit.com/product/4027",
+            "price": "$25",
+            "vendor": "Adafruit"
+          },
+          {
+            "url": "https://octopart.com/opatz8j6/a1?t=DxMrcVekD-RgmG2qGj9jfwS73zRyISvd8VLcmHOuXX46mRNp3qcR9AFkEbynmLQ5lPsoBukyrY8CjUqvSGOAZ1VGHLI2u3ECom0_mlDgdu7HqmYrGKsFnY7CheT8Ucuyues6tPGQxI2v9MNq1FF5Ior2X65eGa0Ssqebcp-ZpttrsaofBhpDgixVVxj_v-QZCEELIAyX1Wgr9viUSB_OFW7JxJBoOe1KrGs6L73gtVt0Cw4YiVnEyRpuZ2iQWpXlH5JGl2GeCu0REdrcBMybjavnxzVdIYA",
+            "price": "$159.5088",
+            "vendor": "Chipsmall Limited"
+          },
+          {
+            "url": "https://octopart.com/opatz8j6/a1?t=mFQexNo-hYBd9tXcpK4h77hXSdPMKBpAV_UcO1eV114ecf2DJ-MN_R_P0BspTrykOo5CxwwfdBZkabhGID_UWJEzgi_lQF3gNlUN-_z1BSL5jRyWEs6fMaQL4y-QCf3rNu52UVhsrK3IuyjvKhRttXmKAY9dFMw_lSslrz2tR27K2s9mTAw49pafW1KKHN6OmKFU1drInJ79PXKg5SuTwyUJbWn5d5oCgXS9qFCytewE990_IrqGj4diQfyltwDETdDCREamXqM6utDvTEg9BSB9FzPKIlg",
+            "price": "$121.5328",
+            "vendor": "ODG (Origin Data Global)"
+          },
+          {
+            "url": "https://www.digikey.com/en/products/detail/raspberry-pi/SC0022/6152799",
+            "price": "$35",
+            "vendor": "DigiKey"
+          },
+          {
+            "url": "https://www.amazon.com/dp/B07V5JTMV9?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+            "price": "$149.98",
+            "vendor": "Amazon"
+          },
+          {
+            "url": "https://www.aliexpress.com/item/1005007723514950.html?pdp_npi=6%40dis%21USD%2116.55%215.43%21%21%21112.20%2136.80%21%402140da8b17793257734922008e103e%2112000041982906320%21affd%21%21%21%211%210%21",
+            "price": "$5.43",
+            "vendor": "AliExpress"
+          }
+        ],
+        "datasheetUrl": "//mm.digikey.com/Volume0/opasdata/d220001/medias/docus/1026/Raspberrypi_PI_3_Model_B_Web.pdf"
+      },
+      "amazonUrl": "https://www.amazon.com/dp/B07V5JTMV9?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "dimensions": "85x56x17mm",
+      "description": "SBC 1.2GHZ 4 CORE 1GB RAM",
+      "productName": "Raspberry Pi 4 Model B",
+      "purchaseUrl": "https://www.adafruit.com/product/4292",
+      "aliexpressUrl": "https://s.click.aliexpress.com/s/fwx308cRD9Eny963e3KDdYxyIpNj8TXVr7saiF9Um5rMUg1kZtJALLnfa2LNXtiVgnxdD8Og6MmvwBoxhnSYQGM6r0c08U4TfX8DFGo7vviCuu3q62Q60OAhRZcqm3G8PtwM69xY7TOEWRrvulP5ukZQ4uQbBBtaVsdr6EffAqVmp3O5GyUANU2DoA3dJufNhDfh7KOlLgKIvRVhDxRESHLmea6fTE26gLUqKEUuuizJiLENrCbax94DZHDu8WhaXM9vQ86gzlqceNPO5w3vwXm4VrBF3x2lAMEl06wgNdTSMiT7cNG4HIdW0JxQJsoVpZPC3qe9cSQgqfZdNjneXxU6dINg4PtGw0ibASIz6KZoBBDW1reEPwDCCoFLz9u981iHqBVN8Ny4WmafEe97N1Ad1josnG1kYPRvKsc0NrHKNZ1dzecQIfoPliBThmUsEM5UmvIyY17GrBS5XHan8e4xRJu1w6y8goYj8TWT9LFYGnAbAmMMf9qYwjsM7ulq4HJRRcWms72uE7shS2AD08lHFZEETzB2Yoj50wOs7NfEcs7JnwF4wML61vl26zkGqntfefnLjLzCE2FU43NbaSwDGgC5RzSZni4LOT4fJJHAQDULdyklUmIthD9Q6qjvKql86w7CSHvxrQOOUsO7g8YK0KszhIF7mJqmdznxeiMplPbEqfL9tsWJblXCGSTIWoTBSNgTkvi9912z50y1tPGaId2sEqiZXSlIVurzE3beugmn8USJkAsjsUj8SUQ3iHswhcXJJkvEvSYAMRDhU71egbk2xabMLUcuO5jgNp31bgA9X3tOpm3G2Z170HANkgBYYTnwPbSXc6S9IHjcBI9S5k3N3rveMViU37Krq4QHvw2puD91VK2wcyikKfLaH2MvUs5LI9h8lsxqxuLu7sQeZc4C7AC7KUAdrvIdODHq1bQP8yHZB8guklkEd6ibNIv5PLdGlGvx805gQJ",
+      "estimatedCost": 55
+    },
+    {
+      "id": "arducam_ov9281_camera",
+      "name": "Global Shutter Camera",
+      "pins": [
+        "CSI"
+      ],
+      "type": "sensor",
+      "partId": "ed215f20-fedd-4ebe-992e-c97b865b6914",
+      "ebayUrl": "https://www.ebay.com/sch/i.html?_nkw=Arducam+OV9281+1MP+Camera+Module&_sacat=0&_from=R40&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339153059&customid=blueprint&toolid=10001&mkevt=1",
+      "category": "electrical",
+      "imageUrl": "https://m.media-amazon.com/images/I/41u1PzuwWSL._SL500_.jpg",
+      "quantity": 1,
+      "research": {
+        "sourcing": [
+          {
+            "url": "https://www.aliexpress.com/w/wholesale-arducam-usb-camera-ov9281-mono.html",
+            "vendor": "AliExpress"
+          }
+        ]
+      },
+      "amazonUrl": "https://www.amazon.com/dp/B096M5DKY6?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "dimensions": "25x24x10mm",
+      "productName": "Arducam OV9281 1MP Camera Module",
+      "purchaseUrl": "https://www.amazon.com/Arducam-OV9281-Global-Shutter-Raspberry/dp/B0B79J6141",
+      "aliexpressUrl": "https://s.click.aliexpress.com/e/_c4FdhHL3",
+      "estimatedCost": 29.99
+    },
+    {
+      "id": "laser_line_module",
+      "name": "650nm Line Laser",
+      "pins": [
+        "VCC",
+        "GND",
+        "Control"
+      ],
+      "type": "actuator",
+      "partId": "adbdffea-75e2-4393-8568-398a392c1536",
+      "ebayUrl": "https://www.ebay.com/sch/i.html?_nkw=650nm+5mW+Red+Line+Laser+Module&_sacat=0&_from=R40&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339153059&customid=blueprint&toolid=10001&mkevt=1",
+      "category": "electrical",
+      "imageUrl": "https://cdn-shop.adafruit.com/640x480/1057-07.jpg",
+      "quantity": 1,
+      "research": {
+        "sourcing": [
+          {
+            "url": "https://www.amazon.com/dp/B01N48M1VR?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+            "price": "$6.99",
+            "vendor": "Amazon"
+          },
+          {
+            "url": "https://www.aliexpress.com/item/1005007479445389.html?pdp_npi=6%40dis%21USD%2110.98%215.49%21%21%2173.88%2136.94%21%4021013cc617805037561466793e0f99%2112000057244779031%21affd%21%21%21%211%210%21",
+            "price": "$5.49",
+            "vendor": "AliExpress"
+          },
+          {
+            "url": "https://www.adafruit.com/product/1057",
+            "price": "$8.95",
+            "vendor": "Adafruit"
+          }
+        ],
+        "documentationUrls": [
+          {
+            "url": "https://www.adafruit.com/product/1057",
+            "title": "Product Page (Adafruit)"
+          }
+        ]
+      },
+      "amazonUrl": "https://www.amazon.com/dp/B01N48M1VR?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "dimensions": "10x23mm",
+      "description": "Low-power, eye-safe red line laser module for illuminating the toilet bowl.",
+      "productName": "650nm 5mW Red Line Laser Module",
+      "purchaseUrl": "https://s.click.aliexpress.com/s/fwx308cRD9Eny963e3KDdYxyIpNj8TXVr7saiF9Um5rMUg1kZtJALLnfa2LNXtiVgnxdD8Og6MmvwBoxhnSYQGM6r0c08U4TfX8DFGo7vviCuu3q62Q60OAhRZcqm3G8PtwM69xY7TOEWRrvulP5ukZQ4uQbBBtaVsdr6EffAqVmp3O5GyUANU2DoA3dJufNhDfh7KOlLgKIvRVhDxRESHLmea6fTE26gLUqKEUuuizJiLENrCbax94DZHDu8WhaXM9vQ86gzlqceNPO5w3vwXm4VrBF3x2lAMEl06wgNdTSMiT7cNG4HIdW0Jxvvhnj6JUwl6sUKviNDOc1WDftFlf0EUWxrRiac5kw5LkPP9D42CyjsXR32gudhhIhT6f8Wtx2UZP4raPlY8z8VgtwTmlz0B4cGAJCC2ZTER8WY6VdEQrnVHVEo9nhhWhTE8FPiDYUGPfaWw3aqa3NJPG5B8YgU4z5xOZNFqd8p8177VlnNXAIgpxAlnVkTMRYeV07mwhRmWZS85Kw7VjpSWiJJscWru0BHrZtAQTaKQaxRU8K2lV6M03uaGKzvl4XsoF45kQ73J0k5LL23AcO1C9jYuMKkAZQLFtOuACpCh992bY1LJklYg56hMLt3ZvkEFWH5nRSpqZ54hadwqRllcGOLlxzc3pZ4QN95U4PDXJa5BwXvuU1Ql2gQfPwmjvUhqn9v3hYjQjrBNUcYHyI9kPMDRYDzkBPuwpRmYB33SCeSc2Vl0QDcp6IA8UYjQk6Ihuye9hxjrkdV6XYKsVxGFfpgGuGpE0TOivtnvl0pP9qSXzxH7xAy4ZgQrbqkSOTpmKnu6YFmb25qPKhNZdeI9iK4MdOMqlYfDQN4FFiqXtLfDcw66zOujH0POQbfZ8OR2n5CnMFhjTd7hc3YWzP4nv62XzHGMNnOw5HBd2D0WEAcTndNGPPMFcipZ4oQsZSY1CLqPw50xboqiU1VRsbA3",
+      "aliexpressUrl": "https://s.click.aliexpress.com/s/fwx308cRD9Eny963e3KDdYxyIpNj8TXVr7saiF9Um5rMUg1kZtJALLnfa2LNXtiVgnxdD8Og6MmvwBoxhnSYQGM6r0c08U4TfX8DFGo7vviCuu3q62Q60OAhRZcqm3G8PtwM69xY7TOEWRrvulP5ukZQ4uQbBBtaVsdr6EffAqVmp3O5GyUANU2DoA3dJufNhDfh7KOlLgKIvRVhDxRESHLmea6fTE26gLUqKEUuuizJiLENrCbax94DZHDu8WhaXM9vQ86gzlqceNPO5w3vwXm4VrBF3x2lAMEl06wgNdTSMiT7cNG4HIdW0Jxvvhnj6JUwl6sUKviNDOc1WDftFlf0EUWxrRiac5kw5LkPP9D42CyjsXR32gudhhIhT6f8Wtx2UZP4raPlY8z8VgtwTmlz0B4cGAJCC2ZTER8WY6VdEQrnVHVEo9nhhWhTE8FPiDYUGPfaWw3aqa3NJPG5B8YgU4z5xOZNFqd8p8177VlnNXAIgpxAlnVkTMRYeV07mwhRmWZS85Kw7VjpSWiJJscWru0BHrZtAQTaKQaxRU8K2lV6M03uaGKzvl4XsoF45kQ73J0k5LL23AcO1C9jYuMKkAZQLFtOuACpCh992bY1LJklYg56hMLt3ZvkEFWH5nRSpqZ54hadwqRllcGOLlxzc3pZ4QN95U4PDXJa5BwXvuU1Ql2gQfPwmjvUhqn9v3hYjQjrBNUcYHyI9kPMDRYDzkBPuwpRmYB33SCeSc2Vl0QDcp6IA8UYjQk6Ihuye9hxjrkdV6XYKsVxGFfpgGuGpE0TOivtnvl0pP9qSXzxH7xAy4ZgQrbqkSOTpmKnu6YFmb25qPKhNZdeI9iK4MdOMqlYfDQN4FFiqXtLfDcw66zOujH0POQbfZ8OR2n5CnMFhjTd7hc3YWzP4nv62XzHGMNnOw5HBd2D0WEAcTndNGPPMFcipZ4oQsZSY1CLqPw50xboqiU1VRsbA3",
+      "estimatedCost": 5
+    },
+    {
+      "id": "mini_speaker",
+      "name": "Acoustic Excitation Speaker",
+      "pins": [
+        "Audio_IN_L",
+        "Audio_IN_R"
+      ],
+      "type": "actuator",
+      "partId": "c5c9f234-efb3-4771-8703-f64fc1ca890e",
+      "ebayUrl": "https://www.ebay.com/sch/i.html?_nkw=3-inch+5W+Speaker&_sacat=0&_from=R40&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339153059&customid=blueprint&toolid=10001&mkevt=1",
+      "category": "electrical",
+      "imageUrl": "https://m.media-amazon.com/images/I/41pke0aw-ZL._SL500_.jpg",
+      "quantity": 1,
+      "research": {
+        "sourcing": [
+          {
+            "url": "https://www.amazon.com/dp/B0BTYBTQ74?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+            "price": "$7.99",
+            "vendor": "Amazon"
+          },
+          {
+            "url": "https://www.aliexpress.com/item/1005010219333299.html?pdp_npi=6%40dis%21USD%2113.74%216.87%21%21%2192.99%2146.49%21%402151fce817794582570398588e10a3%2112000051567182688%21affd%21%21%21%211%210%21",
+            "price": "$6.87",
+            "vendor": "AliExpress"
+          }
+        ]
+      },
+      "amazonUrl": "https://www.amazon.com/dp/B0BTYBTQ74?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "dimensions": "77x77x30mm",
+      "productName": "3-inch 5W Speaker",
+      "purchaseUrl": "https://www.adafruit.com/product/3536",
+      "aliexpressUrl": "https://s.click.aliexpress.com/s/fwx308cRD9Eny963e3KDdYxyIpNj8TXVr7saiF9Um5rMUg1kZtJALLnfa2LNXtiVgnxdD8Og6MmvwBoxhnSYQGM6r0c08U4TfX8DFGo7vviCuu3q62Q60OAhRZcqm3G8PtwM69xY7TOEWRrvulP5ukZQ4uQbBBtaVsdr6EffAqVmp3O5GyUANU2DoA3dJufNhDfh7KOlLgKIvRVhDxRESHLmea6fTE26gLUqKEUuuizJiLENrCbax94DZHDu8WhaXM9vQ86gzlqceNPO5w3vwXm4VrBF3x2lAMEl06wgNdTSMiT7cNG4HIdW0JxQxbWiiLvCzQTN4VNXCukSrmOvJME6ApYNuyWlNQTmXuW69pyL26W8cFpbrAscWKdgL9q9bmCGyB214PdyVO29gj7KZhqBy7C9V0wtdrqtojwqZmAG93iMWN043mZVXyahhdbW3hSIvb6FvW1a64GfglzIdcD9V1ec6rXo5FaY9VeJRlqdZdXfw8UnRgLnzN1S5wjdoDCI09ZE5HQd0I09Ay0fs1Boi58l9VIxMkagYpwPm7QgVb8mGtruq3YaP11dclI6vhTuolcm5YFKPZN6qXh0ZRcorDE7M8S5plX3Lxo8l9bDC3uvhy5v7ybwpVYAq8REguUrh5LEwy5dYOO76TitOUvFU55FACxRCeHJdO2TOhGZuOfAqYcb8xvGKJelwKV15mTZr4n36A6h2tNF3WZUaeKCzhqiiLtosMmtIqch514L50Cplw0GjWaYmkAjhXFbWFJfcSE1L2lcOoz44bXq1DoZ5bV2CXEiCzvxOyxNjIuBnvxE5vKvw7MJSu7YuYJlHWhOXsieyx8VmqCpbDqua2dZjOYJdBqXsksgcJRs8fDLmCNAJeV0JnJSP1fA8OEpbriCOnvay7ywwLIaxtZTBFItXnXJkIRqg7aTqdZJcGpaTD5Ed2eOjEtMkZc0TAOKl1H1hOPLIZ8Aj1numr",
+      "estimatedCost": 8
+    },
+    {
+      "id": "audio_amp_module",
+      "name": "Speaker Amplifier",
+      "pins": [
+        "VCC",
+        "GND",
+        "Audio_IN_L",
+        "Audio_IN_R",
+        "SPK_OUT_L",
+        "SPK_OUT_R"
+      ],
+      "type": "module",
+      "partId": "ee0d5d61-843a-4426-bf4a-809a4f9fcec3",
+      "ebayUrl": "https://www.ebay.com/sch/i.html?_nkw=PAM8403+5V+Audio+Amplifier+Module&_sacat=0&_from=R40&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339153059&customid=blueprint&toolid=10001&mkevt=1",
+      "category": "electrical",
+      "imageUrl": "https://m.media-amazon.com/images/I/51n-m9wFpDL._SL500_.jpg",
+      "quantity": 1,
+      "research": {
+        "sourcing": [
+          {
+            "url": "https://www.amazon.com/dp/B07R77DGGK?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+            "price": "$12.99",
+            "vendor": "Amazon"
+          },
+          {
+            "url": "https://www.amazon.com/dp/B0DPMNYR2B?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+            "price": "$6.99",
+            "vendor": "Amazon"
+          },
+          {
+            "url": "https://www.aliexpress.com/item/1005007279115127.html?pdp_npi=6%40dis%21USD%211.24%211.24%21%21%218.36%218.36%21%402140d36217808539260876314e0fc8%2112000040044279475%21affd%21%21%21%211%210%21",
+            "price": "$1.24",
+            "vendor": "AliExpress"
+          }
+        ]
+      },
+      "amazonUrl": "https://www.amazon.com/dp/B07R77DGGK?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "dimensions": "21x19x3mm",
+      "productName": "PAM8403 5V Audio Amplifier Module",
+      "purchaseUrl": "https://s.click.aliexpress.com/s/fwx308cRD9Eny963e3KDdYxyIpNj8TXVr7saiF9Um5rMUg1kZtJALLnfa2LNXtiVgnxdD8Og6MmvwBoxhnSYQGM6r0c08U4TfX8DFGo7vviCuu3q62Q60OAhRZcqm3G8PtwM69xY7TOEWRrvulP5ukZQ4uQbBBtaVsdr6EffAqVmp3O5GyUANU2DoA3dJufNhDfh7KOlLgKIvRVhDxRESHLmea6fTE26gLUqKEUuuizJiLENrCbax94DZHDu8WhaXM9vQ86gzlqceNPO5w3vwXm4VrBF3x2lAMEl06wgNdTSMiT7cNG4HIdW0JyaqFoPR380TRZNj9ZhbScKzZaSkWIQRCPgqtkMwqO03z37bFaWx4jXryBHJYm7L55Vdj4lTyBI8w4u5m6ezLEkFMu0wPBEfYZ4auByqXBTi7sKK2UgkzSLDcrtNgDj7M4UqnlCv1hNc46GvP1H2uE0Pj2GaFnu0iTi5Nwpq3AJk4EvZgTra8SHNXBDt68Mang20U9SvlMEfFNjuGaTLoSiuNvyXDu0dVSGNWsTh1aZgoIeCoBvbfAz576d818e0PGJp8ZM4hy9YpNd9gi2k1x9PJMGfYjlscW1Zc50FQjSo4Mpf3CmNhANg8w4it4gQfMuYuHlXlb5eeHgxu5M23UaOebHMTMeKbVnREonvrBg7Fql24mQXbmQ4tK2kroW0i0FHWFXUZ5aRW0IufFz3rtAfLv2D1dlyXey86NEwWpM2kAQeSIzQsdswbAjOZmLSpKrv700C1bnz9zPl5Ba7SFpNBEnaQ2YxcMZ7ip4ZOstJ8fPkZdMrJhmj5LvlqtlElQYQaOfh91qZ2wdZl8J5X7V3St9x8bHMN8vjnbNeMv2xt8FclwsRxFXNbmKUym2mnStNH9eJ4e83mh77JxuO0M4EZxHm3D0F195HOKXZSML3rfdtKmaPhQZZT35aXeaBX4NksuJwlP8sg078RU7RImb51",
+      "aliexpressUrl": "https://s.click.aliexpress.com/s/fwx308cRD9Eny963e3KDdYxyIpNj8TXVr7saiF9Um5rMUg1kZtJALLnfa2LNXtiVgnxdD8Og6MmvwBoxhnSYQGM6r0c08U4TfX8DFGo7vviCuu3q62Q60OAhRZcqm3G8PtwM69xY7TOEWRrvulP5ukZQ4uQbBBtaVsdr6EffAqVmp3O5GyUANU2DoA3dJufNhDfh7KOlLgKIvRVhDxRESHLmea6fTE26gLUqKEUuuizJiLENrCbax94DZHDu8WhaXM9vQ86gzlqceNPO5w3vwXm4VrBF3x2lAMEl06wgNdTSMiT7cNG4HIdW0JyaqFoPR380TRZNj9ZhbScKzZaSkWIQRCPgqtkMwqO03z37bFaWx4jXryBHJYm7L55Vdj4lTyBI8w4u5m6ezLEkFMu0wPBEfYZ4auByqXBTi7sKK2UgkzSLDcrtNgDj7M4UqnlCv1hNc46GvP1H2uE0Pj2GaFnu0iTi5Nwpq3AJk4EvZgTra8SHNXBDt68Mang20U9SvlMEfFNjuGaTLoSiuNvyXDu0dVSGNWsTh1aZgoIeCoBvbfAz576d818e0PGJp8ZM4hy9YpNd9gi2k1x9PJMGfYjlscW1Zc50FQjSo4Mpf3CmNhANg8w4it4gQfMuYuHlXlb5eeHgxu5M23UaOebHMTMeKbVnREonvrBg7Fql24mQXbmQ4tK2kroW0i0FHWFXUZ5aRW0IufFz3rtAfLv2D1dlyXey86NEwWpM2kAQeSIzQsdswbAjOZmLSpKrv700C1bnz9zPl5Ba7SFpNBEnaQ2YxcMZ7ip4ZOstJ8fPkZdMrJhmj5LvlqtlElQYQaOfh91qZ2wdZl8J5X7V3St9x8bHMN8vjnbNeMv2xt8FclwsRxFXNbmKUym2mnStNH9eJ4e83mh77JxuO0M4EZxHm3D0F195HOKXZSML3rfdtKmaPhQZZT35aXeaBX4NksuJwlP8sg078RU7RImb51",
+      "estimatedCost": 2.5
+    },
+    {
+      "id": "buck_converter_5v",
+      "name": "5V Power Regulator",
+      "pins": [
+        "Vin",
+        "GND",
+        "Vout"
+      ],
+      "type": "power",
+      "partId": "62dfce21-01e4-4535-9148-2c33654dc67b",
+      "ebayUrl": "https://www.ebay.com/sch/i.html?_nkw=MP1584EN+DC-DC+Buck+Converter&_sacat=0&_from=R40&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339153059&customid=blueprint&toolid=10001&mkevt=1",
+      "category": "electrical",
+      "imageUrl": "https://m.media-amazon.com/images/I/61TobZLQwlL._SL500_.jpg",
+      "quantity": 1,
+      "research": {
+        "specs": [
+          {
+            "label": "pins",
+            "value": "VIN+,VIN-,VOUT+,VOUT-"
+          }
+        ],
+        "examples": [
+          {
+            "url": "https://randomnerdtutorials.com/mp1584en-dc-dc-buck-converter-module-tutorial/",
+            "title": "Basic MP1584EN DC-DC Buck Converter Module Tutorial",
+            "description": "This tutorial provides a fundamental guide on how to use the MP1584EN buck converter module, covering its input/output connections, voltage adjustment using the onboard potentiometer, and basic testing procedures. It's a great starting point for understanding its operation before integration into more complex projects."
+          },
+          {
+            "url": "https://www.electronicshub.org/esp32-power-supply-schematic-and-design-guide/",
+            "title": "Powering ESP32 and Sensors with MP1584EN",
+            "description": "While not exclusively about MP1584EN, this guide details power supply considerations for ESP32 and related sensors, often recommending buck converters like the MP1584EN to step down higher voltages (e.g., 12V) to the required 5V or 3.3V for microcontrollers and peripherals. It demonstrates practical application in a common MCU project scenario."
+          },
+          {
+            "url": "https://www.instructables.com/Simple-Adjustable-Bench-Power-Supply-From-a-Wall-W/",
+            "title": "Making a Simple Bench Power Supply with MP1584EN",
+            "description": "This Instructable demonstrates building a compact, adjustable bench power supply using the MP1584EN module. It showcases the converter's ability to take a higher input voltage (e.g., from a laptop charger) and provide a regulated, adjustable output for prototyping and testing various electronic circuits, illustrating its versatility."
+          },
+          {
+            "url": "https://raspberrypi.stackexchange.com/questions/59664/powering-raspberry-pi-from-12v-source-with-mp1584en",
+            "title": "MP1584EN Buck Converter for Raspberry Pi Power Supply",
+            "description": "This forum discussion and related resources illustrate how the MP1584EN is used to convert a 12V input, typically from a car battery or a 12V power adapter, down to the stable 5V required by a Raspberry Pi. It highlights practical considerations for ensuring sufficient current delivery and stable voltage for SBCs."
+          },
+          {
+            "url": "https://www.hackster.io/hackers-hub/diy-car-charger-using-mp1584-712854",
+            "title": "Automotive 12V to 5V USB Charger using MP1584EN",
+            "description": "This project details how to construct a simple 12V to 5V USB charger for automotive use employing the MP1584EN. It demonstrates a common application where the converter efficiently steps down the vehicle's 12V supply to charge USB-powered devices, providing a robust solution for mobile power needs."
+          }
+        ],
+        "sourcing": [
+          {
+            "url": "https://www.amazon.com/dp/B01MQGMOKI?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+            "price": "$11.99",
+            "vendor": "Amazon"
+          },
+          {
+            "url": "https://www.aliexpress.com/item/1005006365858647.html?pdp_npi=6%40dis%21USD%2110.03%214.81%21%21%2168.02%2132.65%21%402140d36217793269140206979e10a1%2112000036911988787%21affd%21%21%21%211%210%21",
+            "price": "$4.81",
+            "vendor": "AliExpress"
+          }
+        ],
+        "datasheetUrl": "https://cdn.ozdisan.com/ETicaret_Dosya/626534_924471.pdf",
+        "documentationUrls": [
+          {
+            "url": "https://www.openhardware.io/view/770/MP1584EN-DC-DC-Buck-Converter-Power-Module",
+            "type": "reference",
+            "title": "OpenHardware.io"
+          }
+        ]
+      },
+      "amazonUrl": "https://www.amazon.com/dp/B01MQGMOKI?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "dimensions": "22x17x4mm",
+      "description": "Regulates power from the main 12V supply to 5V for ESP32-S3 modules and various sensors.",
+      "productName": "MP1584EN DC-DC Buck Converter",
+      "purchaseUrl": "https://s.click.aliexpress.com/s/fwx308cRD9Eny963e3KDdYxyIpNj8TXVr7saiF9Um5rMUg1kZtJALLnfa2LNXtiVgnxdD8Og6MmvwBoxhnSYQGM6r0c08U4TfX8DFGo7vviCuu3q62Q60OAhRZcqm3G8PtwM69xY7TOEWRrvulP5ukZQ4uQbBBtaVsdr6EffAqVmp3O5GyUANU2DoA3dJufNhDfh7KOlLgKIvRVhDxRESHLmea6fTE26gLUqKEUuuizJiLENrCbax94DZHDu8WhaXM9vQ86gzlqceNPO5w3vwXm4VrBF3x2lAMEl06wgNdTSMiT7cNG4HIdW0JxHNSBmwrWAucJktiEiF7T0GrENZ2N7RQ8V7BzbnqVxsrMEtflOJAoWeKe8mUiCgYFPVMDIxu8NTz8jXT1itEaiw2BrvgnZAqoOdAQLXgy2xDI4IYHyjpfL1PV4yQQtYDMvEqzJqDLvhVGKAiCSoNBbLpErJsRrHybXqL0l95P6DX7YO2HSjDGZzgHtn95FpQWrCBaeHi8mx944vsSryVj7eT6Sb8xcDO8fqvWx7F1j8AKh3uGoTCPCuLrbXmc6sUvaQ7m8LFUe2g4xh1tUuHiGIndZopaYEfnCEMBScuOplFQbDjkUTZgOTXPax18bkqbgbOTLzY7SJbKckFuhGz3UYNOnSBJYDXhzVqpusBKLPYjCGa6rwwFNbZFpzgOCkuq6c4CkD4rSRTCuU9IvhYBlbdG7aC7YuVTaor0egpSUNkR9QroJ07FQP8h2lGRRe6rgZbJJdEmfo8Ve3kcPJbrVhVi0loBcaeIwK0NjJjvOVHjKWtY0urT5Hu0uWtcTHyZyPGuEDMvvs9pHxae4swLUh5pimh4FsowdUq0tkXzTOJ5httDvzODWZl3fgJZ83aRBKEOKkHhr59k1BAFqvCssspNs4XD1ifkCRgito1iuOuvlDhqnHvxUXY3HN9y095u3bUEAt8Bf9I8Gdiq13osKer",
+      "aliexpressUrl": "https://s.click.aliexpress.com/s/fwx308cRD9Eny963e3KDdYxyIpNj8TXVr7saiF9Um5rMUg1kZtJALLnfa2LNXtiVgnxdD8Og6MmvwBoxhnSYQGM6r0c08U4TfX8DFGo7vviCuu3q62Q60OAhRZcqm3G8PtwM69xY7TOEWRrvulP5ukZQ4uQbBBtaVsdr6EffAqVmp3O5GyUANU2DoA3dJufNhDfh7KOlLgKIvRVhDxRESHLmea6fTE26gLUqKEUuuizJiLENrCbax94DZHDu8WhaXM9vQ86gzlqceNPO5w3vwXm4VrBF3x2lAMEl06wgNdTSMiT7cNG4HIdW0JxHNSBmwrWAucJktiEiF7T0GrENZ2N7RQ8V7BzbnqVxsrMEtflOJAoWeKe8mUiCgYFPVMDIxu8NTz8jXT1itEaiw2BrvgnZAqoOdAQLXgy2xDI4IYHyjpfL1PV4yQQtYDMvEqzJqDLvhVGKAiCSoNBbLpErJsRrHybXqL0l95P6DX7YO2HSjDGZzgHtn95FpQWrCBaeHi8mx944vsSryVj7eT6Sb8xcDO8fqvWx7F1j8AKh3uGoTCPCuLrbXmc6sUvaQ7m8LFUe2g4xh1tUuHiGIndZopaYEfnCEMBScuOplFQbDjkUTZgOTXPax18bkqbgbOTLzY7SJbKckFuhGz3UYNOnSBJYDXhzVqpusBKLPYjCGa6rwwFNbZFpzgOCkuq6c4CkD4rSRTCuU9IvhYBlbdG7aC7YuVTaor0egpSUNkR9QroJ07FQP8h2lGRRe6rgZbJJdEmfo8Ve3kcPJbrVhVi0loBcaeIwK0NjJjvOVHjKWtY0urT5Hu0uWtcTHyZyPGuEDMvvs9pHxae4swLUh5pimh4FsowdUq0tkXzTOJ5httDvzODWZl3fgJZ83aRBKEOKkHhr59k1BAFqvCssspNs4XD1ifkCRgito1iuOuvlDhqnHvxUXY3HN9y095u3bUEAt8Bf9I8Gdiq13osKer",
+      "estimatedCost": 1
+    },
+    {
+      "id": "main_payload_housing",
+      "name": "Payload Main Housing",
+      "type": "3d_printed",
+      "category": "mechanical",
+      "material": "PETG",
+      "quantity": 1,
+      "dimensions": "100x80x60mm",
+      "description": "Lightweight custom housing for laser, camera, and speaker, designed for optimal parallel alignment and fixed offset. Also houses the Raspberry Pi and other electronics.",
+      "purchaseUrl": "https://www.amazon.com/s?k=PETG+filament",
+      "estimatedCost": 3,
+      "printSettings": "15% infill, 0.2mm layer"
+    },
+    {
+      "id": "gimbal_mounting_plate",
+      "name": "Gimbal Mounting Plate",
+      "type": "3d_printed",
+      "category": "mechanical",
+      "material": "PETG",
+      "quantity": 1,
+      "dimensions": "80x40x5mm",
+      "description": "Adapter plate to rigidly connect the main payload housing to an off-the-shelf vibration-dampened gimbal.",
+      "purchaseUrl": "https://www.amazon.com/s?k=PETG+filament",
+      "estimatedCost": 0.8,
+      "printSettings": "20% infill, 0.2mm layer"
+    },
+    {
+      "id": "camera_mount_bracket",
+      "name": "Camera Mount Bracket",
+      "type": "3d_printed",
+      "category": "mechanical",
+      "material": "PETG",
+      "quantity": 1,
+      "mountsFor": "arducam_ov9281_camera",
+      "dimensions": "25x25x10mm",
+      "description": "Internal bracket to securely mount the Arducam OV9281 camera within the main housing, ensuring precise optical alignment.",
+      "purchaseUrl": "https://www.amazon.com/s?k=PETG+filament",
+      "estimatedCost": 0.3,
+      "printSettings": "25% infill, 0.2mm layer"
+    },
+    {
+      "id": "laser_mount_clamp",
+      "name": "Laser Mount Clamp",
+      "type": "3d_printed",
+      "category": "mechanical",
+      "material": "PETG",
+      "quantity": 1,
+      "mountsFor": "laser_line_module",
+      "dimensions": "20x20x15mm",
+      "description": "Clamp for holding the line laser module in position, allowing fine adjustment for alignment within the housing.",
+      "purchaseUrl": "https://www.amazon.com/s?k=PETG+filament",
+      "estimatedCost": 0.25,
+      "printSettings": "25% infill, 0.2mm layer"
+    },
+    {
+      "id": "speaker_bezel_mount",
+      "name": "Speaker Bezel Mount",
+      "type": "3d_printed",
+      "category": "mechanical",
+      "material": "PETG",
+      "quantity": 1,
+      "mountsFor": "mini_speaker",
+      "dimensions": "75x75x10mm",
+      "description": "A 3D-printed bezel and mount to integrate the mini speaker flush with the housing for direct air coupling.",
+      "purchaseUrl": "https://www.amazon.com/s?k=PETG+filament",
+      "estimatedCost": 0.5,
+      "printSettings": "15% infill, 0.2mm layer"
+    },
+    {
+      "id": "pi_mounting_tray",
+      "name": "Raspberry Pi Mounting Tray",
+      "type": "3d_printed",
+      "category": "mechanical",
+      "material": "PETG",
+      "quantity": 1,
+      "mountsFor": "raspberry_pi_4",
+      "dimensions": "88x58x5mm",
+      "description": "Internal tray for securely mounting the Raspberry Pi 4 within the main payload housing.",
+      "purchaseUrl": "https://www.amazon.com/s?k=PETG+filament",
+      "estimatedCost": 0.4,
+      "printSettings": "15% infill, 0.2mm layer"
+    },
+    {
+      "id": "amp_buck_converter_tray",
+      "name": "Amp & Buck Converter Tray",
+      "type": "3d_printed",
+      "category": "mechanical",
+      "material": "PETG",
+      "quantity": 1,
+      "mountsFor": "audio_amp_module",
+      "dimensions": "40x30x5mm",
+      "description": "Small tray to organize and mount the audio amplifier module and buck converter within the main housing.",
+      "purchaseUrl": "https://www.amazon.com/s?k=PETG+filament",
+      "estimatedCost": 0.2,
+      "printSettings": "15% infill, 0.2mm layer"
+    },
+    {
+      "id": "mount_buck_converter_5v",
+      "name": "Buck Converter Mount",
+      "type": "3d_printed",
+      "category": "mechanical",
+      "material": "PETG",
+      "quantity": 1,
+      "mountsFor": "buck_converter_5v",
+      "dimensions": "20x15x5mm",
+      "description": "Small mount for the 5V buck converter.",
+      "purchaseUrl": "https://www.amazon.com/s?k=PETG+filament",
+      "estimatedCost": 0.1,
+      "printSettings": "15% infill, 0.2mm layer"
+    },
+    {
+      "id": "m2_5_x_6mm_screws",
+      "name": "M2.5x6mm Screws",
+      "type": "misc",
+      "partId": "0c60b136-a0ae-45a4-aa54-d631616dd68a",
+      "ebayUrl": "https://www.ebay.com/sch/i.html?_nkw=M2.5x6mm+Pan+Head+Phillips+Machine+Screws&_sacat=0&_from=R40&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339153059&customid=blueprint&toolid=10001&mkevt=1",
+      "category": "mechanical",
+      "imageUrl": "https://m.media-amazon.com/images/I/31ncDrrjHYL._SL500_.jpg",
+      "material": "Stainless Steel",
+      "quantity": 4,
+      "research": {
+        "sourcing": [
+          {
+            "url": "https://www.amazon.com/dp/B07MF2TYVV?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+            "price": "$7.29",
+            "vendor": "Amazon"
+          },
+          {
+            "url": "https://www.aliexpress.com/w/wholesale-m2-5x6mm-pan-head-phillips-machine-screws.html",
+            "vendor": "AliExpress"
+          }
+        ]
+      },
+      "amazonUrl": "https://www.amazon.com/dp/B07MF2TYVV?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "dimensions": "M2.5x6mm",
+      "description": "Screws for mounting the Raspberry Pi 4.",
+      "productName": "M2.5x6mm Pan Head Phillips Machine Screws",
+      "purchaseUrl": "https://www.amazon.com/dp/B07MF2TYVV?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "aliexpressUrl": "https://s.click.aliexpress.com/e/_c3uq7nRx",
+      "estimatedCost": 0.05
+    },
+    {
+      "id": "m2_x_5mm_screws",
+      "name": "M2x5mm Screws",
+      "type": "misc",
+      "partId": "123dea0c-4fb3-48a7-a630-b9d4fa329527",
+      "ebayUrl": "https://www.ebay.com/sch/i.html?_nkw=M2x5mm+Pan+Head+Phillips+Machine+Screws&_sacat=0&_from=R40&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339153059&customid=blueprint&toolid=10001&mkevt=1",
+      "category": "mechanical",
+      "imageUrl": "https://m.media-amazon.com/images/I/21f2W-uEQ0L._SL500_.jpg",
+      "material": "Stainless Steel",
+      "quantity": 4,
+      "research": {
+        "sourcing": [
+          {
+            "url": "https://www.amazon.com/dp/B07MHLKKXY?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+            "price": "$6.99",
+            "vendor": "Amazon"
+          },
+          {
+            "url": "https://www.aliexpress.com/w/wholesale-m2x5mm-pan-head-phillips-machine-screws.html",
+            "vendor": "AliExpress"
+          }
+        ]
+      },
+      "amazonUrl": "https://www.amazon.com/dp/B07MHLKKXY?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "dimensions": "M2x5mm",
+      "description": "Screws for mounting the Arducam OV9281 camera module.",
+      "productName": "M2x5mm Pan Head Phillips Machine Screws",
+      "purchaseUrl": "https://www.amazon.com/dp/B07MHLKKXY?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "aliexpressUrl": "https://s.click.aliexpress.com/e/_c4OhqP5r",
+      "estimatedCost": 0.05
+    },
+    {
+      "id": "m3_x_8mm_screws",
+      "name": "M3x8mm Screws",
+      "type": "misc",
+      "partId": "ae18aeab-69d3-4bd7-84dd-4278699d2030",
+      "ebayUrl": "https://www.ebay.com/sch/i.html?_nkw=M3x8mm+Pan+Head+Phillips+Machine+Screws&_sacat=0&_from=R40&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339153059&customid=blueprint&toolid=10001&mkevt=1",
+      "category": "mechanical",
+      "imageUrl": "https://m.media-amazon.com/images/I/41O-eByXK-S._SL500_.jpg",
+      "quantity": 8,
+      "research": {
+        "sourcing": [
+          {
+            "url": "https://www.amazon.com/dp/B01BBOZGKC?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+            "price": "$6.59",
+            "vendor": "Amazon"
+          },
+          {
+            "url": "https://www.aliexpress.com/w/wholesale-m3x8mm-pan-head-phillips-machine-screws.html",
+            "vendor": "AliExpress"
+          }
+        ]
+      },
+      "amazonUrl": "https://www.amazon.com/dp/B01BBOZGKC?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "dimensions": "M3x8mm",
+      "description": "Screws for general assembly of 3D-printed parts and mounting speaker/laser if applicable.",
+      "productName": "M3x8mm Pan Head Phillips Machine Screws",
+      "purchaseUrl": "https://www.amazon.com/dp/B01BBOZGKC?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "aliexpressUrl": "https://s.click.aliexpress.com/e/_c4ScD4DB",
+      "estimatedCost": 0.06
+    },
+    {
+      "id": "m3_brass_heat_set_inserts",
+      "name": "M3 Heat-Set Inserts",
+      "type": "misc",
+      "partId": "a218c217-5ff2-453c-bf9b-0cb77fe40758",
+      "ebayUrl": "https://www.ebay.com/sch/i.html?_nkw=M3+Brass+Heat+Set+Inserts&_sacat=0&_from=R40&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339153059&customid=blueprint&toolid=10001&mkevt=1",
+      "category": "mechanical",
+      "imageUrl": "https://m.media-amazon.com/images/I/51Le5SVH7JL._SL500_.jpg",
+      "quantity": 12,
+      "research": {
+        "specs": [
+          {
+            "label": "material",
+            "value": "Brass"
+          },
+          {
+            "label": "length_mm",
+            "value": "6.4"
+          },
+          {
+            "label": "application",
+            "value": "Plastic"
+          },
+          {
+            "label": "insert_type",
+            "value": "Heat-Set"
+          },
+          {
+            "label": "thread_size",
+            "value": "M3"
+          },
+          {
+            "label": "mcmaster_url",
+            "value": "https://www.mcmaster.com/94180A333"
+          },
+          {
+            "label": "thread_pitch",
+            "value": "0.5"
+          },
+          {
+            "label": "mcmaster_part_number",
+            "value": "94180A333"
+          }
+        ],
+        "sourcing": [
+          {
+            "url": "https://www.mcmaster.com/94180A333",
+            "vendor": "McMaster-Carr"
+          },
+          {
+            "url": "https://www.adafruit.com/product/4255",
+            "price": "$5.95",
+            "vendor": "Adafruit"
+          },
+          {
+            "url": "https://www.amazon.com/dp/B0CS6VZYL8?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+            "price": "$8.99",
+            "vendor": "Amazon"
+          },
+          {
+            "url": "https://www.aliexpress.com/item/1005006351445007.html?pdp_npi=6%40dis%21USD%2112.01%216.25%21%21%2181.43%2142.41%21%402141149b17793251850437285e1158%2112000036858180035%21affd%21%21%21%211%210%21",
+            "price": "$6.25",
+            "vendor": "AliExpress"
+          }
+        ],
+        "alternatives": [
+          {
+            "name": "McMaster-Carr M3 Brass Heat-Set Insert, 3.8mm Length",
+            "reason": "A shorter M3 brass heat-set insert option from McMaster-Carr, part number 94180A331 (M3-.5 Internal Thread, 3.8mm Length)."
+          }
+        ]
+      },
+      "amazonUrl": "https://www.amazon.com/dp/B0CS6VZYL8?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "dimensions": "M3x4mm",
+      "description": "Brass threaded inserts for creating strong M3 screw points in 3D-printed parts.",
+      "productName": "M3 Brass Heat Set Inserts",
+      "purchaseUrl": "https://www.adafruit.com/product/4255",
+      "aliexpressUrl": "https://s.click.aliexpress.com/s/fwx308cRD9Eny963e3KDdYxyIpNj8TXVr7saiF9Um5rMUg1kZtJALLnfa2LNXtiVgnxdD8Og6MmvwBoxhnSYQGM6r0c08U4TfX8DFGo7vviCuu3q62Q60OAhRZcqm3G8PtwM69xY7TOEWRrvulP5ukZQ4uQbBBtaVsdr6EffAqVmp3O5GyUANU2DoA3dJufNhDfh7KOlLgKIvRVhDxRESHLmea6fTE26gLUqKEUuuizJiLENrCbax94DZHDu8WhaXM9vQ86gzlqceNPO5w3vwXm4VrBF3x2lAMEl06wgNdTSMiT7cNG4HIdW0JxRpTpv62RXR9sVfC98GmMLkJmXC4qpbJhcQvkbxptOmgDfhTbS0PHwVgmr0VhydRzMgIoquzg3yg5D05i1x7FPxzxIl3P5mtn3X76qprXJgmg8InDgseeFkYRIIwB95RGJoFep43tAYGEBIRAZZ6LvWcRuoiSpUrlsk0dOnD41f9DJE08hfuSws15ysCxPxduPqEdOBJqzG04NUdFJ3bWrfijdWCN43CSC9mYDkrFhwwBbQVz82VhOIzQnJDGqhjn3119Vw7ZBsbw5zNsuKCnHfhCbxRPNLdII35nubRaiPuAYxgMIty1KMm8HZY6F24WzUNGNr5Ay28BHTyNjrjgt37wwssKrFvlAkOc5eRVIfTsSPf00gPtpAnzrYCtO6pa4kt7Oim5FLl2fo9qzTlncqIyd0FnXRaj8FR9jadMKDscIUwEZtfGnXX3P4fbw1kDhD2QSSJMAn5RvUfmbQoftnN7hwclCo2YteNbSFQAlUTLnDvyAuTFcIVw4tUUdoYhbRuWVI1mNuQLwgrpJQ8M1sDLKul4ZypKQqK0WzxjP33EG9LwNWvX48ub96mvj0CpIbLhMAbjsoKwt5GdKy2tzmAgkWEcWjNuBrzPdW6qbqkvKztM8k9TpouDclbRaxH4aTLDpxLZe7KN7MOAMFYQW5H",
+      "estimatedCost": 0.08
+    }
+  ],
+  "notes": [
+    "Lightweight design",
+    "Low-cost components",
+    "Humanitarian demining",
+    "Vibration-dampened gimbal",
+    "Open-source design",
+    "Standard COTS parts"
+  ],
+  "projectName": "Demining Vibrometry Drone",
+  "originalPrompt": "Design a lightweight, low-cost laser speckle vibrometry payload for a humanitarian demining drone. The payload detects buried landmines by illuminating the ground with a 650nm, 5mW line laser and capturing the resulting speckle pattern with a global-shutter camera (Arducam OV9281, 1MP, 120fps) while a 3-inch, 5W speaker excites the ground with a 150-200Hz acoustic signal. The payload must be rigidly mounted on a vibration-dampened gimbal to isolate it from drone rotor noise. The processing unit is a Raspberry Pi 4. Total weight must not exceed 250g, and the total cost of components (excluding Pi) should be under $100. Provide a complete BOM (CSV), electrical connections (JSON), mechanical connections (JSON), an assembly guide (MD), and a visual rendering (PNG). All designs must be open-source and use standard COTS parts.",
+  "instructionSteps": [
+    {
+      "id": "fabricate",
+      "subSteps": [
+        {
+          "id": "fabricate_1",
+          "title": "3D print all mechanical parts",
+          "partIds": [
+            "main_payload_housing",
+            "gimbal_mounting_plate",
+            "camera_mount_bracket",
+            "laser_mount_clamp",
+            "speaker_bezel_mount",
+            "pi_mounting_tray",
+            "amp_buck_converter_tray",
+            "mount_buck_converter_5v"
+          ]
+        },
+        {
+          "id": "fabricate_2",
+          "title": "Install M3 heat-set inserts into all designated locations on 3D printed parts",
+          "partIds": [
+            "m3_brass_heat_set_inserts",
+            "main_payload_housing",
+            "gimbal_mounting_plate",
+            "camera_mount_bracket",
+            "laser_mount_clamp",
+            "speaker_bezel_mount",
+            "pi_mounting_tray",
+            "amp_buck_converter_tray"
+          ]
+        },
+        {
+          "id": "fabricate_3",
+          "title": "Test fit the Raspberry Pi 4 into the Pi Mounting Tray",
+          "partIds": [
+            "raspberry_pi_4",
+            "pi_mounting_tray"
+          ]
+        },
+        {
+          "id": "fabricate_4",
+          "title": "Test fit the Arducam camera into the Camera Mount Bracket",
+          "partIds": [
+            "arducam_ov9281_camera",
+            "camera_mount_bracket"
+          ]
+        },
+        {
+          "id": "fabricate_5",
+          "title": "Test fit the Mini Speaker into the Speaker Bezel Mount",
+          "partIds": [
+            "mini_speaker",
+            "speaker_bezel_mount"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wire",
+      "subSteps": [
+        {
+          "id": "wire_1",
+          "title": "Prepare power leads for buck converter input and output",
+          "partIds": [
+            "buck_converter_5v"
+          ]
+        },
+        {
+          "id": "wire_2",
+          "title": "Wire the 5V power regulator output to the Raspberry Pi 4 power input",
+          "partIds": [
+            "buck_converter_5v",
+            "raspberry_pi_4"
+          ]
+        },
+        {
+          "id": "wire_3",
+          "title": "Connect the 5V power regulator output to the Audio Amplifier Module and Laser Line Module 5V inputs",
+          "partIds": [
+            "buck_converter_5v",
+            "audio_amp_module",
+            "laser_line_module"
+          ]
+        },
+        {
+          "id": "wire_4",
+          "title": "Connect the CSI ribbon cable from the Arducam Camera to the Raspberry Pi 4 CSI port",
+          "partIds": [
+            "raspberry_pi_4",
+            "arducam_ov9281_camera"
+          ]
+        },
+        {
+          "id": "wire_5",
+          "title": "Wire Raspberry Pi 4 GPIO output to the Laser Line Module control pin",
+          "partIds": [
+            "raspberry_pi_4",
+            "laser_line_module"
+          ]
+        },
+        {
+          "id": "wire_6",
+          "title": "Wire Raspberry Pi 4 PWM audio outputs to the Audio Amplifier Module L/R audio inputs",
+          "partIds": [
+            "raspberry_pi_4",
+            "audio_amp_module"
+          ]
+        },
+        {
+          "id": "wire_7",
+          "title": "Connect the Audio Amplifier Module speaker outputs to the Mini Speaker inputs",
+          "partIds": [
+            "audio_amp_module",
+            "mini_speaker"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bringup",
+      "subSteps": [
+        {
+          "id": "bringup_1",
+          "title": "Verify 5V output from the Buck Converter with a multimeter before connecting to other components",
+          "partIds": [
+            "buck_converter_5v",
+            "raspberry_pi_4",
+            "audio_amp_module",
+            "laser_line_module"
+          ]
+        },
+        {
+          "id": "bringup_2",
+          "title": "Power on Raspberry Pi 4, install OS, and enable CSI camera interface",
+          "partIds": [
+            "raspberry_pi_4"
+          ]
+        },
+        {
+          "id": "bringup_3",
+          "title": "Test Arducam Global Shutter Camera functionality and image capture",
+          "partIds": [
+            "raspberry_pi_4",
+            "arducam_ov9281_camera"
+          ]
+        },
+        {
+          "id": "bringup_4",
+          "title": "Test Laser Line Module activation via Raspberry Pi GPIO control",
+          "partIds": [
+            "raspberry_pi_4",
+            "laser_line_module"
+          ]
+        },
+        {
+          "id": "bringup_5",
+          "title": "Test Mini Speaker audio output via the Audio Amplifier Module and Raspberry Pi PWM audio",
+          "partIds": [
+            "raspberry_pi_4",
+            "audio_amp_module",
+            "mini_speaker"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "assemble",
+      "subSteps": [
+        {
+          "id": "assemble_1",
+          "title": "Mount the Raspberry Pi 4 onto the Raspberry Pi Mounting Tray using M2.5 screws",
+          "partIds": [
+            "raspberry_pi_4",
+            "pi_mounting_tray",
+            "m2_5_x_6mm_screws"
+          ]
+        },
+        {
+          "id": "assemble_2",
+          "title": "Mount the Arducam Camera onto the Camera Mount Bracket",
+          "partIds": [
+            "arducam_ov9281_camera",
+            "camera_mount_bracket"
+          ]
+        },
+        {
+          "id": "assemble_3",
+          "title": "Secure the Laser Line Module into the Laser Mount Clamp",
+          "partIds": [
+            "laser_line_module",
+            "laser_mount_clamp"
+          ]
+        },
+        {
+          "id": "assemble_4",
+          "title": "Mount the Mini Speaker into the Speaker Bezel Mount",
+          "partIds": [
+            "mini_speaker",
+            "speaker_bezel_mount"
+          ]
+        },
+        {
+          "id": "assemble_5",
+          "title": "Mount the Buck Converter onto its specific mount using M2 screws, then attach to the Amp & Buck Converter Tray",
+          "partIds": [
+            "buck_converter_5v",
+            "mount_buck_converter_5v",
+            "amp_buck_converter_tray",
+            "m2_x_5mm_screws"
+          ]
+        },
+        {
+          "id": "assemble_6",
+          "title": "Mount the Audio Amplifier Module onto the Amp & Buck Converter Tray",
+          "partIds": [
+            "audio_amp_module",
+            "amp_buck_converter_tray"
+          ]
+        },
+        {
+          "id": "assemble_7",
+          "title": "Fasten the Gimbal Mounting Plate, Pi Mounting Tray, Amp & Buck Converter Tray, Camera Mount Bracket, Laser Mount Clamp, and Speaker Bezel Mount to the Main Payload Housing using M2.5 screws into the heat-set inserts",
+          "partIds": [
+            "gimbal_mounting_plate",
+            "main_payload_housing",
+            "pi_mounting_tray",
+            "amp_buck_converter_tray",
+            "camera_mount_bracket",
+            "laser_mount_clamp",
+            "speaker_bezel_mount",
+            "m2_5_x_6mm_screws"
+          ]
+        },
+        {
+          "id": "assemble_8",
+          "title": "Route and secure all wires, ensuring proper strain relief and avoiding moving parts",
+          "partIds": [
+            "raspberry_pi_4",
+            "arducam_ov9281_camera",
+            "laser_line_module",
+            "mini_speaker",
+            "audio_amp_module",
+            "buck_converter_5v"
+          ]
+        }
+      ]
+    }
+  ],
+  "projectDescription": "This drone-mounted payload performs humanitarian demining by detecting buried landmines using laser speckle vibrometry. A 650nm line laser, global shutter camera, and acoustic speaker generate and capture ground vibrations, processed by a Raspberry Pi. The lightweight, low-cost system features an open-source design with COTS parts.",
+  "imagePromptSnapshot": {
+    "tags": [
+      "Lightweight design",
+      "Low-cost components",
+      "Humanitarian demining",
+      "Vibration-dampened gimbal",
+      "Open-source design",
+      "Standard COTS parts"
+    ],
+    "description": "Project idea: Design a lightweight, low-cost laser speckle vibrometry payload for a humanitarian demining drone. The payload detects buried landmines by illuminating the ground with a 650nm, 5mW line laser and capturing the resulting speckle pattern with a global-shutter camera (Arducam OV9281, 1MP, 120fps) while a 3-inch, 5W speaker excites the ground with a 150-200Hz acoustic signal. The payload must be rigidly mounted on a vibration-dampened gimbal to isolate it from drone rotor noise. The processing unit is a Raspberry Pi 4. Total weight must not exceed 250g, and the total cost of components (excluding Pi) should be under $100. Provide a complete BOM (CSV), electrical connections (JSON), mechanical connections (JSON), an assembly guide (MD), and a visual rendering (PNG). All designs must be open-source and use standard COTS parts.\n\nDesign notes: Lightweight design, Low-cost components, Humanitarian demining, Vibration-dampened gimbal, Open-source design, Standard COTS parts\n\nElectrical components (current): Main Controller (mcu, 85x56x17mm); Global Shutter Camera (sensor, 25x24x10mm); 2x actuator: 650nm Line Laser, Acoustic Excitation Speaker; Speaker Amplifier (module, 21x19x3mm); 5V Power Regulator (power, 22x17x4mm)\n\nMechanical/structural parts (current): 8x 3d_printed: Payload Main Housing, Gimbal Mounting Plate, Camera Mount Bracket, Laser Mount Clamp +4 more; 4x misc: M2.5x6mm Screws, M2x5mm Screws, M3x8mm Screws, M3 Heat-Set Inserts\n\nAssembly: Gimbal Mounting Plate → Payload Main Housing (M3x8mm screws into M3 heat-set inserts); Camera Mount Bracket → Payload Main Housing (M2.5x6mm screws into M3 heat-set inserts); Laser Mount Clamp → Payload Main Housing (M2.5x6mm screws into M3 heat-set inserts); Speaker Bezel Mount → Payload Main Housing (M2.5x6mm screws into M3 heat-set inserts); Raspberry Pi Mounting Tray → Payload Main Housing (M2.5x6mm screws into M3 heat-set inserts); Amp & Buck Converter Tray → Payload Main Housing (M2.5x6mm screws into M3 heat-set inserts); Buck Converter Mount → Amp & Buck Converter Tray (M2x5mm screws); Camera Mount Bracket → Global Shutter Camera (mount); Laser Mount Clamp → 650nm Line Laser (mount); Speaker Bezel Mount → Acoustic Excitation Speaker (mount); Raspberry Pi Mounting Tray → Main Controller (mount); Amp & Buck Converter Tray → Speaker Amplifier (mount); Buck Converter Mount → 5V Power Regulator (mount)"
+  },
+  "instructionPreamble": {
+    "tools": [
+      "3D printer (PETG capable)",
+      "Small Phillips head screwdriver (M2, M2.5)",
+      "M3 hex key",
+      "Soldering iron (for heat-set inserts)",
+      "Wire strippers",
+      "Multimeter",
+      "Micro HDMI cable",
+      "USB keyboard/mouse"
+    ],
+    "assumptions": [
+      "Basic 3D printing experience",
+      "Familiarity with Raspberry Pi OS setup",
+      "Basic Linux command line proficiency",
+      "Basic electronics wiring knowledge",
+      "Access to a 5V power supply for testing"
+    ]
+  },
+  "electricalConnections": [
+    {
+      "type": "power",
+      "label": "Pi Power",
+      "source": "buck_converter_5v",
+      "target": "raspberry_pi_4",
+      "current": "2A",
+      "voltage": "5V"
+    },
+    {
+      "type": "power",
+      "label": "Amp Power",
+      "source": "buck_converter_5v",
+      "target": "audio_amp_module",
+      "current": "1.5A",
+      "voltage": "5V"
+    },
+    {
+      "type": "power",
+      "label": "Laser Power",
+      "source": "buck_converter_5v",
+      "target": "laser_line_module",
+      "current": "50mA",
+      "voltage": "5V"
+    },
+    {
+      "type": "data",
+      "label": "Camera Data/Power",
+      "source": "raspberry_pi_4",
+      "target": "arducam_ov9281_camera",
+      "protocol": "csi",
+      "sourcePin": "CSI",
+      "targetPin": "CSI"
+    },
+    {
+      "type": "data",
+      "label": "Laser ON/OFF",
+      "source": "raspberry_pi_4",
+      "target": "laser_line_module",
+      "protocol": "gpio",
+      "sourcePin": "GPIO_OUT",
+      "targetPin": "Control"
+    },
+    {
+      "type": "data",
+      "label": "Audio Signal L",
+      "source": "raspberry_pi_4",
+      "target": "audio_amp_module",
+      "protocol": "pwm",
+      "sourcePin": "GPIO_PWM_AUDIO_L",
+      "targetPin": "Audio_IN_L"
+    },
+    {
+      "type": "data",
+      "label": "Audio Signal R",
+      "source": "raspberry_pi_4",
+      "target": "audio_amp_module",
+      "protocol": "pwm",
+      "sourcePin": "GPIO_PWM_AUDIO_R",
+      "targetPin": "Audio_IN_R"
+    },
+    {
+      "type": "data",
+      "label": "Speaker Output L",
+      "source": "audio_amp_module",
+      "target": "mini_speaker",
+      "protocol": "analog",
+      "sourcePin": "SPK_OUT_L",
+      "targetPin": "Audio_IN_L"
+    },
+    {
+      "type": "data",
+      "label": "Speaker Output R",
+      "source": "audio_amp_module",
+      "target": "mini_speaker",
+      "protocol": "analog",
+      "sourcePin": "SPK_OUT_R",
+      "targetPin": "Audio_IN_R"
+    }
+  ],
+  "mechanicalConnections": [
+    {
+      "label": "M3x8mm screws into M3 heat-set inserts",
+      "source": "gimbal_mounting_plate",
+      "target": "main_payload_housing"
+    },
+    {
+      "label": "M2.5x6mm screws into M3 heat-set inserts",
+      "source": "camera_mount_bracket",
+      "target": "main_payload_housing"
+    },
+    {
+      "label": "M2.5x6mm screws into M3 heat-set inserts",
+      "source": "laser_mount_clamp",
+      "target": "main_payload_housing"
+    },
+    {
+      "label": "M2.5x6mm screws into M3 heat-set inserts",
+      "source": "speaker_bezel_mount",
+      "target": "main_payload_housing"
+    },
+    {
+      "label": "M2.5x6mm screws into M3 heat-set inserts",
+      "source": "pi_mounting_tray",
+      "target": "main_payload_housing"
+    },
+    {
+      "label": "M2.5x6mm screws into M3 heat-set inserts",
+      "source": "amp_buck_converter_tray",
+      "target": "main_payload_housing"
+    },
+    {
+      "label": "M2x5mm screws",
+      "source": "mount_buck_converter_5v",
+      "target": "amp_buck_converter_tray"
+    },
+    {
+      "label": "mount",
+      "source": "camera_mount_bracket",
+      "target": "arducam_ov9281_camera"
+    },
+    {
+      "label": "mount",
+      "source": "laser_mount_clamp",
+      "target": "laser_line_module"
+    },
+    {
+      "label": "mount",
+      "source": "speaker_bezel_mount",
+      "target": "mini_speaker"
+    },
+    {
+      "label": "mount",
+      "source": "pi_mounting_tray",
+      "target": "raspberry_pi_4"
+    },
+    {
+      "label": "mount",
+      "source": "amp_buck_converter_tray",
+      "target": "audio_amp_module"
+    },
+    {
+      "label": "mount",
+      "source": "mount_buck_converter_5v",
+      "target": "buck_converter_5v"
+    }
+  ],
+  "projectId": "26d78c92-108a-4993-be27-b21f22a5bc90"
+}

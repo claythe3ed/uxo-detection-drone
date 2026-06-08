@@ -1,0 +1,80 @@
+[
+  {
+    "type": "power",
+    "label": "Pi Power",
+    "source": "buck_converter_5v",
+    "target": "raspberry_pi_4",
+    "current": "2A",
+    "voltage": "5V"
+  },
+  {
+    "type": "power",
+    "label": "Amp Power",
+    "source": "buck_converter_5v",
+    "target": "audio_amp_module",
+    "current": "1.5A",
+    "voltage": "5V"
+  },
+  {
+    "type": "power",
+    "label": "Laser Power",
+    "source": "buck_converter_5v",
+    "target": "laser_line_module",
+    "current": "50mA",
+    "voltage": "5V"
+  },
+  {
+    "type": "data",
+    "label": "Camera Data/Power",
+    "source": "raspberry_pi_4",
+    "target": "arducam_ov9281_camera",
+    "protocol": "csi",
+    "sourcePin": "CSI",
+    "targetPin": "CSI"
+  },
+  {
+    "type": "data",
+    "label": "Laser ON/OFF",
+    "source": "raspberry_pi_4",
+    "target": "laser_line_module",
+    "protocol": "gpio",
+    "sourcePin": "GPIO_OUT",
+    "targetPin": "Control"
+  },
+  {
+    "type": "data",
+    "label": "Audio Signal L",
+    "source": "raspberry_pi_4",
+    "target": "audio_amp_module",
+    "protocol": "pwm",
+    "sourcePin": "GPIO_PWM_AUDIO_L",
+    "targetPin": "Audio_IN_L"
+  },
+  {
+    "type": "data",
+    "label": "Audio Signal R",
+    "source": "raspberry_pi_4",
+    "target": "audio_amp_module",
+    "protocol": "pwm",
+    "sourcePin": "GPIO_PWM_AUDIO_R",
+    "targetPin": "Audio_IN_R"
+  },
+  {
+    "type": "data",
+    "label": "Speaker Output L",
+    "source": "audio_amp_module",
+    "target": "mini_speaker",
+    "protocol": "analog",
+    "sourcePin": "SPK_OUT_L",
+    "targetPin": "Audio_IN_L"
+  },
+  {
+    "type": "data",
+    "label": "Speaker Output R",
+    "source": "audio_amp_module",
+    "target": "mini_speaker",
+    "protocol": "analog",
+    "sourcePin": "SPK_OUT_R",
+    "targetPin": "Audio_IN_R"
+  }
+]

@@ -1,0 +1,142 @@
+[
+  {
+    "label": "M3x10mm_screws & M3_nuts",
+    "source": "vibration_isolator_front_left",
+    "target": "main_sensor_plate"
+  },
+  {
+    "label": "M3x10mm_screws & M3_nuts",
+    "source": "vibration_isolator_front_right",
+    "target": "main_sensor_plate"
+  },
+  {
+    "label": "M3x10mm_screws & M3_nuts",
+    "source": "vibration_isolator_rear_left",
+    "target": "main_sensor_plate"
+  },
+  {
+    "label": "M3x10mm_screws & M3_nuts",
+    "source": "vibration_isolator_rear_right",
+    "target": "main_sensor_plate"
+  },
+  {
+    "label": "M3x10mm_screws & M3_nuts",
+    "source": "fluxgate_boom_mount",
+    "target": "main_sensor_plate"
+  },
+  {
+    "label": "M3x10mm_screws & M3_nuts",
+    "source": "thermal_camera_mount",
+    "target": "main_sensor_plate"
+  },
+  {
+    "label": "M3x10mm_screws & M3_nuts",
+    "source": "thermal_camera_breakout_mount",
+    "target": "main_sensor_plate"
+  },
+  {
+    "label": "M3x10mm_screws & M3_nuts",
+    "source": "laser_line_module_mount",
+    "target": "main_sensor_plate"
+  },
+  {
+    "label": "M3x10mm_screws & M3_nuts",
+    "source": "global_shutter_camera_mount",
+    "target": "main_sensor_plate"
+  },
+  {
+    "label": "M3x10mm_screws & M3_nuts",
+    "source": "acoustic_speaker_mount",
+    "target": "main_sensor_plate"
+  },
+  {
+    "label": "M3x10mm_screws & M3_nuts",
+    "source": "audio_amplifier_mount",
+    "target": "main_sensor_plate"
+  },
+  {
+    "label": "M3x10mm_screws & M3_nuts",
+    "source": "nanovna_gpr_housing",
+    "target": "main_sensor_plate"
+  },
+  {
+    "label": "M3x10mm_screws & M3_nuts",
+    "source": "vivaldi_antenna_front",
+    "target": "main_sensor_plate"
+  },
+  {
+    "label": "M3x10mm_screws & M3_nuts",
+    "source": "vivaldi_antenna_rear",
+    "target": "main_sensor_plate"
+  },
+  {
+    "label": "M3x10mm_screws & M3_nuts",
+    "source": "raspberry_pi_housing",
+    "target": "main_sensor_plate"
+  },
+  {
+    "label": "M3x10mm_screws & M3_nuts",
+    "source": "gps_rtk_module_mount",
+    "target": "main_sensor_plate"
+  },
+  {
+    "label": "M3x10mm_screws & M3_nuts",
+    "source": "power_supply_module_mount",
+    "target": "main_sensor_plate"
+  },
+  {
+    "label": "mount",
+    "source": "fluxgate_boom_mount",
+    "target": "fluxgate_magnetometer"
+  },
+  {
+    "label": "mount",
+    "source": "thermal_camera_mount",
+    "target": "thermal_camera"
+  },
+  {
+    "label": "mount",
+    "source": "thermal_camera_breakout_mount",
+    "target": "thermal_camera_breakout"
+  },
+  {
+    "label": "mount",
+    "source": "laser_line_module_mount",
+    "target": "laser_line_module"
+  },
+  {
+    "label": "mount",
+    "source": "global_shutter_camera_mount",
+    "target": "global_shutter_camera"
+  },
+  {
+    "label": "mount",
+    "source": "acoustic_speaker_mount",
+    "target": "acoustic_speaker"
+  },
+  {
+    "label": "mount",
+    "source": "audio_amplifier_mount",
+    "target": "audio_amplifier"
+  },
+  {
+    "label": "mount",
+    "source": "nanovna_gpr_housing",
+    "target": "nanovna_gpr"
+  },
+  {
+    "label": "mount",
+    "source": "raspberry_pi_housing",
+    "target": "main_mcu"
+  },
+  {
+    "label": "mount",
+    "source": "gps_rtk_module_mount",
+    "target": "gps_rtk_module"
+  },
+  {
+    "label": "mount",
+    "source": "power_supply_module_mount",
+    "target": "power_supply_module"
+  }
+]
