@@ -1,1 +1,26 @@
-[انسخ محتوى الإصدار 5.1 الذي أرسلته كاملاً]
+{
+  "project": "UXO Detection Drone",
+  "version": "7.3",
+  "last_updated": "2026-06-09T03:30:00Z",
+  "final_metrics": {
+    "recall": "75.0%",
+    "precision": "56.2%",
+    "false_positives_per_hectare": 7,
+    "true_positives_out_of_12": 9,
+    "gpr_peaks": 6,
+    "mag_peaks": 13,
+    "thermal_peaks": 6,
+    "vibro_peaks": 55,
+    "hsi_peaks": 2,
+    "stability": "Identical across 4 time slots, January and July 2024"
+  },
+  "key_innovations": [
+    "Peak detection + spatial voting (replaced Bayesian fusion)",
+    "Point-target GPR model (eliminated 837→6 false peaks)",
+    "Mag/HSI solo detection privilege",
+    "Therm+Vibro+GPR ≥2 agreement rule",
+    "Real weather data (Open-Meteo) + dynamic thermal model",
+    "12-object Balkan target library (Perplexity AI + literature)"
+  ],
+  "evolution_summary": "20 versions from 0.06% to 56.2% precision. Final architecture: 5-sensor swarm with peak-based spatial voting."
+}
