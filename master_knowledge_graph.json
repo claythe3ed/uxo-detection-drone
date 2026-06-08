@@ -1,26 +1,98 @@
 {
   "project": "UXO Detection Drone",
-  "version": "7.3",
-  "last_updated": "2026-06-09T03:30:00Z",
+  "version": "8.1",
+  "last_updated": "2026-06-09T04:30:00Z",
+  "mission": "Open-source, low-cost, humanitarian demining drone. Built by a solo maker on a Huawei Y7a using Termux.",
+  "philosophy": "Building is a trace. The rest is commentary.",
+  "location_focus": "Bosnia and Herzegovina (simulation), extendable to Sudan (post-conflict)",
+  
   "final_metrics": {
-    "recall": "75.0%",
-    "precision": "56.2%",
-    "false_positives_per_hectare": 7,
-    "true_positives_out_of_12": 9,
-    "gpr_peaks": 6,
-    "mag_peaks": 13,
-    "thermal_peaks": 6,
-    "vibro_peaks": 55,
-    "hsi_peaks": 2,
-    "stability": "Identical across 4 time slots, January and July 2024"
+    "optimal_configuration": {
+      "gpr_threshold": 0.7,
+      "mag_threshold_nT": 10.0,
+      "thermal_threshold_C": 0.6,
+      "vibro_threshold": 0.25,
+      "hsi_threshold": 0.4,
+      "fusion_rule": "Mag/HSI solo + (Therm|Vibro|GPR ≥2 agreement in 5-cell window)",
+      "gpr_model": "Point-target (no Gaussian blobs), min_distance=5"
+    },
+    "large_metal_mines_bosnia_realistic": {
+      "scenario": "8 large mines (TMA-3/5, TMRP-6, 82mm/120mm mortars) along frontline cluster",
+      "tp": 6,
+      "fp": 3,
+      "fn": 2,
+      "recall": "75.0%",
+      "precision": "66.7%",
+      "false_positives_per_hectare": 3,
+      "note": "2 FN likely due to spatial clustering (mines at distance <2 cells)"
+    },
+    "all_12_balkan_targets_controlled": {
+      "tp": 9,
+      "fp": 7,
+      "fn": 3,
+      "recall": "75.0%",
+      "precision": "56.2%",
+      "note": "3 FN are plastic AP mines (PMA-1/2/3) undetectable by Mag/GPR at winter conditions"
+    },
+    "plastic_mines_reality": {
+      "detection": "Failed – 0% recall for PMA-2 in realistic Bosnia survey",
+      "reason": "Magnetic moment too low (0.003 A·m²), GPR contrast too weak (score ~0.3 < threshold 0.7), depth >5cm excludes HSI",
+      "path_forward": "Lower GPR threshold to 0.3, lower Vibro threshold to 0.2, accept higher FP (20-30/ha)"
+    }
   },
-  "key_innovations": [
-    "Peak detection + spatial voting (replaced Bayesian fusion)",
-    "Point-target GPR model (eliminated 837→6 false peaks)",
-    "Mag/HSI solo detection privilege",
-    "Therm+Vibro+GPR ≥2 agreement rule",
-    "Real weather data (Open-Meteo) + dynamic thermal model",
-    "12-object Balkan target library (Perplexity AI + literature)"
+
+  "evolution": {
+    "total_versions": 21,
+    "from": "v2.0 (Bayesian grid, 0.06% precision, 10000 false positives)",
+    "to": "v8.1 (Peak fusion, 66.7% precision, 3 false positives)",
+    "key_breakthroughs": [
+      "v4.0: Abandoned probabilistic grid fusion → peak-based spatial voting",
+      "v4.6: Mag/HSI solo detection privilege + ≥2 rule for others",
+      "v6.1: Realistic GPR model using NanoVNA+Vivaldi specs",
+      "v7.3: Point-target GPR (eliminated 837→6 false peaks), Precision crossed 50%",
+      "v8.1: Realistic Bosnia frontline simulation validated system for large mines"
+    ]
+  },
+
+  "sensor_performance_standalone": {
+    "magnetometer": {"peaks": "6-13", "strength": "Excellent for metal AT/UXO (≥1 A·m²)", "weakness": "Blind to plastic AP (<0.01 A·m²)"},
+    "gpr_nanovna": {"peaks": "5-6 (point model)", "strength": "Detects metal up to 30cm with SNR>35dB", "weakness": "Plastic contrast too low (<0.3), threshold 0.7 drops them"},
+    "thermal": {"peaks": "6-14", "strength": "Diurnal contrast for shallow mines", "weakness": "Winter Bosnia has low dT/dt (~1°C/h max)"},
+    "vibrometry": {"peaks": "50-55", "strength": "Only sensor seeing plastic mines", "weakness": "High noise floor, needs ≥2 agreement rule"},
+    "hsi": {"peaks": "2", "strength": "Zero false alarms", "weakness": "Only detects surface mines (<5cm depth)"}
+  },
+
+  "seasonal_performance": {
+    "january_2024": {"avg_soil_temp_15h": 9.5, "max_slope": 1.00, "result": "Identical to July (thermal contrast too weak to matter)"},
+    "july_2024": {"avg_soil_temp_15h": 27.9, "max_slope": 1.23, "result": "Identical to January (system bottleneck is GPR/Mag thresholds, not thermal)"}
+  },
+
+  "hardware_payloads": [
+    {"id": "payload_001", "name": "Laser Speckle Vibrometry", "cost_usd": 108.88, "weight_g": 210, "files": "hardware/vibrometry/"},
+    {"id": "payload_002", "name": "SFCW GPR (NanoVNA-V2)", "cost_usd": 287.04, "weight_g": 350, "files": "hardware/gpr/"},
+    {"id": "payload_003", "name": "Sensor Fusion Mounting Plate", "cost_usd": 1111.70, "weight_g": 150, "files": "hardware/sensor_plate/"}
   ],
-  "evolution_summary": "20 versions from 0.06% to 56.2% precision. Final architecture: 5-sensor swarm with peak-based spatial voting."
+
+  "data_sources": {
+    "weather_jan": "data/weather/bosnia_weather_jan2024.json (Open-Meteo)",
+    "weather_jul": "data/weather/bosnia_weather_july2024.json (Open-Meteo)",
+    "soil": "data/soil_properties/soil_properties_bosnia.json (SoilGrids v2.0)",
+    "elevation": "data/terrain/bosnia_elevation.json (Open-Meteo Elevation)",
+    "target_library": "12 Balkan mines/UXO (Perplexity AI + GICHD literature)"
+  },
+
+  "ethical_position": {
+    "current_theater": "Bosnia (post-conflict, safe for humanitarian demining)",
+    "sudan_viability": "Technically capable, but deployment must await conflict resolution and UNMAS coordination",
+    "open_source_license": "MIT/Apache 2.0",
+    "prohibited_use": "Military, offensive, or any non-humanitarian application"
+  },
+
+  "next_steps": [
+    "Lower GPR threshold to 0.3 for plastic mine recovery (accept FP increase)",
+    "Acquire July soil moisture data (wetter soil → worse GPR)",
+    "Field-test vibrometry payload on surrogate mine lane",
+    "Integrate real NanoVNA data into simulation pipeline",
+    "Build community documentation and welcome contributors"
+  ]
 }
