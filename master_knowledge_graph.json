@@ -1,23 +1,52 @@
 {
   "project": "UXO Detection Drone – Open‑Source Humanitarian Demining",
-  "version": "9.0",
-  "last_updated": "2026-06-09T05:45:00Z",
+  "version": "10.0",
+  "last_updated": "2026-06-09T06:00:00Z",
   "mission": "Low‑cost, open‑source, multi‑sensor UAV for landmine/UXO detection. Built solo on Android/Termux.",
   "philosophy": "Building is a trace. The rest is commentary.",
 
   "final_performance": {
-    "large_metal_mines": {
-      "scenario": "8 large mines (TMA, TMRP, mortars) – realistic Bosnia frontline",
-      "thresholds": {"gpr": 0.7, "vibro": 0.25, "thermal": 0.6},
-      "tp": 6, "fp": 3, "fn": 2, "recall": "75.0%", "precision": "66.7%",
-      "note": "FN due to two mines <2 cells apart (spatial clustering)"
+    "mixed_reality_bosnia": {
+      "scenario": "12 mines (8 plastic PMA/PROM + 4 metal TMA/mortars) along Bosnia frontline, January 2024",
+      "thresholds": {"gpr": 0.2, "vibro": 0.25, "thermal": 0.6, "mag_nT": 10.0, "hsi": 0.4},
+      "total_mines": 12,
+      "plastic_mines": 8,
+      "metal_mines": 4,
+      "tp": 7,
+      "tp_plastic": 4,
+      "tp_metal": 3,
+      "fp": 4,
+      "fn": 5,
+      "recall": "58.3%",
+      "precision": "63.6%",
+      "f1_score": 0.609,
+      "detections": 11,
+      "false_positives_per_hectare": 4,
+      "note": "First successful detection of plastic mines in realistic mixed minefield. 4/8 plastic mines found while maintaining high precision."
     },
-    "plastic_mines": {
-      "scenario": "8 plastic mines (PMA‑1/2/3, PROM‑1) – realistic Bosnia frontline",
-      "thresholds_optimal": {"gpr": 0.2, "vibro": 0.25, "thermal": 0.6},
-      "tp": 7, "fp": 13, "fn": 1, "recall": "87.5%", "precision": "35.0%", "f1": 0.500,
-      "note": "First successful plastic mine detection! Accepts higher FP (13/ha) for life‑saving recall."
+    "large_metal_mines_only": {
+      "recall": "75.0%",
+      "precision": "66.7%",
+      "note": "8 large mines, 3 false positives"
+    },
+    "plastic_mines_only": {
+      "recall": "87.5%",
+      "precision": "35.0%",
+      "note": "8 plastic mines, 13 false positives"
     }
+  },
+
+  "evolution_summary": {
+    "total_versions": 23,
+    "from": "v2.0 – Bayesian grid (0.06% precision, 10,000 FP)",
+    "to": "v10.0 – Mixed reality survey: 58.3% recall, 63.6% precision on 12 mixed mines",
+    "key_breakthroughs": [
+      "v4.0 – Peak detection + spatial voting replaces Bayesian fusion",
+      "v7.3 – Point‑target GPR model eliminates 837→6 false peaks",
+      "v8.1 – Realistic Bosnia large‑mine survey (66.7% precision)",
+      "v9.0 – Plastic mine sweep finds optimal thresholds (GPR=0.2, Vibro=0.25)",
+      "v10.0 – Mixed plastic+metal survey succeeds: 4/8 plastic mines found"
+    ]
   },
 
   "recommended_operational_settings": {
@@ -26,45 +55,47 @@
     "thermal_threshold": 0.6,
     "mag_threshold_nT": 10.0,
     "hsi_threshold": 0.4,
-    "fusion_rule": "Mag/HSI solo + (Therm | Vibro | GPR ≥2 agreement in 5‑cell window)"
-  },
-
-  "evolution_summary": {
-    "total_versions": 22,
-    "from": "v2.0 – Bayesian grid (0.06% precision, 10,000 FP)",
-    "to": "v9.0 – Peak fusion, dual‑mode (metal/plastic) thresholds validated",
-    "key_breakthroughs": [
-      "v4.0 – Peak detection + spatial voting replaces Bayesian fusion",
-      "v7.3 – Point‑target GPR model eliminates 837→6 false peaks",
-      "v8.1 – Realistic Bosnia large‑mine survey (66.7% precision)",
-      "v9.0 – Plastic mine sweep: 27‑combination threshold search finds GPR=0.2/Vibro=0.25/Thermal=0.6 gives 87.5% recall & 35% precision"
-    ]
+    "fusion_rule": "Mag/HSI solo + (Therm | Vibro | GPR ≥2 agreement in 5‑cell window)",
+    "gpr_min_distance": 5,
+    "other_sensors_min_distance": 3
   },
 
   "hardware_payloads": [
     {"name": "Laser Speckle Vibrometry", "file": "hardware/vibrometry/", "cost_usd": 108.88, "weight_g": 210},
-    {"name": "SFCW GPR (NanoVNA‑V2)", "file": "hardware/gpr/", "cost_usd": 287.04, "weight_g": 350},
+    {"name": "SFCW GPR (NanoVNA‑V2 Plus4)", "file": "hardware/gpr/", "cost_usd": 287.04, "weight_g": 350},
     {"name": "Sensor Fusion Mounting Plate", "file": "hardware/sensor_plate/", "cost_usd": 1111.70, "weight_g": 150}
   ],
 
   "data_sources": {
-    "weather": ["bosnia_weather_jan2024.json", "bosnia_weather_july2024.json (Open‑Meteo)"],
-    "soil": "soil_properties_bosnia.json (SoilGrids v2.0)",
-    "elevation": "bosnia_elevation.json (Open‑Meteo)",
-    "target_library": "12 Balkan mines/UXO (GICHD/Perplexity AI)"
+    "weather_january": "data/weather/bosnia_weather_jan2024.json (Open‑Meteo)",
+    "weather_july": "data/weather/bosnia_weather_july2024.json (Open‑Meteo)",
+    "soil": "data/soil_properties/soil_properties_bosnia.json (SoilGrids v2.0)",
+    "elevation": "data/terrain/bosnia_elevation.json (Open‑Meteo Elevation)",
+    "target_library": "12 Balkan mines/UXO (PMA‑1/2/3, PROM‑1, TMA‑3/5, TMRP‑6, M75, 60/82/120mm mortars) – sourced from Perplexity AI & GICHD literature"
   },
 
   "ethical_framework": {
-    "current_theater": "Bosnia (post‑conflict, safe for humanitarian demining)",
+    "current_theater": "Bosnia and Herzegovina (post‑conflict, safe for humanitarian demining)",
     "future_theaters": "Sudan (post‑conflict), Ukraine (post‑conflict), any UNMAS‑coordinated zone",
-    "license": "MIT/Apache 2.0",
-    "prohibited_use": "Military, offensive, or non‑humanitarian applications"
+    "license": "MIT / Apache 2.0",
+    "prohibited_use": "Military, offensive, or any non‑humanitarian application",
+    "principle": "Technology must wait for peace. We build now so we're ready when the guns fall silent."
   },
 
   "next_steps": [
-    "Field‑validate the plastic‑mine configuration (GPR=0.2) with a real NanoVNA over surrogate PMA‑2 targets",
-    "Build a combined metal+plastic realistic survey script to test the dual‑threshold recommendation",
-    "Write the final narrative report (Markdown) to accompany this knowledge graph",
-    "Release v1.0 of the open‑source detection software on GitHub"
-  ]
+    "Field‑validate plastic‑mine detection (GPR=0.2) with real NanoVNA over surrogate PMA‑2 targets",
+    "Investigate why 4/8 plastic mines were missed (likely spatial clustering: mines at (16,18) and (16,20) only 2 cells apart)",
+    "Test July 2024 data for improved thermal contrast",
+    "Build a combined metal+plastic survey with adaptive thresholds",
+    "Write the final narrative report (Markdown) and release v1.0 software on GitHub"
+  ],
+
+  "scripts_archive": {
+    "final_fusion": "scripts/fusion_final_optimized.py (v7.3)",
+    "gpr_standalone": "scripts/gpr_standalone_simulation.py (v6.1)",
+    "plastic_mine_sweep": "scripts/plastic_mine_sweep.py (v9.0)",
+    "mixed_reality_survey": "scripts/final_mixed_reality_survey.py (v10.0)",
+    "realistic_bosnia_large": "scripts/realistic_bosnia_large_mines.py (v8.1)",
+    "realistic_bosnia_plastic": "scripts/realistic_bosnia_survey.py (v8.0)"
+  }
 }
